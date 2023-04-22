@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import url("https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@100;300;400;500;700&family=Poppins:wght@100;300;400;500;600;700;900&display=swap");
 
 :root {
@@ -195,9 +194,9 @@ h1 {
 label {
   @apply text-gray-600 text-sm;
 }
-/* .btn-primary {
+.btn-primary {
   @apply bg-primary text-white px-4 py-1 rounded-sm shadow-sm;
-} */
+}
 table.basic {
   @apply w-full bg-white rounded-sm shadow-md;
 }
