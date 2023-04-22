@@ -1,0 +1,144 @@
+.container {
+  padding: 6rem 0;
+  background-color: #fcf3f5;
+}
+
+.inner-container {
+  width: 92%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 8px;
+  border-radius: 8px;
+
+  padding: 1.4rem;
+}
+
+.header div span {
+  text-align: center;
+  color: #1a1a1a;
+  font-family: var(--font-forum);
+  font-size: 2.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.button {
+  margin-top: 2px;
+  color: #fff;
+  background-color: #de89a1;
+  border-radius: 8px;
+
+  padding: 0.8em 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-poppins);
+}
+
+.email-wrapper,
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.email,
+.password {
+  color: #bdbdbd;
+  width: 100%;
+  padding: 1rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid hsl(0, 0%, 80%);
+  outline: none;
+  font-size: 15px;
+  color: #545454;
+}
+
+.email:hover,
+.email:focus,
+.password:hover,
+.password:focus {
+  border-color: #545454;
+}
+
+/* .email:focus,
+.password:focus {
+  color: #545454;
+} */
+
+.eye {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.6rem;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.login-options p {
+  width: 50%;
+  color: #de89a1;
+  font-size: 13px;
+}
+.login-options p:last-child {
+  text-align: right;
+}
+
+.divider {
+  margin: 1.4rem 0;
+}
+
+.divider p {
+  font-size: 0.8rem;
+  color: #545454;
+}
+
+.social-media-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.facebook-button,
+.google-button {
+  border: 1px solid hsl(0, 0%, 80%);
+  color: #545454;
+  text-transform: none;
+  width: 45%;
+}
+
+.facebook-button img,
+.google-button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.6rem;
+}
+
+.toogle {
+  margin-top: 2rem;
+  text-align: center;
+  color: #9b9988;
+  font-size: 13px;
+}
+
+.toogle a span {
+  color: #de89a1;
+  font-weight: 600;
+}

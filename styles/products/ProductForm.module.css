@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  gap: 1.8rem;
+  /* border: 1px solid red; */
+
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.left,
+.right {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 2.6rem;
+  width: 50%;
+}
+
+/* .right {
+  width: 50%;
+} */
+
+.title {
+  margin-bottom: 1rem;
+  color: #727272;
+  font-size: 1.22rem;
+  font-weight: 600;
+}
+
+.field-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  padding: 1.2rem;
+  width: 100%;
+}
+
+.field-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-name {
+  font-size: 0.9rem;
+  color: #7a7970;
+  margin-bottom: 4px;
+}
+
+.field-item-image-wrapper {
+  flex-direction: row;
+}
+
+.image-output {
+  width: 50%;
+  align-self: center;
+  justify-self: center;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+  gap: 1rem;
+}

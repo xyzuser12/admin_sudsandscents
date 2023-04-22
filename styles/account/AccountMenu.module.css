@@ -1,0 +1,8 @@
+.iconButton {
+  color: rgb(var(--background-rgb));
+  font-size: 1.6rem; /* replace with your desired color */
+}
+.iconButtonDark {
+  color: rgb(var(--foreground-rgb));
+  font-size: 1.6rem; /* replace with your desired color */
+}

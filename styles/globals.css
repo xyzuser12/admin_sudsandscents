@@ -2,45 +2,222 @@
 @tailwind components;
 @tailwind utilities;
 
-img{
-    max-height: 100%;
+@import url("https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@100;300;400;500;700&family=Poppins:wght@100;300;400;500;600;700;900&display=swap");
+
+:root {
+  /* SCREEN SIZE */
+  --sm-screen: 640px;
+  --md-screen: 768px;
+  --lg-screen: 1024px;
+  --xl-screen: 1280px;
+
+  /* FONT WEIGHT */
+  --fw-100: 100;
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-900: 900;
+
+  /* BORDER */
+  --card-border-radius: 8px;
+
+  /* FONTS */
+  --font-forum: "Forum", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  /* COLORS */
+  --primary-color-rgb: 221, 136, 160;
+  --secondary-color-rgb: 70, 128, 238;
+  --accent-hsl: 343, 56%, 70%;
+
+  --foreground-rgb: 39, 39, 42; /*black*/
+  --background-rgb: 255, 255, 255; /*white*/
+
+  --gray-200-rgb: 214, 219, 220; /*gray-200*/
+  --gray-300-rgb: 238, 240, 241; /*gray-300*/
+  --gray-400-rgb: 180, 185, 188; /*light gray-400*/
+  --gray-500-rgb: 172, 175, 176; /*light gray-500*/
+  --gray-600-rgb: 131, 134, 135; /*gray-600*/
 }
-input, textarea, select{
-    @apply border border-gray-200 rounded-sm px-1 w-full py-2 px-3;
-    @apply mb-2;
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --gray-200-rgb: 20, 20, 20; 
+    --gray-300-rgb: 100, 100, 100; 
+    --gray-400-rgb: 108, 108, 108;
+    --gray-500-rgb: 200, 200, 200; 
+    --gray-600-rgb: 214, 219, 220; 
+  }
+}  */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-input:focus, textarea:focus, select:focus{
-    @apply border-blue-900;
+
+/* Reset margins and padding */
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
 }
-h1{
-    @apply text-gray-800 mb-4 text-xl;
+
+/* Typography */
+html,
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgb(var(--foreground-rgb));
+
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-inter);
 }
-label{
-    @apply text-gray-600 text-sm;
+
+body {
+  padding: 0 !important;
+  overflow: auto !important;
 }
-.btn-primary{
-    @apply bg-primary text-white px-4 py-1 rounded-sm shadow-sm;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
 }
-table.basic{
-    @apply w-full bg-white rounded-sm shadow-md;
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+} */
+
+/* ===========CAROUSEL============ */
+.carousel-slider {
+  display: flex;
+}
+
+img {
+  max-height: 100%;
+}
+input,
+textarea,
+select {
+  @apply border border-gray-200 rounded-sm px-1 w-full py-2 px-3;
+  @apply mb-2;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  @apply border-blue-900;
+}
+h1 {
+  @apply text-gray-800 mb-4 text-xl;
+}
+label {
+  @apply text-gray-600 text-sm;
+}
+/* .btn-primary {
+  @apply bg-primary text-white px-4 py-1 rounded-sm shadow-sm;
+} */
+table.basic {
+  @apply w-full bg-white rounded-sm shadow-md;
 }
 table.basic thead tr td,
-table.basic thead tr th
-{
-    @apply text-sm text-gray-600 uppercase border-b border-gray-200 px-4 py-2;
+table.basic thead tr th {
+  @apply text-sm text-gray-600 uppercase border-b border-gray-200 px-4 py-2;
 }
-table.basic tr td{
-    @apply px-4 py-1;
+table.basic tr td {
+  @apply px-4 py-1;
 }
-table.basic a{
-    @apply px-4 rounded-sm inline-flex mx-1 items-center gap-1 text-sm py-1;
+table.basic a {
+  @apply px-4 rounded-sm inline-flex mx-1 items-center gap-1 text-sm py-1;
 }
-.btn-default, .btn-red{
-    @apply px-4 py-1 rounded-md;
+.btn-default,
+.btn-red {
+  @apply px-4 py-1 rounded-md;
 }
-.btn-red{
-    @apply bg-red-200 text-red-600 px-4 py-1 rounded-sm shadow-sm;
+.btn-red {
+  @apply bg-red-200 text-red-600 px-4 py-1 rounded-sm shadow-sm;
 }
-.btn-default{
-    @apply bg-white text-gray-800 px-4 py-1 rounded-sm border border-gray-200 shadow-sm;
+.btn-default {
+  @apply bg-white text-gray-800 px-4 py-1 rounded-sm border border-gray-200 shadow-sm;
 }

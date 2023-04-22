@@ -1,0 +1,17 @@
+.logo {
+  grid-area: logo;
+  margin: 0 auto;
+  padding: 0 1rem;
+  color: #202027da;
+  letter-spacing: 1px;
+  font-weight: 800;
+  font-family: var(--font-poppins);
+  font-size: 20px;
+  text-align: center;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: #de89a1;
+}

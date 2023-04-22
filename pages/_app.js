@@ -1,10 +1,29 @@
-import '@/styles/globals.css';
+import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-export default function App({Component, pageProps: { session, ...pageProps }}) {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#DE89A1",
+    },
+    secondary: {
+      main: "#DEB4BD",
+    },
+  },
+});
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps}/>
-    </SessionProvider>
-  )
+    <ThemeProvider theme={theme}>
+      <SessionProvider session={session}>
+        {/* <Layout> */}
+        <Component {...pageProps} />
+        {/* </Layout> */}
+      </SessionProvider>
+    </ThemeProvider>
+  );
 }
