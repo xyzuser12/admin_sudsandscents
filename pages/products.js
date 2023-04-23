@@ -25,7 +25,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 140 },
   {
     field: "image",
     headerName: "Image",
@@ -43,6 +43,7 @@ const columns = [
   },
   { field: "name", headerName: "Name", width: 130 },
   { field: "price", headerName: "Price", width: 80 },
+  { field: "quantity", headerName: "Quantity", width: 80},
   { field: "category", headerName: "Category", width: 180 },
   { field: "subcategory", headerName: "Sub Category", width: 130 },
 
@@ -142,9 +143,10 @@ export default function Products() {
         image: p?.image,
         name: p?.title,
         price: "P" + p?.price,
+        quantity: p.quantity,
         category: parentCategory ? parentCategory?.name : category?.name,
         subcategory: category?.name,
-        quantity: p.quantity,
+        
       };
 
       formattedProducts.push(formattedProduct);
