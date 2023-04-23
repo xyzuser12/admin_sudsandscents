@@ -374,7 +374,8 @@ export default function ProductForm({
         )
         // ))
       }
-      {propertiesToFill.length > 0 &&
+      {optionsSubCateg.length > 0 &&
+        propertiesToFill.length > 0 &&
         propertiesToFill.map((p) => (
           <div key={p.name} className="">
             <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
