@@ -220,3 +220,7 @@ table.basic a {
 .btn-default {
   @apply bg-white text-gray-800 px-4 py-1 rounded-sm border border-gray-200 shadow-sm;
 }
+
+.swal2-container {
+  z-index: 9999 !important;
+}

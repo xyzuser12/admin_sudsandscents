@@ -5,10 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { styled, Box, Typography, Button } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import IconButton from "@mui/material/IconButton";
+import { styled, Box, Button } from "@mui/material";
 import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import classes from "../styles/products/AllProducts.module.css";
@@ -36,15 +33,12 @@ const columns = [
     sortable: false,
     disableColumnMenu: true,
     renderCell: (params) => (
-      console.log(params),
-      (
-        <Image
-          src={params.row.image}
-          alt={params.row.name}
-          width="40"
-          height="40"
-        />
-      )
+      <Image
+        src={params.row.image}
+        alt={params.row.name}
+        width="40"
+        height="40"
+      />
     ),
   },
   { field: "name", headerName: "Name", width: 130 },
@@ -52,12 +46,6 @@ const columns = [
   { field: "category", headerName: "Category", width: 180 },
   { field: "subcategory", headerName: "Sub Category", width: 130 },
 
-  // {
-  //   field: "status",
-  //   headerName: "Status",
-  //   sortable: false,
-  //   width: 150,
-  // },
   {
     field: "actions",
     headerName: "Action buttons",
@@ -65,29 +53,8 @@ const columns = [
     sortable: false,
     disableColumnMenu: true,
     renderCell: (params) => {
-      console.log(params);
-      // const handleEdit = () => {
-      //   console.log("Edit clicked for row ", params.id);
-      // };
-      // const handleDelete = () => {
-      //   console.log("Delete clicked for row ", params.id);
-      // };
       return (
         <div className={classes["action-buttons-wrapper"]}>
-          {/* <IconButton aria-label="edit" size="small" onClick={handleEdit}>
-            <EditIcon
-              sx={{
-                "&:hover": { color: "#00BF63", transition: ".2s all ease" },
-              }}
-            />
-          </IconButton>
-          <IconButton aria-label="delete" size="small" onClick={handleDelete}>
-            <DeleteIcon
-              sx={{
-                "&:hover": { color: "#FF5757", transition: ".2s all ease" },
-              }}
-            />
-          </IconButton> */}
           <Link
             className={`btn-default ${classes.edit}`}
             href={"/products/edit/" + params.id}
@@ -161,21 +128,6 @@ export default function Products() {
     // console.log(rowData);
   }, [products]);
 
-  // function formatProducts(products, categories) {
-  //   return products.map((p) => {
-  //     const category = categories.find((c) => c._id === p.category);
-  //     const subcategory = category?.parent ? category.parent.name : "";
-  //     return {
-  //       image: p.image,
-  //       name: p.title,
-  //       price: p.price,
-  //       subcategory: category.name,
-  //       category: subcategory,
-  //       quantity: p.quantity,
-  //     };
-  //   });
-  // }
-
   function formatProducts(prod, categ) {
     const formattedProducts = [];
 
@@ -238,13 +190,12 @@ export default function Products() {
                 textTransform: "none",
                 zIndex: "999",
               }}
-              // onClick={() => router.push("/products/new")}
             >
               Add Product
             </Button>
           </Link>
         </div>
-        <div style={{ height: "70vh", width: "100%", marginTop: "1.8rem" }}>
+        <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
           <DataGrid
             rows={formatProducts(products, categories)}
             columns={columns}
@@ -257,7 +208,7 @@ export default function Products() {
                   <th
                     className="MuiDataGrid-colCell"
                     role="columnheader"
-                    tabIndex={-1}
+                    tabIndex={1}
                     style={{ border: "1px solid red" }}
                     {...props}
                   >
@@ -272,66 +223,6 @@ export default function Products() {
           />
         </div>
       </Box>
-      {/* <Link className="btn-primary" href={"/products/new"}>
-        Add new product
-      </Link>
-      <table className="basic mt-2">
-        <thead>
-          <tr>
-            <td>Product name</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product._id}>
-              <td>{product.title}</td>
-              <td>
-                <Link
-                  className="btn-default"
-                  href={"/products/edit/" + product._id}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                    />
-                  </svg>
-                  Edit
-                </Link>
-                <Link
-                  className="btn-red"
-                  href={"/products/delete/" + product._id}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                  Delete
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
     </Layout>
   );
 }

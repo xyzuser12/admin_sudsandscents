@@ -27,7 +27,7 @@ export default function ProductForm({
   const [categories, setCategories] = useState([]);
   const [imageSrc, setImageSrc] = useState();
   const router = useRouter();
-  console.log(image);
+  console.log(productProperties);
   useEffect(() => {
     axios.get("/api/categories").then((result) => {
       setCategories(result.data);

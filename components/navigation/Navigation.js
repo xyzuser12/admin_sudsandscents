@@ -19,6 +19,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import CategoryIcon from "@mui/icons-material/Category";
 
 import classes from "../../styles/navigation/Navigation.module.css";
 let navDrawerWidth = 0;
@@ -79,10 +80,26 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
         },
       }}
     >
-      <DrawerHeader>
-        <p className={classes.logo}>
-          Sents <span>&</span> Suds
-        </p>
+      <DrawerHeader
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          className={classes.logo}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "2px",
+          }}
+        >
+          <p>Scents</p>{" "}
+          <p>
+            <span>&</span> Suds
+          </p>
+        </div>
         <IconButton
           onClick={() => {
             setOpen((prev) => !prev);
@@ -175,7 +192,7 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
                 justifyContent: "center",
               }}
             >
-              <InventoryIcon />
+              <CategoryIcon />
             </ListItemIcon>
             <ListItemText primary="Categories" sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
