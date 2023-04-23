@@ -230,6 +230,7 @@ function Categories({ swal }) {
         </form>
         {!editedCategory && (
           <React.Fragment>
+            <br></br>
             <h4>Parent Categories</h4>
             <table className="basic mt-4">
               <thead>
@@ -263,6 +264,7 @@ function Categories({ swal }) {
                   ))}
               </tbody>
             </table>
+            <br></br>
             <h4>Subcategories</h4>
             <table className="basic mt-4">
               <thead>
