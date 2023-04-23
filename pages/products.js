@@ -141,7 +141,7 @@ export default function Products() {
         id: p?._id,
         image: p?.image,
         name: p?.title,
-        price: p?.price,
+        price: "P" + p?.price,
         category: parentCategory ? parentCategory?.name : category?.name,
         subcategory: category?.name,
         quantity: p.quantity,
