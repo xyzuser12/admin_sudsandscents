@@ -25,7 +25,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const columns = [
-  { field: "id", headerName: "ID", width: 140 },
+  { field: "id", headerName: "ID", width: 70 },
   {
     field: "image",
     headerName: "Image",
@@ -120,13 +120,11 @@ export default function Products() {
     });
   }, []);
 
-  console.log(products);
 
   useEffect(() => {
     const rowData = products.map((product) => {
       return product;
     });
-    // console.log(rowData);
   }, [products]);
 
   function formatProducts(prod, categ) {
@@ -155,7 +153,6 @@ export default function Products() {
     return formattedProducts;
   }
 
-  console.log(formatProducts(products, categories));
   return (
     <Layout>
       <Box
