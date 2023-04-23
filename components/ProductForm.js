@@ -2,7 +2,66 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
+const subCa = [
+  {
+    _id: "6443984dc1145f3704a15b97",
+    name: "Flip Top",
+    parent: "644397ccc1145f3704a15b93",
 
+    properties: [
+      {
+        name: "Ingredients",
+
+        values: ["1st Scent", "1st Scent", "3rd Scent"],
+      },
+    ],
+  },
+  {
+    _id: "6443984dc1145f3704a15b97",
+    name: "Pump",
+    parent: "644397ccc1145f3704a15b93",
+
+    properties: [
+      {
+        name: "Ingredients",
+
+        values: ["1st Scent", "1st Scent", "3rd Scent"],
+      },
+    ],
+  },
+  {
+    _id: "6443984dc1145f3704a15b97",
+    name: "Flip Top",
+    parent: "644397ccc1145f3704a15b93",
+
+    properties: [
+      {
+        name: "Ingredients",
+
+        values: ["1st Scent", "1st Scent", "3rd Scent"],
+      },
+    ],
+  },
+  {
+    _id: "6443984dc1145f3704a15b97",
+    name: "Oil-based",
+    parent: "644397ccc1145f3704a15b93",
+
+    properties: [
+      {
+        name: "Ingredients",
+
+        values: ["1st Scent", "1st Scent", "3rd Scent"],
+      },
+    ],
+  },
+];
+
+const parentCa = [
+  { _id: "644397ccc1145f3704a15b93", name: "Custom Body Lotion" },
+  { _id: "644397ccc1145f3704a15b93", name: "Custom Body Scrub" },
+  { _id: "644397ccc1145f3704a15b93", name: "Custom Facial Cleanser" },
+];
 export default function ProductForm({
   _id,
   title: existingTitle,
@@ -27,12 +86,73 @@ export default function ProductForm({
   const [categories, setCategories] = useState([]);
   const [imageSrc, setImageSrc] = useState();
   const router = useRouter();
-  console.log(productProperties);
+
+  const [categ, setCateg] = useState([]);
+  const [parentCateg, setParentCateg] = useState([]);
+  const [subCateg, setSubCateg] = useState([]);
+  const [subcategory, setSubcategory] = useState("");
+
+  const [optionsSubCateg, setOptionsSubCateg] = useState([]);
+  console.log(category);
   useEffect(() => {
     axios.get("/api/categories").then((result) => {
       setCategories(result.data);
     });
   }, []);
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+  function fetchCategories() {
+    axios.get("/api/categories").then((result) => {
+      const categories = result.data;
+      setCateg(categories);
+      const topLevelCategories = getTopLevelCategories(categories);
+      const subCategories = getSubCategories(categories);
+      setParentCateg(topLevelCategories);
+      setSubCateg(subCategories);
+    });
+  }
+  function getTopLevelCategories(categ) {
+    const topLevelCategories = [];
+
+    categ.forEach((category) => {
+      if (!category.parent) {
+        topLevelCategories.push({
+          id: category._id,
+          name: category.name,
+        });
+      }
+    });
+
+    return topLevelCategories;
+  }
+
+  function getSubCategories(categ) {
+    console.log(categ);
+    const subCategories = [];
+    categ.forEach((category) => {
+      if (category.parent) {
+        console.log(category);
+
+        const parentCategory = category.parent.name;
+        const parentCategoryId = category.parent._id;
+        const parentCategoryProperties = category.properties;
+        // console.log(parentCategoryProperties);
+        subCategories.push({
+          id: category._id,
+          name: category.name,
+          parent: parentCategory,
+          parentId: parentCategoryId,
+          properties: parentCategoryProperties,
+        });
+      }
+    });
+
+    return subCategories;
+  }
+
+  console.log(parentCateg);
+  console.log(subCateg);
   async function saveProduct(e) {
     e.preventDefault();
     console.log(e.currentTarget);
@@ -61,12 +181,9 @@ export default function ProductForm({
       ).then((r) => r.json());
     }
 
-    console.log(imageData);
-
     setImageSrc(imageData.secure_url);
     setImage(imageData.secure_url);
     // setIsUploading(false);
-    console.log(image);
     const data = {
       title,
       description,
@@ -120,15 +237,49 @@ export default function ProductForm({
     setImage(data);
     setIsUploading(false);
   }
-  function updateImagesOrder(images) {
-    setImages(images);
-  }
+  // function updateImagesOrder(images) {
+  //   setImages(images);
+  // }
   function setProductProp(propName, value) {
     setProductProperties((prev) => {
       const newProductProps = { ...prev };
       newProductProps[propName] = value;
       return newProductProps;
     });
+  }
+
+  function getUniqueSubcategories(categoryId, subcategories) {
+    console.log(categoryId);
+    console.log(subcategories);
+    const subcategoriesWithParentId = subcategories.map((subcat) => {
+      return {
+        id: subcat.id,
+        name: subcat.name,
+        parent: subcat.parent,
+        parentId: subcat.parentId,
+      };
+    });
+
+    console.log(subcategoriesWithParentId);
+    const subcategoriesForCategory = subcategoriesWithParentId.filter(
+      (subcat) => {
+        console.log(subcat.parent);
+
+        return subcat.parentId == categoryId;
+      }
+    );
+    console.log(subcategoriesForCategory);
+    // const uniqueSubcategories = Array.from(
+    //   new Set(subcategoriesWithParentId.map((subcat) => subcat.name))
+    // ).map((name) => {
+    //   return {
+    //     id: subcategoriesWithParentId.find((subcat) => subcat.name === name).id,
+    //     name: name,
+    //   };
+    // });
+
+    // console.log(uniqueSubcategories);
+    return subcategoriesForCategory;
   }
 
   function imageOnChangeHandler(changeEvent) {
@@ -143,13 +294,14 @@ export default function ProductForm({
   }
 
   const propertiesToFill = [];
-  if (categories.length > 0 && category) {
-    let catInfo = categories.find(({ _id }) => _id === category);
+  if (subCateg.length > 0 && subcategory) {
+    console.log(subCateg);
+    console.log(subcategory);
+    let catInfo = subCateg.find(({ id }) => id == subcategory);
+    console.log(catInfo);
     propertiesToFill.push(...catInfo.properties);
-    while (catInfo?.parent?._id) {
-      const parentCat = categories.find(
-        ({ _id }) => _id === catInfo?.parent?._id
-      );
+    while (catInfo?.parent?.id) {
+      const parentCat = subCateg.find(({ id }) => id === catInfo?.parent?.id);
       propertiesToFill.push(...parentCat.properties);
       catInfo = parentCat;
     }
@@ -178,15 +330,50 @@ export default function ProductForm({
         onChange={(ev) => setPrice(ev.target.value)}
       />
       <label>Category</label>
-      <select value={category} onChange={(ev) => setCategory(ev.target.value)}>
+      <select
+        value={category}
+        onChange={(ev) => {
+          setCategory(ev.target.value);
+          const subcategories = getUniqueSubcategories(
+            ev.target.value,
+            subCateg
+          );
+          setOptionsSubCateg(subcategories);
+          console.log(subcategories);
+        }}
+      >
         <option value="">Uncategorized</option>
-        {categories.length > 0 &&
-          categories.map((c) => (
-            <option key={c._id} value={c._id}>
+        {parentCateg.length > 0 &&
+          parentCateg.map((c) => (
+            <option key={c.id} value={c.id}>
               {c.name}
             </option>
           ))}
       </select>
+      {
+        optionsSubCateg.length > 0 && (
+          // optionsSubCateg.map((p) => (
+          // <div key={p.name} className="">
+          <div>
+            <label>Subcategory</label>
+            <select
+              value={subcategory}
+              onChange={(ev) => setSubcategory(ev.target.value)}
+            >
+              {/* {p?.values?.map((v) => ( */}
+              <option value="">Uncategorized</option>
+              {optionsSubCateg.length > 0 &&
+                optionsSubCateg.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              {/* ))} */}
+            </select>
+          </div>
+        )
+        // ))
+      }
       {propertiesToFill.length > 0 &&
         propertiesToFill.map((p) => (
           <div key={p.name} className="">
