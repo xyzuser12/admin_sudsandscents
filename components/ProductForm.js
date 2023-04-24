@@ -2,66 +2,112 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
-const subCa = [
-  {
-    _id: "6443984dc1145f3704a15b97",
-    name: "Flip Top",
-    parent: "644397ccc1145f3704a15b93",
+// const subCa = [
+//   {
+//     _id: "6443984dc1145f3704a15b97",
+//     name: "Flip Top",
+//     parent: "644397ccc1145f3704a15b93",
 
-    properties: [
-      {
-        name: "Ingredients",
+//     properties: [
+//       {
+//         name: "Ingredients",
 
-        values: ["1st Scent", "1st Scent", "3rd Scent"],
-      },
-    ],
-  },
-  {
-    _id: "6443984dc1145f3704a15b97",
-    name: "Pump",
-    parent: "644397ccc1145f3704a15b93",
+//         values: ["1st Scent", "1st Scent", "3rd Scent"],
+//       },
+//     ],
+//   },
+//   {
+//     _id: "6443984dc1145f3704a15b97",
+//     name: "Pump",
+//     parent: "644397ccc1145f3704a15b93",
 
-    properties: [
-      {
-        name: "Ingredients",
+//     properties: [
+//       {
+//         name: "Ingredients",
 
-        values: ["1st Scent", "1st Scent", "3rd Scent"],
-      },
-    ],
-  },
-  {
-    _id: "6443984dc1145f3704a15b97",
-    name: "Flip Top",
-    parent: "644397ccc1145f3704a15b93",
+//         values: ["1st Scent", "1st Scent", "3rd Scent"],
+//       },
+//     ],
+//   },
+//   {
+//     _id: "6443984dc1145f3704a15b97",
+//     name: "Flip Top",
+//     parent: "644397ccc1145f3704a15b93",
 
-    properties: [
-      {
-        name: "Ingredients",
+//     properties: [
+//       {
+//         name: "Ingredients",
 
-        values: ["1st Scent", "1st Scent", "3rd Scent"],
-      },
-    ],
-  },
-  {
-    _id: "6443984dc1145f3704a15b97",
-    name: "Oil-based",
-    parent: "644397ccc1145f3704a15b93",
+//         values: ["1st Scent", "1st Scent", "3rd Scent"],
+//       },
+//     ],
+//   },
+//   {
+//     _id: "6443984dc1145f3704a15b97",
+//     name: "Oil-based",
+//     parent: "644397ccc1145f3704a15b93",
 
-    properties: [
-      {
-        name: "Ingredients",
+//     properties: [
+//       {
+//         name: "Ingredients",
 
-        values: ["1st Scent", "1st Scent", "3rd Scent"],
-      },
-    ],
-  },
-];
+//         values: ["1st Scent", "1st Scent", "3rd Scent"],
+//       },
+//     ],
+//   },
+// ];
 
-const parentCa = [
-  { _id: "644397ccc1145f3704a15b93", name: "Custom Body Lotion" },
-  { _id: "644397ccc1145f3704a15b93", name: "Custom Body Scrub" },
-  { _id: "644397ccc1145f3704a15b93", name: "Custom Facial Cleanser" },
-];
+// const parentCa = [
+//   { _id: "644397ccc1145f3704a15b93", name: "Custom Body Lotion" },
+//   { _id: "644397ccc1145f3704a15b93", name: "Custom Body Scrub" },
+//   { _id: "644397ccc1145f3704a15b93", name: "Custom Facial Cleanser" },
+// ];
+
+// const compo = [
+//   {
+//     composition: [
+//       {
+//         name: "Composition",
+//         values: ["Carrier Oils", "Essential Oils", "Fixatives"],
+//       },
+//     ],
+//     id: "64457ad520d684248fba76e6",
+//     name: "Oil-based",
+//     parent: "Custom Perfume",
+//     parentId: "64457aa220d684248fba76e2",
+//   },
+//   {
+//     composition: [
+//       {
+//         name: "Composition",
+//         values: [
+//           "Carrier Oils",
+//           "Essential Oils",
+//           "Fixatives",
+//           "Essential Oils",
+//         ],
+//       },
+//     ],
+//     id: "64457ad520d684248fba76e2",
+//     name: "Oil-based",
+//     parent: "Custom Perfume",
+//     parentId: "64457aa220d684248fba76e2",
+//   },
+//   {
+//     composition: [
+//       {
+//         name: "Composition",
+//         values: ["Carrier Oils", "Fixatives"],
+//       },
+//     ],
+//     id: "64457ad520d684248fba76e1",
+//     name: "Oil-based",
+//     parent: "Custom Perfume",
+//     parentId: "64457aa220d684248fba76e2",
+//   },
+// ];
+
+// const id = "64457ad520d684248fba76e6";
 export default function ProductForm({
   _id,
   title: existingTitle,
@@ -70,20 +116,18 @@ export default function ProductForm({
   image: existingImage,
   category: assignedCategory,
   quantity: existingQuantity,
-  properties: assignedProperties,
+  composition: assignedComposition,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [category, setCategory] = useState(assignedCategory || "");
-  const [productProperties, setProductProperties] = useState(
-    assignedProperties || {}
-  );
+  const [composition, setComposition] = useState(assignedComposition || "");
   const [price, setPrice] = useState(existingPrice || "");
   const [quantity, setQuantity] = useState(existingQuantity || "");
   const [image, setImage] = useState(existingImage || "");
   const [goToProducts, setGoToProducts] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [imageSrc, setImageSrc] = useState();
   const router = useRouter();
 
@@ -93,12 +137,16 @@ export default function ProductForm({
   const [subcategory, setSubcategory] = useState("");
 
   const [optionsSubCateg, setOptionsSubCateg] = useState([]);
-  console.log(category);
-  useEffect(() => {
-    axios.get("/api/categories").then((result) => {
-      setCategories(result.data);
-    });
-  }, []);
+  const [optionsCompo, setOptionsCompo] = useState([]);
+  // console.log(composition);
+  // console.log(subcategory);
+  // console.log(optionsCompo);
+
+  // useEffect(() => {
+  //   axios.get("/api/categories").then((result) => {
+  //     setCategories(result.data);
+  //   });
+  // }, []);
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -128,11 +176,11 @@ export default function ProductForm({
   }
 
   function getSubCategories(categ) {
-    console.log(categ);
+    // console.log(categ);
     const subCategories = [];
     categ.forEach((category) => {
       if (category.parent) {
-        console.log(category);
+        // console.log(category);
 
         const parentCategory = category.parent.name;
         const parentCategoryId = category.parent._id;
@@ -143,7 +191,7 @@ export default function ProductForm({
           name: category.name,
           parent: parentCategory,
           parentId: parentCategoryId,
-          properties: parentCategoryProperties,
+          composition: parentCategoryProperties,
         });
       }
     });
@@ -151,8 +199,8 @@ export default function ProductForm({
     return subCategories;
   }
 
-  console.log(parentCateg);
-  console.log(subCateg);
+  // console.log(parentCateg);
+  // console.log(subCateg);
   async function saveProduct(e) {
     e.preventDefault();
     console.log(e.currentTarget);
@@ -189,13 +237,13 @@ export default function ProductForm({
       description,
       price,
       image: imageData.secure_url || image,
-      category,
+      category: subcategory,
       quantity,
-      properties: productProperties,
+      composition,
     };
     if (_id) {
       //update
-      console.log(data);
+      // console.log(data);
       await axios.put("/api/products", { ...data, _id });
     } else {
       //create
@@ -208,7 +256,7 @@ export default function ProductForm({
   }
   async function uploadImage(e) {
     e.preventDefault();
-    console.log(e.currentTarget);
+    // console.log(e.currentTarget);
 
     const form = e.currentTarget;
     const fileInput = Array.from(form.elements).find(
@@ -231,7 +279,7 @@ export default function ProductForm({
       }
     ).then((r) => r.json());
 
-    console.log(data);
+    // console.log(data);
 
     setImageSrc(data.secure_url);
     setImage(data);
@@ -240,35 +288,36 @@ export default function ProductForm({
   // function updateImagesOrder(images) {
   //   setImages(images);
   // }
-  function setProductProp(propName, value) {
-    setProductProperties((prev) => {
-      const newProductProps = { ...prev };
-      newProductProps[propName] = value;
-      return newProductProps;
-    });
-  }
+  // function setProductProp(propName, value) {
+  //   console.log(propName);
+  //   console.log(value);
+  //   setProductProperties({ Composition: value });
+  // }
+
+  // console.log(productProperties);
 
   function getUniqueSubcategories(categoryId, subcategories) {
-    console.log(categoryId);
-    console.log(subcategories);
+    // console.log(categoryId);
+    // console.log(subcategories);
     const subcategoriesWithParentId = subcategories.map((subcat) => {
       return {
         id: subcat.id,
         name: subcat.name,
         parent: subcat.parent,
         parentId: subcat.parentId,
+        composition: subcat.composition,
       };
     });
 
-    console.log(subcategoriesWithParentId);
+    // console.log(subcategoriesWithParentId);
     const subcategoriesForCategory = subcategoriesWithParentId.filter(
       (subcat) => {
-        console.log(subcat.parent);
+        // console.log(subcat.parent);
 
         return subcat.parentId == categoryId;
       }
     );
-    console.log(subcategoriesForCategory);
+    // console.log(subcategoriesForCategory);
     // const uniqueSubcategories = Array.from(
     //   new Set(subcategoriesWithParentId.map((subcat) => subcat.name))
     // ).map((name) => {
@@ -282,6 +331,15 @@ export default function ProductForm({
     return subcategoriesForCategory;
   }
 
+  function findCompositionById(compo, id) {
+    const matchedCompo = compo.find((c) => c.id === id);
+    if (matchedCompo) {
+      return matchedCompo.composition[0].values;
+    } else {
+      return [];
+    }
+  }
+
   function imageOnChangeHandler(changeEvent) {
     const reader = new FileReader();
 
@@ -293,20 +351,21 @@ export default function ProductForm({
     reader.readAsDataURL(changeEvent.target.files[0]);
   }
 
-  const propertiesToFill = [];
-  if (subCateg.length > 0 && subcategory) {
-    console.log(subCateg);
-    console.log(subcategory);
-    let catInfo = subCateg.find(({ id }) => id == subcategory);
-    console.log(catInfo);
-    propertiesToFill.push(...catInfo.properties);
-    while (catInfo?.parent?.id) {
-      const parentCat = subCateg.find(({ id }) => id === catInfo?.parent?.id);
-      propertiesToFill.push(...parentCat.properties);
-      catInfo = parentCat;
-    }
-  }
-
+  // const propertiesToFill = [];
+  // if (subCateg.length > 0 && subcategory) {
+  //   console.log(subCateg);
+  //   console.log(subcategory);
+  //   let catInfo = subCateg.find(({ id }) => id == subcategory);
+  //   console.log(catInfo);
+  //   propertiesToFill.push(...catInfo?.properties);
+  // while (catInfo.parentId) {
+  //   const parentCat = subCateg.find(({ id }) => id === catInfo.parentId);
+  //   console.log(parentCat);
+  //   propertiesToFill?.push(...parentCat?.properties);
+  //   catInfo = parentCat;
+  // }
+  // }
+  console.log(optionsSubCateg);
   return (
     <form onSubmit={saveProduct}>
       <label>Product name</label>
@@ -339,7 +398,7 @@ export default function ProductForm({
             subCateg
           );
           setOptionsSubCateg(subcategories);
-          console.log(subcategories);
+          // console.log(subcategories);
         }}
       >
         <option value="">Uncategorized</option>
@@ -358,7 +417,14 @@ export default function ProductForm({
             <label>Subcategory</label>
             <select
               value={subcategory}
-              onChange={(ev) => setSubcategory(ev.target.value)}
+              onChange={(ev) => {
+                setSubcategory(ev.target.value);
+                setOptionsCompo(
+                  findCompositionById(optionsSubCateg, ev.target.value)
+                );
+
+                // console.log(optionsCompo);
+              }}
             >
               {/* {p?.values?.map((v) => ( */}
               <option value="">Uncategorized</option>
@@ -374,25 +440,52 @@ export default function ProductForm({
         )
         // ))
       }
-      {optionsSubCateg.length > 0 &&
-        propertiesToFill.length > 0 &&
-        propertiesToFill.map((p) => (
-          <div key={p.name} className="">
-            <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
-            <div>
-              <select
-                value={productProperties[p.name]}
-                onChange={(ev) => setProductProp(p.name, ev.target.value)}
-              >
-                {p.values.map((v) => (
-                  <option key={v} value={v}>
-                    {v}
+      {
+        optionsSubCateg.length > 0 && optionsCompo.length > 0 && (
+          // optionsSubCateg.map((p) => (
+          // <div key={p.name} className="">
+          <div>
+            <label>Composition</label>
+            <select
+              value={composition}
+              onChange={(ev) => setComposition(ev.target.value)}
+            >
+              {/* {p?.values?.map((v) => ( */}
+              <option value="">Uncategorized</option>
+              {optionsCompo.length > 0 &&
+                optionsCompo.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
                   </option>
                 ))}
-              </select>
-            </div>
+              {/* ))} */}
+            </select>
           </div>
-        ))}
+        )
+        // ))
+      }
+      {/* {optionsSubCateg.length > 0 &&
+        optionsSubCateg.map((p) => {
+          console.log(p);
+          console.log(p?.name);
+          return (
+            <div key={p.name} className="">
+              <label>Composition</label>
+              <div>
+                <select
+                  value={composition}
+                  onChange={(ev) => setComposition(ev.target.value)}
+                >
+                  {p.values.map((v) => (
+                    <option key={v} value={v}>
+                      {v}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          );
+        })} */}
       <label>Quantity</label>
       <input
         type="number"

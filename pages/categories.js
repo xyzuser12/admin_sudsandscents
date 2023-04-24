@@ -82,7 +82,7 @@ function Categories({ swal }) {
       name,
       parentCategory,
       properties: properties.map((p) => ({
-        name: p.name,
+        name: "Composition",
         values: p.values.split(",").map((v) => v.trim()),
       })),
     };

@@ -8,7 +8,7 @@ const ProductSchema = new Schema(
     image: { type: String },
     category: { type: mongoose.Types.ObjectId, ref: "Category" },
     quantity: { type: Number },
-    properties: { type: Object },
+    composition: { type: String },
   },
   {
     timestamps: true,
