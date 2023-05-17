@@ -129,13 +129,17 @@ const TopNavigation = ({ userSession, open, setOpen, drawerWidth }) => {
                 ? "Dashboard"
                 : pathname === "/products/new"
                 ? "Add New Product"
+                : pathname.includes("products/edit")
+                ? "Edit product"
+                : pathname.includes("orders/")
+                ? "Order"
                 : pathname.replace("/", "").charAt(0).toUpperCase() +
                   pathname.replace("/", "").slice(1)}
               {/* {pathname.replace("/", "").charAt(0).toUpperCase() +
                 pathname.replace("/", "").slice(1)} */}
             </Typography>
           </div>
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -143,7 +147,7 @@ const TopNavigation = ({ userSession, open, setOpen, drawerWidth }) => {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+          </Search> */}
           {/* <AccountMenu userSession={userSession} /> */}
         </div>
       </Toolbar>

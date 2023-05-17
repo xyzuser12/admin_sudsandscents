@@ -41,9 +41,10 @@ const columns = [
       />
     ),
   },
+
   { field: "name", headerName: "Name", width: 130 },
   { field: "price", headerName: "Price", width: 80 },
-  { field: "quantity", headerName: "Quantity", width: 80},
+  { field: "quantity", headerName: "Quantity", width: 80 },
   { field: "category", headerName: "Category", width: 180 },
   { field: "subcategory", headerName: "Sub Category", width: 130 },
 
@@ -120,7 +121,6 @@ export default function Products() {
     });
   }, []);
 
-
   useEffect(() => {
     const rowData = products.map((product) => {
       return product;
@@ -144,7 +144,6 @@ export default function Products() {
         quantity: p.quantity,
         category: parentCategory ? parentCategory?.name : category?.name,
         subcategory: category?.name,
-        
       };
 
       formattedProducts.push(formattedProduct);
@@ -152,7 +151,7 @@ export default function Products() {
 
     return formattedProducts;
   }
-
+  console.log(formatProducts(products, categories));
   return (
     <Layout>
       <Box

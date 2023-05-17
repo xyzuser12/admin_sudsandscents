@@ -3,8 +3,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductForm from "@/components/ProductForm";
-import AdminForm from "@/components/AdminForm";
+import { styled, Box } from "@mui/material";
 
+import AdminForm from "@/components/AdminForm";
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+}));
 export default function EditAdminPage() {
   const [adminInfo, setAdminInfo] = useState(null);
   const [goToAdmins, setGoToAdmins] = useState(false);
@@ -21,8 +29,19 @@ export default function EditAdminPage() {
 
   return (
     <Layout>
-      <h1>Edit admin</h1>
-      {adminInfo && <AdminForm {...adminInfo} />}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          overflow: "hidden",
+          margin: "3rem 1rem",
+        }}
+      >
+        <DrawerHeader />
+        <h1>Edit admin</h1>
+        {adminInfo && <AdminForm {...adminInfo} />}
+      </Box>
     </Layout>
   );
 }

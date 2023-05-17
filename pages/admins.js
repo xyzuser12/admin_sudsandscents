@@ -11,7 +11,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
-export default function Products() {
+export default function AdminsPage() {
   const [admins, setAdmins] = useState([]);
   useEffect(() => {
     axios.get("/api/admins").then((response) => {

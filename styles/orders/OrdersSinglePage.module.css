@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+.order-wrapper h2 {
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-shadow: 1px 1px 1px #fff;
+  /* padding: 1rem; */
+  /* border: 1px solid #c3c4c7; */
+  /* border-radius: 2px; */
+}
+.order-general,
+.order-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-general {
+  margin-bottom: 1rem;
+}
+
+.order-general h3,
+.order-shipping h3 {
+  color: #333;
+  margin: 1.33em 0 0;
+  font-size: 14px;
+}
+
+.order-wrapper div {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-wrapper .date-title,
+.status-title,
+.customer-title,
+.email-title,
+.phone-title,
+.order-title,
+.address-title,
+.payment-title {
+  color: #777;
+  display: block;
+  padding: 0 0 3px;
+  font-size: 13px;
+  line-height: 1.4;
+  /* vertical-align: middle; */
+}
