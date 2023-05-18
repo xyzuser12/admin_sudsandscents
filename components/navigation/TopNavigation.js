@@ -133,6 +133,8 @@ const TopNavigation = ({ userSession, open, setOpen, drawerWidth }) => {
                 ? "Edit product"
                 : pathname.includes("orders/")
                 ? "Order"
+                : pathname.includes("customers/")
+                ? "Customer"
                 : pathname.replace("/", "").charAt(0).toUpperCase() +
                   pathname.replace("/", "").slice(1)}
               {/* {pathname.replace("/", "").charAt(0).toUpperCase() +

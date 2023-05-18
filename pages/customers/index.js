@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { styled, Box } from "@mui/material";
@@ -102,9 +103,27 @@ const columns = [
   //   },
   // },
 ];
+
+const usersAddRaw = [
+  {
+    city: "Manila",
+    country: "Philippines",
+    email: "formalejoraymartbedia@gmail.com",
+    name: "Raymart Formalejo",
+    phoneNumber: "09452779188",
+    postalCode: "1013",
+    streetAddress: "1247 Yuseco St. Tondo Manila",
+    userEmail: "formalejoraymartbedia@gmail.com",
+    userId: "643f5e08b6daf213779e438d",
+    __v: 0,
+    _id: "6465dbecdc911bc36a46e01d",
+  },
+];
 export default function CustomersPage() {
+  const router = useRouter();
   const [customers, setCustomers] = useState([]);
   const [tranformCustomers, setTransformCustomer] = useState([]);
+  const [usersAddress, setUsersAddress] = useState([]);
 
   useEffect(() => {
     axios.get("/api/users").then((response) => {
@@ -114,15 +133,29 @@ export default function CustomersPage() {
   }, []);
 
   useEffect(() => {
+    axios.get("/api/address").then((response) => {
+      setUsersAddress(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
     setTransformCustomer(transformUsers(customers));
   }, [customers]);
 
   const transformUsers = (customerArr) => {
-    return customerArr.map((customer) => ({
-      id: customer._id,
-      name: customer.name,
-      email: customer.email,
-    }));
+    return customerArr.map((customer) => {
+      const matchingUserAdd = usersAddress.find(
+        (userAdd) => userAdd.userId === customer._id
+      );
+      return {
+        id: customer._id,
+        name: matchingUserAdd ? matchingUserAdd.name : customer.name,
+        email: customer.email,
+      };
+    });
+  };
+  const gotoOrder = (id) => {
+    router.push("/customers/" + id);
   };
   console.log(tranformCustomers);
   // const [admins, setAdmins] = useState([]);
@@ -150,14 +183,14 @@ export default function CustomersPage() {
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
-            // onCellClick={(params, event) => {
-            //   console.log(params);
-            //   console.log(event);
-            //   if (params.field !== "__check__") {
-            //     event.stopPropagation();
-            //     gotoOrder(params.id);
-            //   }
-            // }}
+            onCellClick={(params, event) => {
+              console.log(params);
+              console.log(event);
+              if (params.field !== "__check__") {
+                event.stopPropagation();
+                gotoOrder(params.id);
+              }
+            }}
             components={{
               header: {
                 cell: (props) => (
