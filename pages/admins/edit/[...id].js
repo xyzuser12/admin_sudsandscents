@@ -39,7 +39,7 @@ export default function EditAdminPage() {
         }}
       >
         <DrawerHeader />
-        <h1>Edit admin</h1>
+
         {adminInfo && <AdminForm {...adminInfo} />}
       </Box>
     </Layout>

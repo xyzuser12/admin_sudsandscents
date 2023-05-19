@@ -9,6 +9,7 @@ import { styled, Box, Button } from "@mui/material";
 import Image from "next/image";
 import AddIcon from "@mui/icons-material/Add";
 import classes from "../../styles/products/AllProducts.module.css";
+import Spinner from "@/components/Spinner";
 
 const orderRaw = [
   {
@@ -214,12 +215,15 @@ const columns = [
 ];
 
 export default function OrdersPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const router = useRouter();
   useEffect(() => {
+    setIsLoading(true);
     axios.get("/api/orders").then((response) => {
       console.log(response);
       setOrders(response.data);
+      setIsLoading(false);
     });
   }, []);
   function gotoOrder(id) {
@@ -275,79 +279,44 @@ export default function OrdersPage() {
       >
         <DrawerHeader />
         <h1>Orders</h1>
-        <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
-          <DataGrid
-            rows={transformOrders(orders)}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-            onCellClick={(params, event) => {
-              console.log(params);
-              console.log(event);
-              if (params.field !== "__check__") {
-                event.stopPropagation();
-                gotoOrder(params.id);
-              }
-            }}
-            components={{
-              header: {
-                cell: (props) => (
-                  <th
-                    className="MuiDataGrid-colCell"
-                    role="columnheader"
-                    tabIndex={1}
-                    style={{ border: "1px solid red" }}
-                    {...props}
-                  >
-                    <div className="MuiDataGrid-colCellTitle">
-                      {props.colDef.headerName}
-                    </div>
-                  </th>
-                ),
-              },
-              Toolbar: GridToolbar,
-            }}
-          />
-        </div>
-        {/* <table className="basic">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Paid</th>
-              <th>Recipient</th>
-              <th>Products</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.length > 0 &&
-              orders.map((order) => (
-                <tr key={order._id}>
-                  <td>{new Date(order.createdAt).toLocaleString()}</td>
-                  <td
-                    className={order.paid ? "text-green-600" : "text-red-600"}
-                  >
-                    {order.paid ? "YES" : "NO"}
-                  </td>
-                  <td>
-                    {order.name} {order.email}
-                    <br />
-                    {order.city} {order.postalCode} {order.country}
-                    <br />
-                    {order.streetAddress}
-                  </td>
-                  <td>
-                    {order.line_items.map((l) => (
-                      <>
-                        {l.price_data?.product_data.name} x{l.quantity}
-                        <br />
-                      </>
-                    ))}
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table> */}
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
+            <DataGrid
+              rows={transformOrders(orders)}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+              onCellClick={(params, event) => {
+                console.log(params);
+                console.log(event);
+                if (params.field !== "__check__") {
+                  event.stopPropagation();
+                  gotoOrder(params.id);
+                }
+              }}
+              components={{
+                header: {
+                  cell: (props) => (
+                    <th
+                      className="MuiDataGrid-colCell"
+                      role="columnheader"
+                      tabIndex={1}
+                      style={{ border: "1px solid red" }}
+                      {...props}
+                    >
+                      <div className="MuiDataGrid-colCellTitle">
+                        {props.colDef.headerName}
+                      </div>
+                    </th>
+                  ),
+                },
+                Toolbar: GridToolbar,
+              }}
+            />
+          </div>
+        )}
       </Box>
     </Layout>
   );

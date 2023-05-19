@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { styled, Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Spinner from "@/components/Spinner";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -120,15 +121,18 @@ const usersAddRaw = [
   },
 ];
 export default function CustomersPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [customers, setCustomers] = useState([]);
   const [tranformCustomers, setTransformCustomer] = useState([]);
   const [usersAddress, setUsersAddress] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get("/api/users").then((response) => {
       console.log(response);
       setCustomers(response.data);
+      setIsLoading(false);
     });
   }, []);
 
@@ -176,41 +180,44 @@ export default function CustomersPage() {
         }}
       >
         <DrawerHeader />
-        <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
-          <DataGrid
-            rows={tranformCustomers}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-            onCellClick={(params, event) => {
-              console.log(params);
-              console.log(event);
-              if (params.field !== "__check__") {
-                event.stopPropagation();
-                gotoOrder(params.id);
-              }
-            }}
-            components={{
-              header: {
-                cell: (props) => (
-                  <th
-                    className="MuiDataGrid-colCell"
-                    role="columnheader"
-                    tabIndex={1}
-                    style={{ border: "1px solid red" }}
-                    {...props}
-                  >
-                    <div className="MuiDataGrid-colCellTitle">
-                      {props.colDef.headerName}
-                    </div>
-                  </th>
-                ),
-              },
-              Toolbar: GridToolbar,
-            }}
-          />
-        </div>
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
+            <DataGrid
+              rows={tranformCustomers}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              checkboxSelection
+              onCellClick={(params, event) => {
+                console.log(params);
+                console.log(event);
+                if (params.field !== "__check__") {
+                  event.stopPropagation();
+                  gotoOrder(params.id);
+                }
+              }}
+              components={{
+                header: {
+                  cell: (props) => (
+                    <th
+                      className="MuiDataGrid-colCell"
+                      role="columnheader"
+                      tabIndex={1}
+                      style={{ border: "1px solid red" }}
+                      {...props}
+                    >
+                      <div className="MuiDataGrid-colCellTitle">
+                        {props.colDef.headerName}
+                      </div>
+                    </th>
+                  ),
+                },
+                Toolbar: GridToolbar,
+              }}
+            />
+          </div>
+        )}
         {/* <Link className="btn-primary" href={"/admins/new"}>
           Add new admin
         </Link>

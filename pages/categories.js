@@ -7,6 +7,7 @@ import * as React from "react";
 import { styled, Box } from "@mui/material";
 
 import classes from "../styles/products/AllProducts.module.css";
+import Spinner from "@/components/Spinner";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -17,6 +18,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 function Categories({ swal }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [editedCategory, setEditedCategory] = useState(null);
   const [name, setName] = useState("");
   const [parentCategory, setParentCategory] = useState("");
@@ -29,6 +31,7 @@ function Categories({ swal }) {
     fetchCategories();
   }, []);
   function fetchCategories() {
+    setIsLoading(true);
     axios.get("/api/categories").then((result) => {
       const categories = result.data;
       setCategories(categories);
@@ -36,6 +39,7 @@ function Categories({ swal }) {
       const subCategories = getSubCategories(categories);
       setParentCateg(topLevelCategories);
       setSubCateg(subCategories);
+      setIsLoading(false);
     });
   }
 
@@ -160,150 +164,155 @@ function Categories({ swal }) {
         }}
       >
         <DrawerHeader />
-        <label>
-          {editedCategory
-            ? `Edit category ${editedCategory.name}`
-            : "Create new category"}
-        </label>
-        <form onSubmit={saveCategory}>
-          <div className="flex gap-1">
-            <input
-              type="text"
-              placeholder={"Category name"}
-              onChange={(ev) => setName(ev.target.value)}
-              value={name}
-            />
-            <select
-              onChange={(ev) => setParentCategory(ev.target.value)}
-              value={parentCategory}
-            >
-              <option value="">No parent category</option>
-              {parentCateg.length > 0 &&
-                parentCateg.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-            </select>
-          </div>
-          <div className="mb-2">
-            <button
-              onClick={addProperty}
-              type="button"
-              className="btn-default text-sm mb-2"
-            >
-              Add a composition
-            </button>
-
-            {properties?.length > 0 && (
-              <div className="flex gap-1 mb-2">
-                <p>Composition: </p>
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div>
+            <label>
+              {editedCategory
+                ? `Edit category ${editedCategory.name}`
+                : "Create new category"}
+            </label>
+            <form onSubmit={saveCategory}>
+              <div className="flex gap-1">
                 <input
                   type="text"
-                  className="mb-0"
-                  onChange={(e) => handlePropertyValuesChange(e, 0)}
-                  value={properties[0].values}
-                  placeholder="values, comma separated"
+                  placeholder={"Category name"}
+                  onChange={(ev) => setName(ev.target.value)}
+                  value={name}
                 />
+                <select
+                  onChange={(ev) => setParentCategory(ev.target.value)}
+                  value={parentCategory}
+                >
+                  <option value="">No parent category</option>
+                  {parentCateg.length > 0 &&
+                    parentCateg.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
+                </select>
               </div>
-            )}
-          </div>
-          <div className="flex gap-1">
-            {editedCategory && (
-              <button
-                type="button"
-                onClick={() => {
-                  setEditedCategory(null);
-                  setName("");
-                  setParentCategory("");
-                  setProperties([]);
-                }}
-                className="btn-default"
-              >
-                Cancel
-              </button>
-            )}
-            <button type="submit" className="btn-primary py-1">
-              Save
-            </button>
-          </div>
-        </form>
-        {!editedCategory && (
-          <React.Fragment>
-            <br></br>
-            <h4>Parent Categories</h4>
-            <table className="basic mt-4">
-              <thead>
-                <tr>
-                  {/* <td>ID</td> */}
-                  <td>Catogory Name</td>
-                  <td>action buttons</td>
-                </tr>
-              </thead>
-              <tbody>
-                {parentCateg.length > 0 &&
-                  parentCateg.map((category) => (
-                    <tr key={category.id}>
-                      {/* <td>{category.id}</td> */}
-                      <td>{category?.name}</td>
-                      <td>
-                        <button
-                          onClick={() => editCategory(category)}
-                          className="btn-default mr-1"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => deleteCategory(category)}
-                          className="btn-red"
-                        >
-                          Delete
-                        </button>
-                      </td>
+              <div className="mb-2">
+                <button
+                  onClick={addProperty}
+                  type="button"
+                  className="btn-default text-sm mb-2"
+                >
+                  Add a composition
+                </button>
+
+                {properties?.length > 0 && (
+                  <div className="flex gap-1 mb-2">
+                    <p>Composition: </p>
+                    <input
+                      type="text"
+                      className="mb-0"
+                      onChange={(e) => handlePropertyValuesChange(e, 0)}
+                      value={properties[0].values}
+                      placeholder="values, comma separated"
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="flex gap-1">
+                {editedCategory && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditedCategory(null);
+                      setName("");
+                      setParentCategory("");
+                      setProperties([]);
+                    }}
+                    className="btn-default"
+                  >
+                    Cancel
+                  </button>
+                )}
+                <button type="submit" className="btn-primary py-1">
+                  Save
+                </button>
+              </div>
+            </form>
+            {!editedCategory && (
+              <React.Fragment>
+                <br></br>
+                <h4>Parent Categories</h4>
+                <table className="basic mt-4">
+                  <thead>
+                    <tr>
+                      {/* <td>ID</td> */}
+                      <td>Catogory Name</td>
+                      <td>action buttons</td>
                     </tr>
-                  ))}
-              </tbody>
-            </table>
-            <br></br>
-            <h4>Subcategories</h4>
-            <table className="basic mt-4">
-              <thead>
-                <tr>
-                  {/* <td>ID</td> */}
-                  <td>Catogory Name</td>
-                  <td>Parent Category</td>
-                  <td>Action buttons</td>
-                </tr>
-              </thead>
-              <tbody>
-                {subCateg.length > 0 &&
-                  subCateg.map((category) => {
-                    console.log(category);
-                    return (
-                      <tr key={category.id}>
-                        {/* <td>{category.id}</td> */}
-                        <td>{category?.name}</td>
-                        <td>{category?.parent}</td>
-                        <td>
-                          <button
-                            onClick={() => editCategory(category)}
-                            className="btn-default mr-1"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => deleteCategory(category)}
-                            className="btn-red"
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
-          </React.Fragment>
+                  </thead>
+                  <tbody>
+                    {parentCateg.length > 0 &&
+                      parentCateg.map((category) => (
+                        <tr key={category.id}>
+                          {/* <td>{category.id}</td> */}
+                          <td>{category?.name}</td>
+                          <td>
+                            <button
+                              onClick={() => editCategory(category)}
+                              className="btn-default mr-1"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => deleteCategory(category)}
+                              className="btn-red"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <br></br>
+                <h4>Subcategories</h4>
+                <table className="basic mt-4">
+                  <thead>
+                    <tr>
+                      {/* <td>ID</td> */}
+                      <td>Catogory Name</td>
+                      <td>Parent Category</td>
+                      <td>Action buttons</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {subCateg.length > 0 &&
+                      subCateg.map((category) => {
+                        console.log(category);
+                        return (
+                          <tr key={category.id}>
+                            {/* <td>{category.id}</td> */}
+                            <td>{category?.name}</td>
+                            <td>{category?.parent}</td>
+                            <td>
+                              <button
+                                onClick={() => editCategory(category)}
+                                className="btn-default mr-1"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => deleteCategory(category)}
+                                className="btn-red"
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
+              </React.Fragment>
+            )}
+          </div>
         )}
       </Box>
     </Layout>

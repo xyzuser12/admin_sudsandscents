@@ -1,7 +1,20 @@
-import {BounceLoader} from "react-spinners";
-
+import { Oval } from "react-loader-spinner";
 export default function Spinner() {
   return (
-    <BounceLoader color={'#1E3A8A'} speedMultiplier={2} />
+    <Oval
+      height={"80vh"}
+      width={90}
+      color="#DE89A1"
+      wrapperStyle={{
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="oval-loading"
+      secondaryColor="#FBF3FC"
+      strokeWidth={3}
+      strokeWidthSecondary={3}
+    />
   );
 }

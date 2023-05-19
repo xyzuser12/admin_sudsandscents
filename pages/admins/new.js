@@ -28,7 +28,6 @@ export default function NewAdminPage() {
         }}
       >
         <DrawerHeader />
-        <h1>New Admin</h1>
         <AdminForm />
       </Box>
     </Layout>

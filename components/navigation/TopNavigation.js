@@ -135,6 +135,10 @@ const TopNavigation = ({ userSession, open, setOpen, drawerWidth }) => {
                 ? "Order"
                 : pathname.includes("customers/")
                 ? "Customer"
+                : pathname === "/admins/new"
+                ? "Add new admin"
+                : pathname.includes("admins/edit")
+                ? "Edit admin"
                 : pathname.replace("/", "").charAt(0).toUpperCase() +
                   pathname.replace("/", "").slice(1)}
               {/* {pathname.replace("/", "").charAt(0).toUpperCase() +

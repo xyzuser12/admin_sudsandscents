@@ -29,66 +29,7 @@ import InputLabel from "@mui/material/InputLabel";
 import EditIcon from "@mui/icons-material/Edit";
 
 import classes from "../../styles/customers/Customers.module.css";
-
-const orderRaw = [
-  {
-    categoryId: "644653bbbe70cd3d8b62bd0c",
-    categoryImage:
-      "https://res.cloudinary.com/dkppw65bv/image/upload/v1681367352/Perfume_xe5qhi.png",
-    categoryName: "Custom Perfume",
-    formula:
-      "\n  To make this blend you will need:\n  10ml jojoba oil\n  15 drops frankincense essential oil\n  9 drops lavender essential oil\n  6 drops cedar wood essential oil\n  15ml glass bottle (a roll-on bottle or one with a pipette works well)\n  Directions:\n  \n  Pour the jojoba oil into a glass bottle.\n  Add the drops of essential oils carefully.\n  Place the lid on the bottle and shake gently to ensure all the oils are blended\n  Cost Estimation:\n  \n  10ml Jojoba Oil: ₱ 120.00\n  15 drops Frankincense Essential Oil: ₱ 50.00\n  9 drops Lavender Essential Oil: ₱ 30.00\n  6 drops Cedar Wood Essential Oil: ₱ 25.00\n  15ml Glass Bottle: ₱ 20.00",
-    ingredients: [
-      "644662c5be70cd3d8b62bd73",
-      "6446630abe70cd3d8b62bd7f",
-      "64536178ef19e3b71076cf87",
-      "645361e6ef19e3b71076cfab",
-    ],
-
-    numberOfLiter: 1,
-    productId:
-      "9d3904c6047479b0e3e24f9dda1e1bcb754c14b6e33f3f0d45dcfc46b5b57347",
-    totalEstimatedCost: 245,
-  },
-  {
-    categoryId: "644653bbbe70cd3d8b62bd0c",
-    categoryImage:
-      "https://res.cloudinary.com/dkppw65bv/image/upload/v1681367352/Perfume_xe5qhi.png",
-    categoryName: "Custom Perfume",
-    formula:
-      "\n  To make this blend you will need:\n  10ml jojoba oil\n  15 drops frankincense essential oil\n  9 drops lavender essential oil\n  6 drops cedar wood essential oil\n  15ml glass bottle (a roll-on bottle or one with a pipette works well)\n  Directions:\n  \n  Pour the jojoba oil into a glass bottle.\n  Add the drops of essential oils carefully.\n  Place the lid on the bottle and shake gently to ensure all the oils are blended\n  Cost Estimation:\n  \n  10ml Jojoba Oil: ₱ 120.00\n  15 drops Frankincense Essential Oil: ₱ 50.00\n  9 drops Lavender Essential Oil: ₱ 30.00\n  6 drops Cedar Wood Essential Oil: ₱ 25.00\n  15ml Glass Bottle: ₱ 20.00",
-    ingredients: [
-      "644662c5be70cd3d8b62bd73",
-      "6446630abe70cd3d8b62bd7f",
-      "64536178ef19e3b71076cf87",
-      "645361e6ef19e3b71076cfab",
-    ],
-
-    numberOfLiter: 1,
-    productId:
-      "9d3904c6047479b0e3e24f9dda1e1bcb754c14b6e33f3f0d45dcfc46b5b57347",
-    totalEstimatedCost: 245,
-  },
-  {
-    categoryId: "644653bbbe70cd3d8b62bd0c",
-    categoryImage:
-      "https://res.cloudinary.com/dkppw65bv/image/upload/v1681367352/Perfume_xe5qhi.png",
-    categoryName: "Custom Perfume",
-    formula:
-      "\n  To make this blend you will need:\n  10ml jojoba oil\n  15 drops frankincense essential oil\n  9 drops lavender essential oil\n  6 drops cedar wood essential oil\n  15ml glass bottle (a roll-on bottle or one with a pipette works well)\n  Directions:\n  \n  Pour the jojoba oil into a glass bottle.\n  Add the drops of essential oils carefully.\n  Place the lid on the bottle and shake gently to ensure all the oils are blended\n  Cost Estimation:\n  \n  10ml Jojoba Oil: ₱ 120.00\n  15 drops Frankincense Essential Oil: ₱ 50.00\n  9 drops Lavender Essential Oil: ₱ 30.00\n  6 drops Cedar Wood Essential Oil: ₱ 25.00\n  15ml Glass Bottle: ₱ 20.00",
-    ingredients: [
-      "644662c5be70cd3d8b62bd73",
-      "6446630abe70cd3d8b62bd7f",
-      "64536178ef19e3b71076cf87",
-      "645361e6ef19e3b71076cfab",
-    ],
-
-    numberOfLiter: 1,
-    productId:
-      "9d3904c6047479b0e3e24f9dda1e1bcb754c14b6e33f3f0d45dcfc46b5b57347",
-    totalEstimatedCost: 245,
-  },
-];
+import Spinner from "@/components/Spinner";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -106,49 +47,11 @@ const columns = [
   { field: "payment", headerName: "Payment", width: 170 },
   { field: "status", headerName: "Status", width: 170 },
 ];
-const prodIds = [
-  "644662c5be70cd3d8b62bd73",
-  "6446630abe70cd3d8b62bd7f",
-  "64536178ef19e3b71076cf87",
-  "645361e6ef19e3b71076cfab",
-];
-
-const products = [
-  {
-    category: "64466196be70cd3d8b62bd4b",
-    composition: "2nd Scents",
-    createdAt: "2023-04-24T10:12:21.072Z",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ultrices quam a pellentesque. Proin semper metus non lectus convallis, eget sagittis libero mollis. Suspendisse sed lorem nisl.",
-    image:
-      "https://res.cloudinary.com/dkppw65bv/image/upload/v1682331136/jojoba_bpyuui.png",
-    price: 30,
-    quantity: 20,
-    title: "Jojoba",
-    updatedAt: "2023-04-24T12:30:19.229Z",
-    __v: 0,
-    _id: "64465605be70cd3d8b62bd1d",
-  },
-  {
-    category: "64466196be70cd3d8b62bd4b",
-    composition: "2nd Scents",
-    createdAt: "2023-04-24T10:12:21.072Z",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique ultrices quam a pellentesque. Proin semper metus non lectus convallis, eget sagittis libero mollis. Suspendisse sed lorem nisl.",
-    image:
-      "https://res.cloudinary.com/dkppw65bv/image/upload/v1682331136/jojoba_bpyuui.png",
-    price: 30,
-    quantity: 20,
-    title: "Jojoba",
-    updatedAt: "2023-04-24T12:30:19.229Z",
-    __v: 0,
-    _id: "64465605be70cd3d8b62bd1d",
-  },
-];
 
 export default function OrderSinglePage() {
   const router = useRouter();
   const _id = router?.query.id;
+  const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState([]);
   const [userAddress, setUserAddress] = useState([]);
   const [alertVisible, setAlertVisible] = useState(false);
@@ -178,6 +81,8 @@ export default function OrderSinglePage() {
 
   useEffect(() => {
     if (_id) {
+      setIsLoading(true);
+
       axios.get("/api/address?userId=" + _id.toString()).then((response) => {
         if (response.data) {
           setUserAddress(response.data);
@@ -189,6 +94,7 @@ export default function OrderSinglePage() {
           setStreetAddress(response.data.streetAddress);
           setCountry(response.data.country);
         }
+        setIsLoading(false);
       });
     }
   }, [_id]);
@@ -236,90 +142,6 @@ export default function OrderSinglePage() {
     goBack();
   };
 
-  console.log(userData);
-  console.log(userAddress);
-  // const [orders, setOrders] = useState([]);
-  // const [productsArr, setProductsArr] = useState([]);
-  // const [products, setProducts] = useState([]);
-  // const [productId, setProductId] = useState([]);
-  // const [status, setStatus] = useState("");
-  // const [goToAllOrders, setGoToAllOrders] = useState(false);
-  // const date = new Date(orders.createdAt);
-  // const options = {
-  //   timeZone: "Asia/Manila",
-  //   month: "long",
-  //   day: "numeric",
-  //   year: "numeric",
-  // };
-  // const dateString = date.toLocaleDateString("en-PH", options);
-  // const timeString = date.toLocaleTimeString("en-US", {
-  //   timeZone: "Asia/Manila",
-  //   hour: "numeric",
-  //   minute: "2-digit",
-  // });
-  // const formattedDate = `${dateString} / ${timeString.toLowerCase()}`;
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/orders?id=" + _id)
-  //     .then((response) => {
-  //       console.log(response);
-  //       setOrders(response.data);
-  //       console.log(orders);
-  //       setStatus(response.data.status);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, [_id]);
-
-  // useEffect(() => {
-  //   const productIds = [
-  //     ...new Set(
-  //       orderRaw.flatMap((item) =>
-  //         item.ingredients.map((ingredientId) => ingredientId)
-  //       )
-  //     ),
-  //   ];
-  //   setProductId(productIds);
-  //   axios.get("/api/products").then((response) => {
-  //     setProductsArr(response.data);
-  //   });
-  // }, []);
-
-  // function getProductIds(orderRaw) {
-  //   const productIds = [];
-
-  //   orderRaw.forEach((order) => {
-  //     const lineItems = order.line_items || [];
-  //     lineItems.forEach((item) => {
-  //       productIds.push({ id: item.productId });
-  //     });
-  //   });
-
-  //   return productIds;
-  // }
-
-  // const statusHandler = (e) => {
-  //   setStatus(e.target.value);
-  // };
-
-  // const saveHandler = async (e) => {
-  //   e.preventDefault();
-
-  //   const data = {
-  //     status,
-  //   };
-  //   if (_id) {
-  //     console.log(data);
-  //     await axios.put("/api/orders", { ...data, _id });
-  //   }
-  //   setGoToAllOrders(true);
-  // };
-
-  // if (goToAllOrders) {
-  //   router.push("/orders");
-  // }
-
   return (
     <Layout>
       <Box
@@ -332,112 +154,35 @@ export default function OrderSinglePage() {
         }}
       >
         <DrawerHeader />
-        <div className={classes.container}>
-          {alertVisible && (
-            <Alert
-              severity={alertSeverity}
-              variant="filled"
-              sx={{
-                position: "fixed",
-                top: "1rem",
-                left: "50%",
-                transform: "translateX(-50%) !important",
-                zIndex: "9999999",
-              }}
-            >
-              {alertSeverity === "success"
-                ? "Successfully saved!"
-                : "Something went wrong, please try again."}
-            </Alert>
-          )}
-          <div className={classes["inner-container"]}>
-            <h2 className={classes["account-title"]}>
-              Customer #{_id} details
-            </h2>
-            <div className={classes["account-container"]}>
-              <div className={classes["information-wrapper"]}>
-                <h3>Information</h3>
-                <FormControl
-                  className={classes["name"]}
-                  size="small"
-                  sx={{
-                    m: 1,
-                    width: "100%",
-                    margin: "0",
-                    "& div": {
-                      fontSize: "14px",
-                    },
-                  }}
-                >
-                  <label htmlFor="name" className={classes.label}>
-                    Name
-                  </label>
-                  <OutlinedInput
-                    id="name"
-                    name="name"
-                    type="text"
-                    onChange={(ev) => setName(ev.target.value)}
-                    required
-                    aria-describedby="name-error-text"
-                    value={name}
-                  />
-                </FormControl>
-
-                <FormControl
-                  className={classes["phone-number"]}
-                  size="small"
-                  sx={{
-                    m: 1,
-                    width: "100%",
-                    margin: "0",
-                    "& div": {
-                      fontSize: "14px",
-                    },
-                  }}
-                >
-                  <label htmlFor="phoneNumber" className={classes.label}>
-                    Phone number
-                  </label>
-
-                  <OutlinedInput
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="tel"
-                    onChange={(ev) => setPhoneNumber(ev.target.value)}
-                    required
-                    aria-describedby="number-error-text"
-                    value={phoneNumber}
-                  />
-                </FormControl>
-                <FormControl
-                  className={classes["email"]}
-                  size="small"
-                  sx={{
-                    m: 1,
-                    width: "100%",
-                    margin: "0",
-                    "& div": {
-                      fontSize: "14px",
-                    },
-                  }}
-                >
-                  <label htmlFor="email" className={classes.label}>
-                    Email
-                  </label>
-
-                  <OutlinedInput
-                    id="email"
-                    name="email"
-                    type="email"
-                    onChange={(ev) => setEmail(ev.target.value)}
-                    required
-                    aria-describedby="email-error-text"
-                    value={email}
-                  />
-                </FormControl>
-                <div className={classes.country}>
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div className={classes.container}>
+            {alertVisible && (
+              <Alert
+                severity={alertSeverity}
+                variant="filled"
+                sx={{
+                  position: "fixed",
+                  top: "1rem",
+                  left: "50%",
+                  transform: "translateX(-50%) !important",
+                  zIndex: "9999999",
+                }}
+              >
+                {alertSeverity === "success"
+                  ? "Successfully saved!"
+                  : "Something went wrong, please try again."}
+              </Alert>
+            )}
+            <div className={classes["inner-container"]}>
+              <h2 className={classes["account-title"]}>
+                Customer #{_id} details
+              </h2>
+              <div className={classes["account-container"]}>
+                <div className={classes["information-wrapper"]}>
+                  <h3>Information</h3>
                   <FormControl
-                    className={classes["city"]}
+                    className={classes["name"]}
                     size="small"
                     sx={{
                       m: 1,
@@ -448,22 +193,22 @@ export default function OrderSinglePage() {
                       },
                     }}
                   >
-                    <label htmlFor="city" className={classes.label}>
-                      City
+                    <label htmlFor="name" className={classes.label}>
+                      Name
                     </label>
-
                     <OutlinedInput
-                      id="city"
-                      name="city"
+                      id="name"
+                      name="name"
                       type="text"
-                      onChange={(ev) => setCity(ev.target.value)}
+                      onChange={(ev) => setName(ev.target.value)}
                       required
-                      aria-describedby="city-error-text"
-                      value={city}
+                      aria-describedby="name-error-text"
+                      value={name}
                     />
                   </FormControl>
+
                   <FormControl
-                    className={classes["postal-code"]}
+                    className={classes["phone-number"]}
                     size="small"
                     sx={{
                       m: 1,
@@ -474,74 +219,153 @@ export default function OrderSinglePage() {
                       },
                     }}
                   >
-                    <label htmlFor="postalCode" className={classes.label}>
-                      Postal code
+                    <label htmlFor="phoneNumber" className={classes.label}>
+                      Phone number
                     </label>
 
                     <OutlinedInput
-                      id="postalCode"
-                      name="postalCode"
-                      type="text"
-                      onChange={(ev) => setPostalCode(ev.target.value)}
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      onChange={(ev) => setPhoneNumber(ev.target.value)}
                       required
-                      aria-describedby="postal-error-text"
-                      value={postalCode}
+                      aria-describedby="number-error-text"
+                      value={phoneNumber}
                     />
                   </FormControl>
-                </div>
-                <FormControl
-                  size="small"
-                  className={classes["street-address"]}
-                  sx={{
-                    m: 1,
-                    width: "100%",
-                    margin: "0",
-                    "& div": {
-                      fontSize: "14px",
-                    },
-                  }}
-                >
-                  <label htmlFor="streetAddress" className={classes.label}>
-                    Street address
-                  </label>
+                  <FormControl
+                    className={classes["email"]}
+                    size="small"
+                    sx={{
+                      m: 1,
+                      width: "100%",
+                      margin: "0",
+                      "& div": {
+                        fontSize: "14px",
+                      },
+                    }}
+                  >
+                    <label htmlFor="email" className={classes.label}>
+                      Email
+                    </label>
 
-                  <OutlinedInput
-                    id="streetAddress"
-                    name="streetAddress"
-                    type="text"
-                    onChange={(ev) => setStreetAddress(ev.target.value)}
-                    required
-                    aria-describedby="street-error-text"
-                    value={streetAddress}
-                  />
-                </FormControl>
-                <FormControl
-                  size="small"
-                  sx={{
-                    m: 1,
-                    width: "100%",
-                    margin: "0",
-                    "& div": {
-                      fontSize: "14px",
-                    },
-                  }}
-                >
-                  <label htmlFor="country" className={classes.label}>
-                    Country
-                  </label>
+                    <OutlinedInput
+                      id="email"
+                      name="email"
+                      type="email"
+                      onChange={(ev) => setEmail(ev.target.value)}
+                      required
+                      aria-describedby="email-error-text"
+                      value={email}
+                    />
+                  </FormControl>
+                  <div className={classes.country}>
+                    <FormControl
+                      className={classes["city"]}
+                      size="small"
+                      sx={{
+                        m: 1,
+                        width: "100%",
+                        margin: "0",
+                        "& div": {
+                          fontSize: "14px",
+                        },
+                      }}
+                    >
+                      <label htmlFor="city" className={classes.label}>
+                        City
+                      </label>
 
-                  <OutlinedInput
-                    id="country"
-                    name="country"
-                    type="text"
-                    onChange={(ev) => setCountry(ev.target.value)}
-                    required
-                    aria-describedby="country-error-text"
-                    value={country}
-                  />
-                </FormControl>
+                      <OutlinedInput
+                        id="city"
+                        name="city"
+                        type="text"
+                        onChange={(ev) => setCity(ev.target.value)}
+                        required
+                        aria-describedby="city-error-text"
+                        value={city}
+                      />
+                    </FormControl>
+                    <FormControl
+                      className={classes["postal-code"]}
+                      size="small"
+                      sx={{
+                        m: 1,
+                        width: "100%",
+                        margin: "0",
+                        "& div": {
+                          fontSize: "14px",
+                        },
+                      }}
+                    >
+                      <label htmlFor="postalCode" className={classes.label}>
+                        Postal code
+                      </label>
 
-                {/* <Button
+                      <OutlinedInput
+                        id="postalCode"
+                        name="postalCode"
+                        type="text"
+                        onChange={(ev) => setPostalCode(ev.target.value)}
+                        required
+                        aria-describedby="postal-error-text"
+                        value={postalCode}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormControl
+                    size="small"
+                    className={classes["street-address"]}
+                    sx={{
+                      m: 1,
+                      width: "100%",
+                      margin: "0",
+                      "& div": {
+                        fontSize: "14px",
+                      },
+                    }}
+                  >
+                    <label htmlFor="streetAddress" className={classes.label}>
+                      Street address
+                    </label>
+
+                    <OutlinedInput
+                      id="streetAddress"
+                      name="streetAddress"
+                      type="text"
+                      onChange={(ev) => setStreetAddress(ev.target.value)}
+                      required
+                      aria-describedby="street-error-text"
+                      value={streetAddress}
+                    />
+                  </FormControl>
+                  <FormControl
+                    size="small"
+                    sx={{
+                      m: 1,
+                      width: "100%",
+                      margin: "0",
+                      "& div": {
+                        fontSize: "14px",
+                      },
+                    }}
+                  >
+                    <label htmlFor="country" className={classes.label}>
+                      Country
+                    </label>
+
+                    <OutlinedInput
+                      id="country"
+                      name="country"
+                      type="text"
+                      onChange={(ev) => setCountry(ev.target.value)}
+                      required
+                      aria-describedby="country-error-text"
+                      value={country}
+                    />
+                  </FormControl>
+
+                  {/* <Button
                   variant="contained"
                   className={classes["buy-now__button"]}
                   sx={{
@@ -562,73 +386,73 @@ export default function OrderSinglePage() {
                 >
                   Save
                 </Button> */}
-                {_id && (
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "1rem",
-                      marginTop: "2rem",
-                      alignSelf: "end",
-                    }}
-                  >
+                  {_id && (
                     <div
                       style={{
-                        // backgroundColor: "#DE89A1",
-                        borderRadius: "4px",
+                        display: "flex",
+                        gap: "1rem",
+                        marginTop: "2rem",
+                        alignSelf: "end",
                       }}
                     >
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        sx={{
-                          color: "primary",
-                          fontSize: "13px",
-                          textTransform: "none",
-                          zIndex: "999",
+                      <div
+                        style={{
+                          // backgroundColor: "#DE89A1",
+                          borderRadius: "4px",
                         }}
-                        onClick={deleteCustomerHandler}
                       >
-                        Delete
-                      </Button>
-                    </div>
-                    <div
-                      style={{
-                        backgroundColor: "#DE89A1",
-                        borderRadius: "4px",
-                      }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{
-                          color: "#fff",
-                          fontSize: "13px",
-                          textTransform: "none",
-                          zIndex: "999",
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          sx={{
+                            color: "primary",
+                            fontSize: "13px",
+                            textTransform: "none",
+                            zIndex: "999",
+                          }}
+                          onClick={deleteCustomerHandler}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                      <div
+                        style={{
+                          backgroundColor: "#DE89A1",
+                          borderRadius: "4px",
                         }}
-                        onClick={saveCustomerHandler}
                       >
-                        Save
-                      </Button>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          sx={{
+                            color: "#fff",
+                            fontSize: "13px",
+                            textTransform: "none",
+                            zIndex: "999",
+                          }}
+                          onClick={saveCustomerHandler}
+                        >
+                          Save
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-              <div className={classes["profile-pic-wrapper"]}>
-                <h3>Profile photo</h3>
-                <div className={classes["image-wrapper"]}>
-                  <Image
-                    src={`${
-                      profilePhoto
-                        ? profilePhoto
-                        : "https://res.cloudinary.com/dkppw65bv/image/upload/c_scale,h_236/v1684159321/profiletempo_kwjl6v.jpg"
-                    }`}
-                    alt={`profile photo of ${name}`}
-                    width={100}
-                    height={100}
-                    className={classes["profile-photo"]}
-                  />
-                  {/* <IconButton
+                  )}
+                </div>
+                <div className={classes["profile-pic-wrapper"]}>
+                  <h3>Profile photo</h3>
+                  <div className={classes["image-wrapper"]}>
+                    <Image
+                      src={`${
+                        profilePhoto
+                          ? profilePhoto
+                          : "https://res.cloudinary.com/dkppw65bv/image/upload/c_scale,h_236/v1684159321/profiletempo_kwjl6v.jpg"
+                      }`}
+                      alt={`profile photo of ${name}`}
+                      width={100}
+                      height={100}
+                      className={classes["profile-photo"]}
+                    />
+                    {/* <IconButton
                     aria-label="delete"
                     size="large"
                     sx={{
@@ -643,203 +467,12 @@ export default function OrderSinglePage() {
                   >
                     <EditIcon />
                   </IconButton> */}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* <div className={classes["container"]}>
-          <Paper
-            className={classes["order-wrapper"]}
-            sx={{ padding: "1rem", display: "flex", flexDirection: "column" }}
-          >
-            <h2>Order #{orders._id} details</h2>
-            <div>
-              <div className={classes["order-general"]}>
-                <h3>General</h3>
-                <div className={classes["date-wrapper"]}>
-                  <p className={classes["date-title"]}>Date created:</p>
-                  <p>{formattedDate}</p>
-                </div>
-                <div>
-                  <p className={classes["status-title"]}>Status:</p>
-                  {status && (
-                    <FormControl
-                      sx={{
-                        m: 1,
-                        width: "100%",
-                        margin: "0",
-                        "& div div": { padding: "0" },
-                        maxWidth: "500px",
-                      }}
-                    >
-                      <Select
-                        disableScrollLock
-                        value={status}
-                        onChange={statusHandler}
-                        // defaultValue={status}
-                        displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
-                        required
-                        sx={{
-                          padding: ".4rem",
-                          fontSize: "15px",
-                          "& div": {
-                            paddingRight: "0 !important",
-                          },
-                        }}
-                      >
-                        <MenuItem value={"Completed"}>Completed</MenuItem>
-                        <MenuItem value={"Pending payment"}>
-                          Pending payment
-                        </MenuItem>
-                        <MenuItem value={"Processing"}>Processing</MenuItem>
-                        <MenuItem value={"On hold"}>On hold</MenuItem>
-                        <MenuItem value={"Cancelled"}>Cancelled</MenuItem>
-                        <MenuItem value={"Refunded"}>Refunded</MenuItem>
-                      </Select>
-                    </FormControl>
-                  )}
-                </div>
-                <div>
-                  <p className={classes["customer-title"]}>Customer name:</p>
-                  <p>{orders.name}</p>
-                </div>
-                <div>
-                  <p className={classes["email-title"]}>Email:</p>
-                  <p className={classes["email"]}>{orders.email}</p>
-                </div>
-                <div>
-                  <p className={classes["phone-title"]}>Phone:</p>
-                  <p>{orders.phoneNumber}</p>
-                </div>
-              </div>
-              <div className={classes["order-shipping"]}>
-                <h3>Shipping</h3>
-                <div>
-                  <p className={classes["address-title"]}>Address:</p>
-                  <p>{orders.streetAddress}</p>
-                </div>
-                <div>
-                  <p className={classes["payment-title"]}>Payment method:</p>
-                  <p>{orders.paymentMethod}</p>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#DE89A1",
-                borderRadius: "4px",
-                marginTop: "2rem",
-                alignSelf: "end",
-              }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  color: "#fff",
-                  fontSize: "13px",
-                  textTransform: "none",
-                  zIndex: "999",
-                }}
-                onClick={saveHandler}
-              >
-                Save
-              </Button>
-            </div>
-          </Paper>
-
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-              <TableHead>
-                <TableRow sx={{ backgroundColor: "#F8F8F8" }}>
-                  <TableCell>Item</TableCell>
-                  <TableCell align="right">Ingredients</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Total</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {orders &&
-                  orders.line_items &&
-                  orders.line_items.length > 0 &&
-                  orders?.line_items?.map((product) => {
-                    return (
-                      <TableRow
-                        key={product.productId}
-                        sx={{
-                          borderBottom: "1px solid rgba(224, 224, 224, 1)",
-                        }}
-                      >
-                        <TableCell
-                          sx={{ display: "flex", borderBottom: "none" }}
-                        >
-                          <Image
-                            src={product.categoryImage}
-                            alt="product image"
-                            height={60}
-                            width={60}
-                          />
-                          {`${product.categoryName} ${product.numberOfLiter}L`}
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "none" }}>
-                          {product.ingredients.map((ingredient) => {
-                            const ingreData = productsArr.find(
-                              (p) => p._id === ingredient
-                            );
-                            if (ingreData) {
-                              return (
-                                <p key={ingreData._id}>
-                                  {`${ingreData.title} ${ingreData.composition}`}{" "}
-                                </p>
-                              );
-                            }
-                          })}
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "none" }}>
-                          {product.ingredients.map((ingredient) => {
-                            const ingreData = productsArr.find(
-                              (p) => p._id === ingredient
-                            );
-                            if (ingreData) {
-                              return (
-                                <p
-                                  key={ingreData._id}
-                                >{`₱${ingreData.price.toFixed(2)}`}</p>
-                              );
-                            }
-                          })}
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "none" }}>
-                          {`₱${(
-                            product.numberOfLiter * product.totalEstimatedCost
-                          ).toFixed(2)}`}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-
-                <TableRow>
-                  <TableCell colSpan={2} sx={{ borderBottom: "none" }} />
-                  <TableCell>Subtotal</TableCell>
-                  <TableCell align="right">{1235}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell colSpan={2} />
-
-                  <TableCell>
-                    <p>Total</p>
-                  </TableCell>
-                  <TableCell align="right">{1235}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-         
-        </div> */}
+        )}
       </Box>
     </Layout>
   );

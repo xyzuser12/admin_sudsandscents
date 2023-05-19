@@ -21,6 +21,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import classes from "../../styles/orders/OrdersSinglePage.module.css";
+import Spinner from "@/components/Spinner";
 
 const orderRaw = [
   {
@@ -197,7 +198,7 @@ const products = [
 export default function OrderSinglePage() {
   const router = useRouter();
   const _id = router?.query.id;
-  console.log(_id);
+  const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [productsArr, setProductsArr] = useState([]);
   const [products, setProducts] = useState([]);
@@ -219,13 +220,13 @@ export default function OrderSinglePage() {
   });
   const formattedDate = `${dateString} / ${timeString.toLowerCase()}`;
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get("/api/orders?id=" + _id)
       .then((response) => {
-        console.log(response);
         setOrders(response.data);
-        console.log(orders);
         setStatus(response.data.status);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -246,32 +247,6 @@ export default function OrderSinglePage() {
     });
   }, []);
 
-  function getProductIds(orderRaw) {
-    const productIds = [];
-
-    orderRaw.forEach((order) => {
-      const lineItems = order.line_items || [];
-      lineItems.forEach((item) => {
-        productIds.push({ id: item.productId });
-      });
-    });
-
-    return productIds;
-  }
-
-  // if (Array.isArray(orders)) {
-  //   const productIds = orders.reduce((acc, order) => {
-  //     const ids = order.line_items.flatMap((item) => item.ingredients);
-  //     return [...acc, ...ids];
-  //   }, []);
-  //   console.log(productIds);
-  // }
-  console.log(orders);
-  console.log(_id);
-  console.log(status);
-  // console.log(productId);
-  // console.log(productsArr);
-
   const statusHandler = (e) => {
     setStatus(e.target.value);
   };
@@ -283,7 +258,6 @@ export default function OrderSinglePage() {
       status,
     };
     if (_id) {
-      //update
       console.log(data);
       await axios.put("/api/orders", { ...data, _id });
     }
@@ -294,43 +268,6 @@ export default function OrderSinglePage() {
     router.push("/orders");
   }
 
-  // function transformOrders(orderRaw) {
-  //   const result = [];
-
-  //   for (const order of orderRaw) {
-  //     let accumulatedPrice = 0;
-  //     const date = new Date(order.updatedAt);
-  //     const options = {
-  //       timeZone: "Asia/Manila",
-  //       month: "long",
-  //       day: "numeric",
-  //       year: "numeric",
-  //     };
-  //     const dateString = date.toLocaleDateString("en-PH", options);
-  //     const timeString = date.toLocaleTimeString("en-US", {
-  //       timeZone: "Asia/Manila",
-  //       hour: "numeric",
-  //       minute: "2-digit",
-  //     });
-  //     const formattedDate = `${dateString} / ${timeString.toLowerCase()}`;
-  //     for (const item of order.line_items) {
-  //       accumulatedPrice += item.numberOfLiter * item.totalEstimatedCost;
-  //     }
-
-  //     result.push({
-  //       id: order._id,
-  //       date: formattedDate,
-  //       recipient: order.name,
-  //       price: "₱" + accumulatedPrice.toFixed(2),
-  //       payment: order.paymentMethod,
-  //       status: order.status,
-  //     });
-  //   }
-
-  //   return result;
-  // }
-  // console.log(orderRaw);
-  // console.log(transformOrders(orders));
   return (
     <Layout>
       <Box
@@ -343,59 +280,61 @@ export default function OrderSinglePage() {
         }}
       >
         <DrawerHeader />
-        <div className={classes["container"]}>
-          <Paper
-            className={classes["order-wrapper"]}
-            sx={{ padding: "1rem", display: "flex", flexDirection: "column" }}
-          >
-            <h2>Order #{orders._id} details</h2>
-            <div>
-              <div className={classes["order-general"]}>
-                <h3>General</h3>
-                <div className={classes["date-wrapper"]}>
-                  <p className={classes["date-title"]}>Date created:</p>
-                  <p>{formattedDate}</p>
-                </div>
-                <div>
-                  <p className={classes["status-title"]}>Status:</p>
-                  {status && (
-                    <FormControl
-                      // error={isErrorPaymentMethod}
-                      sx={{
-                        m: 1,
-                        width: "100%",
-                        margin: "0",
-                        "& div div": { padding: "0" },
-                        maxWidth: "500px",
-                      }}
-                    >
-                      <Select
-                        disableScrollLock
-                        value={status}
-                        onChange={statusHandler}
-                        // defaultValue={status}
-                        displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
-                        required
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div className={classes["container"]}>
+            <Paper
+              className={classes["order-wrapper"]}
+              sx={{ padding: "1rem", display: "flex", flexDirection: "column" }}
+            >
+              <h2>Order #{orders._id} details</h2>
+              <div>
+                <div className={classes["order-general"]}>
+                  <h3>General</h3>
+                  <div className={classes["date-wrapper"]}>
+                    <p className={classes["date-title"]}>Date created:</p>
+                    <p>{formattedDate}</p>
+                  </div>
+                  <div>
+                    <p className={classes["status-title"]}>Status:</p>
+                    {status && (
+                      <FormControl
+                        // error={isErrorPaymentMethod}
                         sx={{
-                          padding: ".4rem",
-                          fontSize: "15px",
-                          "& div": {
-                            paddingRight: "0 !important",
-                          },
+                          m: 1,
+                          width: "100%",
+                          margin: "0",
+                          "& div div": { padding: "0" },
+                          maxWidth: "500px",
                         }}
                       >
-                        <MenuItem value={"Completed"}>Completed</MenuItem>
-                        <MenuItem value={"Pending payment"}>
-                          Pending payment
-                        </MenuItem>
-                        <MenuItem value={"Processing"}>Processing</MenuItem>
-                        <MenuItem value={"On hold"}>On hold</MenuItem>
-                        <MenuItem value={"Cancelled"}>Cancelled</MenuItem>
-                        <MenuItem value={"Refunded"}>Refunded</MenuItem>
-                      </Select>
+                        <Select
+                          disableScrollLock
+                          value={status}
+                          onChange={statusHandler}
+                          // defaultValue={status}
+                          displayEmpty
+                          inputProps={{ "aria-label": "Without label" }}
+                          required
+                          sx={{
+                            padding: ".4rem",
+                            fontSize: "15px",
+                            "& div": {
+                              paddingRight: "0 !important",
+                            },
+                          }}
+                        >
+                          <MenuItem value={"Completed"}>Completed</MenuItem>
+                          <MenuItem value={"Pending payment"}>
+                            Pending payment
+                          </MenuItem>
+                          <MenuItem value={"Processing"}>Processing</MenuItem>
+                          <MenuItem value={"On hold"}>On hold</MenuItem>
+                          <MenuItem value={"Cancelled"}>Cancelled</MenuItem>
+                          <MenuItem value={"Refunded"}>Refunded</MenuItem>
+                        </Select>
 
-                      {/* {isErrorPaymentMethod && errorPaymentMethod && (
+                        {/* {isErrorPaymentMethod && errorPaymentMethod && (
                   <FormHelperText
                     id="country-error-text"
                     sx={{ marginLeft: "4px" }}
@@ -403,158 +342,161 @@ export default function OrderSinglePage() {
                     {errorPaymentMethod}
                   </FormHelperText>
                 )} */}
-                    </FormControl>
-                  )}
+                      </FormControl>
+                    )}
+                  </div>
+                  <div>
+                    <p className={classes["customer-title"]}>Customer name:</p>
+                    <p>{orders.name}</p>
+                  </div>
+                  <div>
+                    <p className={classes["email-title"]}>Email:</p>
+                    <p className={classes["email"]}>{orders.email}</p>
+                  </div>
+                  <div>
+                    <p className={classes["phone-title"]}>Phone:</p>
+                    <p>{orders.phoneNumber}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className={classes["customer-title"]}>Customer name:</p>
-                  <p>{orders.name}</p>
-                </div>
-                <div>
-                  <p className={classes["email-title"]}>Email:</p>
-                  <p className={classes["email"]}>{orders.email}</p>
-                </div>
-                <div>
-                  <p className={classes["phone-title"]}>Phone:</p>
-                  <p>{orders.phoneNumber}</p>
+                <div className={classes["order-shipping"]}>
+                  <h3>Shipping</h3>
+                  <div>
+                    <p className={classes["address-title"]}>Address:</p>
+                    <p>{orders.streetAddress}</p>
+                  </div>
+                  <div>
+                    <p className={classes["payment-title"]}>Payment method:</p>
+                    <p>{orders.paymentMethod}</p>
+                  </div>
                 </div>
               </div>
-              <div className={classes["order-shipping"]}>
-                <h3>Shipping</h3>
-                <div>
-                  <p className={classes["address-title"]}>Address:</p>
-                  <p>{orders.streetAddress}</p>
-                </div>
-                <div>
-                  <p className={classes["payment-title"]}>Payment method:</p>
-                  <p>{orders.paymentMethod}</p>
-                </div>
-              </div>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#DE89A1",
-                borderRadius: "4px",
-                marginTop: "2rem",
-                alignSelf: "end",
-              }}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  color: "#fff",
-                  fontSize: "13px",
-                  textTransform: "none",
-                  zIndex: "999",
+              <div
+                style={{
+                  backgroundColor: "#DE89A1",
+                  borderRadius: "4px",
+                  marginTop: "2rem",
+                  alignSelf: "end",
                 }}
-                onClick={saveHandler}
               >
-                Save
-              </Button>
-            </div>
-          </Paper>
-          {/* {orders &&
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    color: "#fff",
+                    fontSize: "13px",
+                    textTransform: "none",
+                    zIndex: "999",
+                  }}
+                  onClick={saveHandler}
+                >
+                  Save
+                </Button>
+              </div>
+            </Paper>
+            {/* {orders &&
             orders.line_items &&
             orders.line_items.length > 0 &&
             orders?.line_items?.map((product) => console.log(product))} */}
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-              <TableHead>
-                <TableRow sx={{ backgroundColor: "#F8F8F8" }}>
-                  <TableCell>Item</TableCell>
-                  <TableCell align="right">Ingredients</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">Total</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {orders &&
-                  orders.line_items &&
-                  orders.line_items.length > 0 &&
-                  orders?.line_items?.map((product) => {
-                    // console.log(product);
-                    return (
-                      <TableRow
-                        key={product.productId}
-                        sx={{
-                          borderBottom: "1px solid rgba(224, 224, 224, 1)",
-                        }}
-                      >
-                        <TableCell
-                          sx={{ display: "flex", borderBottom: "none" }}
+            <TableContainer component={Paper}>
+              <Table aria-label="spanning table">
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: "#F8F8F8" }}>
+                    <TableCell>Item</TableCell>
+                    <TableCell align="right">Ingredients</TableCell>
+                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="right">Total</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {orders &&
+                    orders.line_items &&
+                    orders.line_items.length > 0 &&
+                    orders?.line_items?.map((product) => {
+                      // console.log(product);
+                      return (
+                        <TableRow
+                          key={product.productId}
+                          sx={{
+                            borderBottom: "1px solid rgba(224, 224, 224, 1)",
+                          }}
                         >
-                          <Image
-                            src={product.categoryImage}
-                            alt="product image"
-                            height={60}
-                            width={60}
-                          />
-                          {`${product.categoryName} ${product.numberOfLiter}L`}
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "none" }}>
-                          {product.ingredients.map((ingredient) => {
-                            const ingreData = productsArr.find(
-                              (p) => p._id === ingredient
-                            );
-                            // console.log(ingreData);
-                            if (ingreData) {
-                              return (
-                                <p key={ingreData._id}>
-                                  {`${ingreData.title} ${ingreData.composition}`}{" "}
-                                </p>
+                          <TableCell
+                            sx={{ display: "flex", borderBottom: "none" }}
+                          >
+                            <Image
+                              src={product.categoryImage}
+                              alt="product image"
+                              height={60}
+                              width={60}
+                            />
+                            {`${product.categoryName} ${product.numberOfLiter}L`}
+                          </TableCell>
+                          <TableCell
+                            align="right"
+                            sx={{ borderBottom: "none" }}
+                          >
+                            {product.ingredients.map((ingredient) => {
+                              const ingreData = productsArr.find(
+                                (p) => p._id === ingredient
                               );
-                            }
-                          })}
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "none" }}>
-                          {product.ingredients.map((ingredient) => {
-                            const ingreData = productsArr.find(
-                              (p) => p._id === ingredient
-                            );
-                            if (ingreData) {
-                              return (
-                                <p
-                                  key={ingreData._id}
-                                >{`₱${ingreData.price.toFixed(2)}`}</p>
+                              // console.log(ingreData);
+                              if (ingreData) {
+                                return (
+                                  <p key={ingreData._id}>
+                                    {`${ingreData.title} ${ingreData.composition}`}{" "}
+                                  </p>
+                                );
+                              }
+                            })}
+                          </TableCell>
+                          <TableCell
+                            align="right"
+                            sx={{ borderBottom: "none" }}
+                          >
+                            {product.ingredients.map((ingredient) => {
+                              const ingreData = productsArr.find(
+                                (p) => p._id === ingredient
                               );
-                            }
-                          })}
-                        </TableCell>
-                        <TableCell align="right" sx={{ borderBottom: "none" }}>
-                          {`₱${(
-                            product.numberOfLiter * product.totalEstimatedCost
-                          ).toFixed(2)}`}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
+                              if (ingreData) {
+                                return (
+                                  <p
+                                    key={ingreData._id}
+                                  >{`₱${ingreData.price.toFixed(2)}`}</p>
+                                );
+                              }
+                            })}
+                          </TableCell>
+                          <TableCell
+                            align="right"
+                            sx={{ borderBottom: "none" }}
+                          >
+                            {`₱${(
+                              product.numberOfLiter * product.totalEstimatedCost
+                            ).toFixed(2)}`}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
 
-                <TableRow>
-                  <TableCell colSpan={2} sx={{ borderBottom: "none" }} />
-                  <TableCell>Subtotal</TableCell>
-                  <TableCell align="right">{1235}</TableCell>
-                </TableRow>
-                {/* <TableRow>
-                  <TableCell>Tax</TableCell>
-                  <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-                    0
-                  )} %`}</TableCell>
-                  <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
-                </TableRow> */}
-                <TableRow>
-                  <TableCell colSpan={2} />
+                  <TableRow>
+                    <TableCell colSpan={2} sx={{ borderBottom: "none" }} />
+                    <TableCell>Subtotal</TableCell>
+                    <TableCell align="right">{1235}</TableCell>
+                  </TableRow>
 
-                  <TableCell>
-                    <p>Total</p>
-                  </TableCell>
-                  <TableCell align="right">{1235}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+                  <TableRow>
+                    <TableCell colSpan={2} />
 
-          {/* <TableContainer component={Paper}>
+                    <TableCell>
+                      <p>Total</p>
+                    </TableCell>
+                    <TableCell align="right">{1235}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            {/* <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 700 }} aria-label="spanning table">
                     <TableHead>
                       <TableRow>
@@ -617,76 +559,8 @@ export default function OrderSinglePage() {
                     </TableBody>
                   </Table>
                 </TableContainer> */}
-        </div>
-
-        {/* <DataGrid
-          rows={transformOrders(orders)}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-          onCellClick={(params, event) => {
-            if (params.field !== "__check__") {
-              event.stopPropagation();
-            }
-          }}
-          components={{
-            header: {
-              cell: (props) => (
-                <th
-                  className="MuiDataGrid-colCell"
-                  role="columnheader"
-                  tabIndex={1}
-                  style={{ border: "1px solid red" }}
-                  {...props}
-                >
-                  <div className="MuiDataGrid-colCellTitle">
-                    {props.colDef.headerName}
-                  </div>
-                </th>
-              ),
-            },
-            Toolbar: GridToolbar,
-          }}
-        /> */}
-        {/* <table className="basic">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Paid</th>
-              <th>Recipient</th>
-              <th>Products</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.length > 0 &&
-              orders.map((order) => (
-                <tr key={order._id}>
-                  <td>{new Date(order.createdAt).toLocaleString()}</td>
-                  <td
-                    className={order.paid ? "text-green-600" : "text-red-600"}
-                  >
-                    {order.paid ? "YES" : "NO"}
-                  </td>
-                  <td>
-                    {order.name} {order.email}
-                    <br />
-                    {order.city} {order.postalCode} {order.country}
-                    <br />
-                    {order.streetAddress}
-                  </td>
-                  <td>
-                    {order.line_items.map((l) => (
-                      <>
-                        {l.price_data?.product_data.name} x{l.quantity}
-                        <br />
-                      </>
-                    ))}
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table> */}
+          </div>
+        )}
       </Box>
     </Layout>
   );
