@@ -93,7 +93,6 @@ const SettingPage = () => {
           <div>
             <Paper sx={{ padding: "1rem" }}>
               <div className={classes["shipping-fee-wrapper"]}>
-                <h2>Shipping Fee</h2>
                 <div>
                   <h3>Delivery options:</h3>
                   <div className={classes["delivery-option-items"]}>

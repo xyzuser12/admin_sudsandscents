@@ -205,8 +205,8 @@ export default function Products() {
             <DataGrid
               rows={formatProducts(products, categories)}
               columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
+              pageSize={25}
+              rowsPerPageOptions={[25, 50, 100]}
               checkboxSelection
               components={{
                 header: {

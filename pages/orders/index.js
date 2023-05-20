@@ -111,8 +111,8 @@ const columns = [
 
   { field: "date", headerName: "Date", width: 190 },
   { field: "recipient", headerName: "Recipient", width: 200 },
-  { field: "price", headerName: "Price", width: 170 },
-  { field: "payment", headerName: "Payment", width: 170 },
+  { field: "price", headerName: "Price", width: 90 },
+  { field: "payment", headerName: "Payment", width: 100 },
   {
     field: "status",
     headerName: "Status",
