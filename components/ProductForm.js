@@ -108,16 +108,7 @@ import Spinner from "@/components/Spinner";
 // ];
 
 // const id = "64457ad520d684248fba76e6";
-export default function ProductForm({
-  _id,
-  title: existingTitle,
-  description: existingDescription,
-  price: existingPrice,
-  image: existingImage,
-  category: assignedCategory,
-  quantity: existingQuantity,
-  composition: assignedComposition,
-}) {
+export default function ProductForm({ _id, title: existingTitle, description: existingDescription, price: existingPrice, image: existingImage, category: assignedCategory, quantity: existingQuantity, composition: assignedComposition }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [category, setCategory] = useState(assignedCategory || "");
@@ -206,9 +197,7 @@ export default function ProductForm({
     console.log(e.currentTarget);
 
     const form = e.currentTarget;
-    const fileInput = Array.from(form.elements).find(
-      ({ name }) => name === "file"
-    );
+    const fileInput = Array.from(form.elements).find(({ name }) => name === "file");
 
     const formData = new FormData();
 
@@ -220,13 +209,10 @@ export default function ProductForm({
 
     let imageData = {};
     if (fileInput.files.length > 0) {
-      imageData = await fetch(
-        "https://api.cloudinary.com/v1_1/dkppw65bv/image/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      ).then((r) => r.json());
+      imageData = await fetch("https://api.cloudinary.com/v1_1/dkppw65bv/image/upload", {
+        method: "POST",
+        body: formData,
+      }).then((r) => r.json());
     }
 
     setImageSrc(imageData.secure_url);
@@ -259,9 +245,7 @@ export default function ProductForm({
     // console.log(e.currentTarget);
 
     const form = e.currentTarget;
-    const fileInput = Array.from(form.elements).find(
-      ({ name }) => name === "file"
-    );
+    const fileInput = Array.from(form.elements).find(({ name }) => name === "file");
 
     const formData = new FormData();
 
@@ -271,13 +255,10 @@ export default function ProductForm({
 
     formData.append("upload_preset", "ml_default");
 
-    const data = await fetch(
-      "https://api.cloudinary.com/v1_1/dkppw65bv/image/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    ).then((r) => r.json());
+    const data = await fetch("https://api.cloudinary.com/v1_1/dkppw65bv/image/upload", {
+      method: "POST",
+      body: formData,
+    }).then((r) => r.json());
 
     // console.log(data);
 
@@ -310,13 +291,11 @@ export default function ProductForm({
     });
 
     // console.log(subcategoriesWithParentId);
-    const subcategoriesForCategory = subcategoriesWithParentId.filter(
-      (subcat) => {
-        // console.log(subcat.parent);
+    const subcategoriesForCategory = subcategoriesWithParentId.filter((subcat) => {
+      // console.log(subcat.parent);
 
-        return subcat.parentId == categoryId;
-      }
-    );
+      return subcat.parentId == categoryId;
+    });
     // console.log(subcategoriesForCategory);
     // const uniqueSubcategories = Array.from(
     //   new Set(subcategoriesWithParentId.map((subcat) => subcat.name))
@@ -369,34 +348,17 @@ export default function ProductForm({
   return (
     <form onSubmit={saveProduct}>
       <label>Product name</label>
-      <input
-        type="text"
-        placeholder="product name"
-        value={title}
-        onChange={(ev) => setTitle(ev.target.value)}
-      />
+      <input type="text" placeholder="product name" value={title} onChange={(ev) => setTitle(ev.target.value)} />
       <label>Description</label>
-      <textarea
-        placeholder="description"
-        value={description}
-        onChange={(ev) => setDescription(ev.target.value)}
-      />
+      <textarea placeholder="description" value={description} onChange={(ev) => setDescription(ev.target.value)} />
       <label>Price (php)</label>
-      <input
-        type="number"
-        placeholder="price"
-        value={price}
-        onChange={(ev) => setPrice(ev.target.value)}
-      />
+      <input type="number" placeholder="price" value={price} onChange={(ev) => setPrice(ev.target.value)} />
       <label>Category</label>
       <select
         value={category}
         onChange={(ev) => {
           setCategory(ev.target.value);
-          const subcategories = getUniqueSubcategories(
-            ev.target.value,
-            subCateg
-          );
+          const subcategories = getUniqueSubcategories(ev.target.value, subCateg);
           setOptionsSubCateg(subcategories);
           // console.log(subcategories);
         }}
@@ -419,9 +381,7 @@ export default function ProductForm({
               value={subcategory}
               onChange={(ev) => {
                 setSubcategory(ev.target.value);
-                setOptionsCompo(
-                  findCompositionById(optionsSubCateg, ev.target.value)
-                );
+                setOptionsCompo(findCompositionById(optionsSubCateg, ev.target.value));
 
                 // console.log(optionsCompo);
               }}
@@ -446,10 +406,7 @@ export default function ProductForm({
           // <div key={p.name} className="">
           <div>
             <label>Composition</label>
-            <select
-              value={composition}
-              onChange={(ev) => setComposition(ev.target.value)}
-            >
+            <select value={composition} onChange={(ev) => setComposition(ev.target.value)}>
               {/* {p?.values?.map((v) => ( */}
               <option value="">Uncategorized</option>
               {optionsCompo.length > 0 &&
@@ -486,13 +443,8 @@ export default function ProductForm({
             </div>
           );
         })} */}
-      <label>Quantity</label>
-      <input
-        type="number"
-        placeholder="quantity"
-        value={quantity}
-        onChange={(ev) => setQuantity(ev.target.value)}
-      />
+      <label>Milliliter</label>
+      <input type="number" placeholder="milliliter" value={quantity} onChange={(ev) => setQuantity(ev.target.value)} />
       <label>Photos</label>
       <div className="mb-2 flex flex-wrap gap-1">
         {isUploading && (
@@ -502,35 +454,15 @@ export default function ProductForm({
         )}
         {!isUploading && (
           <div className="h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
-            <img
-              src={!imageSrc ? image : imageSrc}
-              alt=""
-              className="rounded-lg"
-            />
+            <img src={!imageSrc ? image : imageSrc} alt="" className="rounded-lg" />
           </div>
         )}
         <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border border-primary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
           </svg>
           <div>Add image</div>
-          <input
-            type="file"
-            name="file"
-            className="hidden"
-            onChange={imageOnChangeHandler}
-          />
+          <input type="file" name="file" className="hidden" onChange={imageOnChangeHandler} />
         </label>
       </div>
 
