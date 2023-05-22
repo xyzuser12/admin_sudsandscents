@@ -168,42 +168,94 @@ function Categories({ swal }) {
         {!isLoading && (
           <div>
             <label>
-              {editedCategory
-                ? `Edit category ${editedCategory.name}`
-                : "Create new category"}
+              <h4 style={{ color: "#545454", fontSize: "1.4rem", margin: "0" }}>
+                {editedCategory
+                  ? `Edit category ${editedCategory.name}`
+                  : "Create a category"}
+              </h4>
+              <p
+                style={{ color: "#9B9988", fontSize: "16px", marginTop: "4px" }}
+              >
+                Add a new category for your products.
+              </p>
+              <br></br>
+              <button
+                type="submit"
+                className="btn-primary py-1"
+                style={{
+                  borderRadius: "5px",
+                  backgroundColor: "#de89a1",
+                  width: "7%",
+                  height: "70%",
+                  marginRight: "4px",
+                  float: "right",
+                }}
+              >
+                Save
+              </button>
+              <br></br>
             </label>
             <form onSubmit={saveCategory}>
-              <div className="flex gap-1">
-                <input
-                  type="text"
-                  placeholder={"Category name"}
-                  onChange={(ev) => setName(ev.target.value)}
-                  value={name}
-                />
-                <select
-                  onChange={(ev) => setParentCategory(ev.target.value)}
-                  value={parentCategory}
-                >
-                  <option value="">No parent category</option>
-                  {parentCateg.length > 0 &&
-                    parentCateg.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.name}
-                      </option>
-                    ))}
-                </select>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div style={{ width: "33%" }}>
+                  <p style={{ color: "#545454", fontWeight: "600" }}>
+                    Category Name
+                  </p>
+                  <input
+                    type="text"
+                    placeholder={"e.g. Perfume"}
+                    onChange={(ev) => setName(ev.target.value)}
+                    value={name}
+                    style={{
+                      borderRadius: "5px",
+                      width: "100%",
+                      height: "60%",
+                    }}
+                  />
+                </div>
+                <div style={{ width: "30%" }}>
+                  <p style={{ color: "#545454", fontWeight: "600" }}>
+                    Parent Category
+                  </p>
+                  <select
+                    onChange={(ev) => setParentCategory(ev.target.value)}
+                    value={parentCategory}
+                    style={{
+                      borderRadius: "5px",
+                      width: "100%",
+                      height: "60%",
+                    }}
+                  >
+                    <option value="">No parent category</option>
+                    {parentCateg.length > 0 &&
+                      parentCateg.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div style={{ width: "33%" }}>
+                  <br></br>
+                  <button
+                    onClick={addProperty}
+                    type="button"
+                    className="btn-default text-sm mb-2"
+                    style={{
+                      border: "2px solid pink",
+                      borderRadius: "5px",
+                      color: "#de89a1",
+                      width: "100%",
+                      height: "60%",
+                    }}
+                  >
+                    Add a composition
+                  </button>
+                </div>
               </div>
               <div className="mb-2">
-                <button
-                  onClick={addProperty}
-                  type="button"
-                  className="btn-default text-sm mb-2"
-                >
-                  Add a composition
-                </button>
-
                 {properties?.length > 0 && (
-                  <div className="flex gap-1 mb-2">
+                  <div className="flex gap-2 mb-2">
                     <p>Composition: </p>
                     <input
                       type="text"
@@ -230,15 +282,14 @@ function Categories({ swal }) {
                     Cancel
                   </button>
                 )}
-                <button type="submit" className="btn-primary py-1">
-                  Save
-                </button>
               </div>
             </form>
             {!editedCategory && (
               <React.Fragment>
                 <br></br>
-                <h4>Parent Categories</h4>
+                <h5 style={{ color: "#545454", margin: "0" }}>
+                  Parent Categories
+                </h5>
                 <table className="basic mt-4">
                   <thead>
                     <tr>
