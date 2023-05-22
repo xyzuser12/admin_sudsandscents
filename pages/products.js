@@ -47,7 +47,7 @@ const columns = [
 
   { field: "name", headerName: "Name", width: 130 },
   { field: "price", headerName: "Price", width: 80 },
-  { field: "quantity", headerName: "Quantity", width: 80 },
+  { field: "ml", headerName: "Milliliter(ml)", width: 100 },
   { field: "category", headerName: "Category", width: 180 },
   { field: "subcategory", headerName: "Sub Category", width: 130 },
 
@@ -147,7 +147,7 @@ export default function Products() {
         image: p?.image,
         name: p?.title,
         price: "P" + p?.price,
-        quantity: p.quantity,
+        ml: p.quantity,
         category: parentCategory ? parentCategory?.name : category?.name,
         subcategory: category?.name,
       };
