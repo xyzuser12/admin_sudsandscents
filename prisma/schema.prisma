@@ -44,8 +44,8 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String?
-  username      String?
+  email         String?   @unique
+  username      String?   @unique
   password      String? // Add the password field
   emailVerified DateTime?
   image         String?
@@ -55,7 +55,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  // @@unique([email, username]) // Add this line to make email and username combination unique
+  @@unique([email, username]) // Add this line to make email and username combination unique
   @@map("User") // Add this line to specify the database table name
 }
 
@@ -77,18 +77,18 @@ model Order_item {
 
 model Category {
   id          Int           @id @default(autoincrement())
-  name        String
-  image       String
+  name        String?
+  image       String?
   description String?
   compostions Composition[]
 }
 
 model Composition {
   id          Int       @id @default(autoincrement())
-  name        String
-  description String
-  category    Category? @relation(fields: [id], references: [id])
-  // categoryId  Int?
+  name        String?
+  description String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
 }
 
 model Ingredients {
