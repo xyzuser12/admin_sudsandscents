@@ -30,7 +30,7 @@ export default function AdminsPage() {
   const [admins, setAdmins] = useState([]);
   useEffect(() => {
     setIsLoading(true);
-    axios.get("/api/admins").then((response) => {
+    axios.get("/api/admin2").then((response) => {
       setAdmins(response.data);
       setIsLoading(false);
     });
@@ -44,6 +44,7 @@ export default function AdminsPage() {
     await axios.delete("/api/admins?id=" + id);
     goBack();
   }
+  console.log(admins);
   return (
     <Layout>
       <Box
@@ -86,6 +87,7 @@ export default function AdminsPage() {
               <Table sx={{}} aria-label="spanning table">
                 <TableHead>
                   <TableRow sx={{ backgroundColor: "#F8F8F8" }}>
+                    <TableCell>Name</TableCell>
                     <TableCell>Email</TableCell>
                     <TableCell>Actions</TableCell>
                   </TableRow>
@@ -96,11 +98,14 @@ export default function AdminsPage() {
                       // console.log(product);
                       return (
                         <TableRow
-                          key={admin._id}
+                          key={admin.id}
                           sx={{
                             borderBottom: "1px solid rgba(224, 224, 224, 1)",
                           }}
                         >
+                          <TableCell sx={{ borderBottom: "none" }}>
+                            {admin.name}
+                          </TableCell>
                           <TableCell sx={{ borderBottom: "none" }}>
                             {admin.email}
                           </TableCell>
@@ -108,7 +113,7 @@ export default function AdminsPage() {
                             <div style={{ display: "flex", gap: "8px" }}>
                               <Link
                                 className="btn-default"
-                                href={"/admins/edit/" + admin._id}
+                                href={"/admins/edit/" + admin.id}
                                 style={{ display: "flex" }}
                               >
                                 <svg
@@ -129,7 +134,7 @@ export default function AdminsPage() {
                               </Link>
                               <Link
                                 className="btn-red"
-                                href={"/admins/delete/" + admin._id}
+                                href={"/admins/delete/" + admin.id}
                                 style={{ display: "flex" }}
                               >
                                 <svg

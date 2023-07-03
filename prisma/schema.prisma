@@ -1,0 +1,139 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  admin   Admin?  @relation(fields: [adminId], references: [id])
+  adminId String?
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  admin        Admin?   @relation(fields: [adminId], references: [id])
+  adminId      String?
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?
+  username      String?
+  password      String? // Add the password field
+  emailVerified DateTime?
+  image         String?
+  phone_number  String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  accounts      Account[]
+  sessions      Session[]
+
+  // @@unique([email, username]) // Add this line to make email and username combination unique
+  @@map("User") // Add this line to specify the database table name
+}
+
+model Orders {
+  id            String   @id @default(cuid())
+  order_item_id String
+  order_items   String
+  createdAt     DateTime @default(now())
+}
+
+model Order_item {
+  id                   String @id @default(cuid())
+  category_id          String
+  formula              String
+  ingredients_id       String
+  number_of_liter      Int
+  total_extimated_cost Float
+}
+
+model Category {
+  id          Int           @id @default(autoincrement())
+  name        String
+  image       String
+  description String?
+  compostions Composition[]
+}
+
+model Composition {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  category    Category? @relation(fields: [id], references: [id])
+  // categoryId  Int?
+}
+
+model Ingredients {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  image       String
+  category    String
+  quantity    Int
+  composition String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Address {
+  id             Int    @id @default(autoincrement())
+  user_email     String
+  user_id        String
+  name           String
+  phone_number   String
+  email          String
+  city           String
+  postal_code    Int
+  street_address String
+  country        String
+}
+
+model Admin {
+  id           String    @id @default(cuid())
+  name         String?
+  email        String?   @unique
+  username     String?   @unique
+  phone_number String?
+  password     String?
+  image        Bytes?
+  createdAt    DateTime  @default(now())
+  accounts     Account[]
+  sessions     Session[]
+
+  @@unique([email, username]) // Add this line to make email and username combination unique
+  @@map("Admin")
+}
+
+enum Role {
+  USER
+  ADMIN
+}

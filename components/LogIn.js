@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 
 import Image from "next/image";
@@ -16,11 +16,39 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import facebookIcon from "../public/assets/icons/facebook-icon.png";
 import googleIcon from "../public/assets/icons/google-icon.png";
 import classes from "../styles/account/LogIn.module.css";
+import bcrypt from "bcryptjs";
+import axios from "axios";
+// import { prisma } from "../lib/prismaClient";
 
-const LogIn = () => {
+const LogIn = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // console.log(props.user);
+  // useEffect(() => {
+  //   async function createUser() {
+  //     try {
+  //       // const hashedPassword = await bcrypt.hash("123456", 10);
+
+  //       await axios.post(
+  //         "/api/signup",
+  //         {
+  //           username: "test2",
+  //           email: "test2@test.com",
+  //           password: "123456",
+  //         },
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+  //     } catch (error) {
+  //       console.error(`💥💥${error}`);
+  //     }
+  //   }
+  //   createUser();
+  // }, []);
 
   const handleShowPasswordClick = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -28,6 +56,25 @@ const LogIn = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    // console.log("Email:", username, "Password:", password);
+
+    try {
+      const response = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: "/",
+      });
+
+      // if (response.error) {
+      console.log(response); // Log the error message
+      // }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -45,6 +92,8 @@ const LogIn = () => {
                   placeholder="Email"
                   required
                   className={classes.email}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className={classes["password-wrapper"]}>
@@ -55,6 +104,8 @@ const LogIn = () => {
                   placeholder="Password"
                   required
                   className={classes.password}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <IconButton
                   onClick={handleShowPasswordClick}
@@ -89,16 +140,17 @@ const LogIn = () => {
                   letterSpacing: "1px",
                   fontFamily: "var(--font-poppins)",
                 }}
+                onClick={handleLogin}
               >
                 Log in
               </Button>
             </form>
 
-            <Divider className={classes.divider}>
+            {/* <Divider className={classes.divider}>
               <p>OR</p>
-            </Divider>
+            </Divider> */}
 
-            <div className={classes["social-media-buttons-wrapper"]}>
+            {/* <div className={classes["social-media-buttons-wrapper"]}>
               <Button
                 className={classes["facebook-button"]}
                 sx={{
@@ -124,7 +176,7 @@ const LogIn = () => {
                 <Image src={googleIcon} alt="google icon" loading="lazy" />
                 <span>Google</span>
               </Button>
-            </div>
+            </div> */}
 
             {/* <div className={classes.toogle}>
               Do not have an account?
@@ -140,3 +192,12 @@ const LogIn = () => {
 };
 
 export default LogIn;
+
+// export const getServerSideProps = async () => {
+//   const user = await prisma.user.findMany();
+//   return {
+//     props: {
+//       user,
+//     },
+//   };
+// };

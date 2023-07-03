@@ -13,23 +13,49 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 export default function DeleteProductPage() {
   const router = useRouter();
-  const [adminInfo, setAdminInfo] = useState();
+  const [adminName, setAdminName] = useState();
   const { id } = router.query;
-  console.log(router);
+  const adminId = id[0];
+  console.log(adminId);
   useEffect(() => {
-    if (!id) {
-      return;
+    async function getAdminData() {
+      try {
+        const response = await axios.get("/api/admin2", {
+          params: {
+            id: id[0],
+          },
+        });
+        const data = response.data.name;
+        setAdminName(data);
+      } catch (error) {
+        console.log(`💥💥💥${error}`);
+      }
+      if (id && id[0]) {
+      }
     }
-    axios.get("/api/admins?id=" + id).then((response) => {
-      setAdminInfo(response.data);
-    });
+    getAdminData();
+
+    // if (!id) {
+    //   return;
+    // }
+    // axios.get("/api/admins?id=" + id).then((response) => {
+    //   setAdminInfo(response.data);
+    // });
   }, [id]);
+  console.log(adminName);
+
   function goBack() {
     router.push("/admins");
   }
   async function deleteAdmin() {
-    await axios.delete("/api/admins?id=" + id);
-    goBack();
+    if (adminId) {
+      await axios.delete("/api/admin2", {
+        params: {
+          id: adminId,
+        },
+      });
+      goBack();
+    }
   }
   return (
     <Layout>
@@ -42,10 +68,12 @@ export default function DeleteProductPage() {
           margin: "8rem 1rem",
         }}
       >
-        <h1 className="text-center">
-          Do you really want to delete admin &nbsp;&quot;{adminInfo?.email}
-          &quot;?
-        </h1>
+        {adminName && (
+          <h1 className="text-center">
+            Do you really want to delete admin &nbsp;&quot;{adminName}
+            &quot;?
+          </h1>
+        )}
         <div className="flex gap-2 justify-center">
           <button onClick={deleteAdmin} className="btn-red">
             Yes
