@@ -103,6 +103,15 @@ export default function CompositionForm({
       router.push("/categories/edit/" + categoryId);
     }
   }
+
+  const cancelBtnHandler = () => {
+    if (newCompoCategId) {
+      router.push("/categories/edit/" + newCompoCategId);
+    }
+    if (categoryId && id) {
+      router.push("/categories/edit/" + categoryId);
+    }
+  };
   return (
     <Paper sx={{ padding: "1.4rem", display: "flex", flexDirection: "column" }}>
       <div className={classes["input-wrapper"]}>
@@ -175,25 +184,53 @@ export default function CompositionForm({
       </div>
       <div
         style={{
-          marginTop: "1.4rem",
-          backgroundColor: "#DE89A1",
-          borderRadius: "4px",
-          alignSelf: "end",
+          display: "flex",
+          justifyContent: "end",
+          gap: "1rem",
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            color: "#fff",
-            fontSize: "13px",
-            textTransform: "none",
-            zIndex: "999",
+        <div
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "4px",
+            alignSelf: "center",
+            marginTop: "20px",
           }}
-          onClick={saveCompositionHandler}
         >
-          Save
-        </Button>
+          <button
+            style={{
+              color: "#DE89A1",
+              fontSize: "14px",
+              textTransform: "none",
+              zIndex: "999",
+            }}
+            onClick={cancelBtnHandler}
+          >
+            Cancel
+          </button>
+        </div>
+        <div
+          style={{
+            marginTop: "1.4rem",
+            backgroundColor: "#DE89A1",
+            borderRadius: "4px",
+            alignSelf: "end",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              color: "#fff",
+              fontSize: "13px",
+              textTransform: "none",
+              zIndex: "999",
+            }}
+            onClick={saveCompositionHandler}
+          >
+            Save
+          </Button>
+        </div>
       </div>
     </Paper>
   );
