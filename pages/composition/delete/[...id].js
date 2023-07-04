@@ -11,28 +11,31 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }));
-export default function DeleteCategoryPage() {
+export default function DeleteCompositionPage() {
+  const [compositionName, setCompositionName] = useState("");
   const router = useRouter();
-  const [categoryName, setCategoryName] = useState("");
-  const { id } = router.query;
-  const categoryId = id[0];
+  console.log(router);
+  const id = router.query?.id[0];
+  const categoryId = router.query.categId;
+  console.log(id);
   console.log(categoryId);
   useEffect(() => {
-    async function getCategoryData() {
+    async function getCompositionData() {
       try {
-        const response = await axios.get("/api/categories2", {
+        const response = await axios.get("/api/composition", {
           params: {
-            id: id[0],
+            id,
+            categoryId,
           },
         });
         const data = response.data.name;
-        setCategoryName(data);
+        setCompositionName(data);
       } catch (error) {
         console.log(`💥💥💥${error}`);
       }
     }
     if (id && id[0]) {
-      getCategoryData();
+      getCompositionData();
     }
 
     // if (!id) {
@@ -42,16 +45,16 @@ export default function DeleteCategoryPage() {
     //   setAdminInfo(response.data);
     // });
   }, [id]);
-  console.log(categoryId);
+  console.log(compositionName);
 
   function goBack() {
-    router.push("/categories");
+    router.push("/categories/edit/" + categoryId);
   }
-  async function deleteCategory() {
-    if (categoryId) {
-      await axios.delete("/api/categories2", {
+  async function deleteComposition() {
+    if (categoryId && id) {
+      await axios.delete("/api/composition", {
         params: {
-          id: categoryId,
+          id,
         },
       });
       goBack();
@@ -68,14 +71,15 @@ export default function DeleteCategoryPage() {
           margin: "8rem 1rem",
         }}
       >
-        {categoryName && (
+        {compositionName && (
           <h1 className="text-center">
-            Do you really want to delete category &nbsp;&quot;{categoryName}
+            Do you really want to delete composition &nbsp;&quot;
+            {compositionName}
             &quot;?
           </h1>
         )}
         <div className="flex gap-2 justify-center">
-          <button onClick={deleteCategory} className="btn-red">
+          <button onClick={deleteComposition} className="btn-red">
             Yes
           </button>
           <button className="btn-default" onClick={goBack}>

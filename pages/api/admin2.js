@@ -52,7 +52,7 @@ export default async function handler(req, res) {
           password: hashedPassword,
           phone_number,
           role: "ADMIN",
-          // image: Buffer.from(image, "base64"), // Convert base64 image to buffer
+          image: Buffer.from(image, "base64"), // Convert base64 image to buffer
         },
       });
 
@@ -105,7 +105,7 @@ export default async function handler(req, res) {
           password: hashedPassword,
           phone_number,
           role: "ADMIN",
-          // image: Buffer.from(image, "base64"), // Convert base64 image to buffer
+          image: Buffer.from(image, "base64"), // Convert base64 image to buffer
         },
       });
 

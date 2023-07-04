@@ -78,7 +78,7 @@ model Order_item {
 model Category {
   id          Int           @id @default(autoincrement())
   name        String?
-  image       String?
+  image       Bytes?
   description String?
   compostions Composition[]
 }

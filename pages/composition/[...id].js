@@ -7,6 +7,7 @@ import { styled, Box } from "@mui/material";
 // import { prisma } from "@/lib/prismaClient";
 
 import CategoryForm from "@/components/CategoryForm";
+import CompositionForm from "@/components/CompositionForm";
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -15,32 +16,33 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 export default function EditAdminPage() {
-  const [categoryData, setCategoryData] = useState(null);
+  const [compositionData, setCompositionData] = useState(null);
   const [goToAdmins, setGoToAdmins] = useState(false);
   const router = useRouter();
-  const { id } = router.query;
-  // console.log(id[0]);
+  const id = router.query.id[1];
+  const categoryId = router.query.categId;
   // console.log(adminInfo);
   useEffect(() => {
-    async function getCategoryData() {
+    async function getCompositionData() {
       try {
-        const response = await axios.get("/api/categories2", {
+        const response = await axios.get("/api/composition", {
           params: {
-            id: id[0],
+            id,
+            categoryId,
           },
         });
         const data = response.data;
-        setCategoryData(data);
+        setCompositionData(data);
         console.log(data);
       } catch (error) {
         console.log(`💥💥💥${error}`);
       }
     }
     if (id && id[0]) {
-      getCategoryData();
+      getCompositionData();
     }
-  }, [id]);
-  console.log(categoryData);
+  }, [id, categoryId]);
+  console.log(compositionData);
 
   // useEffect(() => {
   //   if (!id) {
@@ -70,7 +72,7 @@ export default function EditAdminPage() {
       >
         <DrawerHeader />
 
-        {categoryData && <CategoryForm {...categoryData} />}
+        {compositionData && <CompositionForm {...compositionData} />}
       </Box>
     </Layout>
   );

@@ -5,7 +5,7 @@ import Spinner from "@/components/Spinner";
 import { styled, Box } from "@mui/material";
 
 import Layout from "@/components/Layout";
-import CategoryForm from "@/components/CategoryForm";
+import CompositionForm from "@/components/CompositionForm";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -15,7 +15,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export default function NewCategoryPage() {
+export default function NewCompositionPage() {
   return (
     <Layout>
       <Box
@@ -28,7 +28,7 @@ export default function NewCategoryPage() {
         }}
       >
         <DrawerHeader />
-        <CategoryForm />
+        <CompositionForm />
       </Box>
     </Layout>
   );
