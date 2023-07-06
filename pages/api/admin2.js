@@ -57,11 +57,10 @@ export default async function handler(req, res) {
 
         res.status(200).json(admin);
       } else {
-        const { name, username, email, password, phone_number, image } =
-          req.body;
+        const { name, username, email, password, phone_number } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        console.log(Buffer.from(image, "base64"));
+        // console.log(Buffer.from(image, "base64"));
 
         const admin = await prisma.user.create({
           data: {
@@ -71,7 +70,7 @@ export default async function handler(req, res) {
             password: hashedPassword,
             phone_number,
             role: "ADMIN",
-            image: Buffer.from(image, "base64"), // Convert base64 image to buffer
+            // image: Buffer.from(image, "base64"), // Convert base64 image to buffer
           },
         });
 
