@@ -31,11 +31,13 @@ const LogIn = (props) => {
   //       // const hashedPassword = await bcrypt.hash("123456", 10);
 
   //       await axios.post(
-  //         "/api/signup",
+  //         "/api/admin2",
   //         {
-  //           username: "test2",
-  //           email: "test2@test.com",
+  //           name: "admin",
+  //           username: "admin",
+  //           email: "admin@admin.com",
   //           password: "123456",
+  //           phone_number: "09452779188",
   //         },
   //         {
   //           headers: {

@@ -70,10 +70,12 @@ const columns = [
     sortable: false,
     disableColumnMenu: true,
     renderCell: (params) => {
+      console.log(params);
       return (
         <div className={classes["action-buttons-wrapper"]}>
           <Link
             className={`btn-default ${classes.edit}`}
+            // href={"/products"}
             href={"/products/edit/" + params.id}
             style={{ zIndex: "999" }}
           >

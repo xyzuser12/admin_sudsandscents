@@ -4,6 +4,52 @@ export default async function handler(req, res) {
   const { method } = req;
   console.log(method);
   if (method === "GET") {
+    const productId = parseInt(req.query?.id);
+    if (productId) {
+      try {
+        console.log("eme");
+        console.log(productId);
+
+        const product = await prisma.ingredients.findFirst({
+          where: {
+            id: productId,
+          },
+        });
+        console.log("++++++++++++++++++++++++++++++++++");
+        console.log(product);
+        return res.json(product);
+      } catch (error) {
+        return res.status(500).json({
+          error: `Something went wrong fetching categories!: ${error}`,
+        });
+      }
+    } else {
+      try {
+        const getIngredient = await prisma.ingredients.findMany({
+          include: {
+            category: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            composition: {
+              select: {
+                id: true,
+                name: true,
+                description: true,
+              },
+            },
+          },
+        });
+        console.log(getIngredient);
+        return res.json(getIngredient);
+      } catch (error) {
+        return res.status(500).json({
+          error: `Something went wrong fetching categories!: ${error}`,
+        });
+      }
+    }
     // await prisma.composition.deleteMany({
     //   where: {
     //     categoryId: null,
@@ -52,25 +98,6 @@ export default async function handler(req, res) {
     //     },
     //   },
     // });
-    const getIngredient = await prisma.ingredients.findMany({
-      include: {
-        category: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-        composition: {
-          select: {
-            id: true,
-            name: true,
-            description: true,
-          },
-        },
-      },
-    });
-    console.log(getIngredient);
-    return res.json(getIngredient);
   }
 
   if (method === "POST") {
