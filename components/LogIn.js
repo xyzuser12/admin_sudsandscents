@@ -24,7 +24,7 @@ const LogIn = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // console.log(props.user);
+  console.log(props.user);
   // useEffect(() => {
   //   async function createUser() {
   //     try {
@@ -38,6 +38,7 @@ const LogIn = (props) => {
   //           email: "admin@admin.com",
   //           password: "123456",
   //           phone_number: "09452779188",
+  //           mode: "COLAB",
   //         },
   //         {
   //           headers: {

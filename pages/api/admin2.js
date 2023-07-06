@@ -37,26 +37,47 @@ export default async function handler(req, res) {
   }
 
   if (method === "POST") {
+    const { mode } = req.body;
+    console.log(mode);
     try {
+      if (mode === "COLAB") {
+        const { name, username, email, password, phone_number } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const admin = await prisma.user.create({
+          data: {
+            name,
+            username,
+            email,
+            password: hashedPassword,
+            phone_number,
+            role: "ADMIN",
+          },
+        });
+
+        res.status(200).json(admin);
+      } else {
+        const { name, username, email, password, phone_number, image } =
+          req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        console.log(Buffer.from(image, "base64"));
+
+        const admin = await prisma.user.create({
+          data: {
+            name,
+            username,
+            email,
+            password: hashedPassword,
+            phone_number,
+            role: "ADMIN",
+            image: Buffer.from(image, "base64"), // Convert base64 image to buffer
+          },
+        });
+
+        res.status(200).json(admin);
+      }
       // await prisma.admin.deleteMany();
-      const { name, username, email, password, phone_number, image } = req.body;
-      const hashedPassword = await bcrypt.hash(password, 10);
-
-      console.log(Buffer.from(image, "base64"));
-
-      const admin = await prisma.user.create({
-        data: {
-          name,
-          username,
-          email,
-          password: hashedPassword,
-          phone_number,
-          role: "ADMIN",
-          image: Buffer.from(image, "base64"), // Convert base64 image to buffer
-        },
-      });
-
-      res.status(200).json(admin);
     } catch (error) {
       console.error(error);
       res
