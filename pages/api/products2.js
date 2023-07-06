@@ -14,6 +14,10 @@ export default async function handler(req, res) {
           where: {
             id: productId,
           },
+          include: {
+            category: true,
+            composition: true,
+          },
         });
         console.log("++++++++++++++++++++++++++++++++++");
         console.log(product);

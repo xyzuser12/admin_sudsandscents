@@ -47,6 +47,8 @@ export default function ProductForm({
   image: existingImage,
   milliliter: existingMilliliter,
   quantity: existingQuantity,
+  category: existingCategory,
+  composition: existingComposition,
 }) {
   const [name, setName] = useState(existingName || "");
   const [description, setDescription] = useState(existingDescription || "");
@@ -54,8 +56,12 @@ export default function ProductForm({
   const [selectedPicture, setSelectedPicture] = useState(existingImage || null);
   const [milliliter, setMilliliter] = useState(existingMilliliter || 0);
   const [quantity, setQuantity] = useState(existingQuantity || 0);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedComposition, setSelectedComposition] = useState(null);
+  const [selectedCategories, setSelectedCategories] = useState(
+    existingCategory || []
+  );
+  const [selectedComposition, setSelectedComposition] = useState(
+    existingComposition || null
+  );
 
   const [goToCategories, setGoToCategories] = useState(false);
   const [rawPic, setRawPic] = useState(null);
@@ -70,6 +76,12 @@ export default function ProductForm({
   function transformToIds(categRaw) {
     return categRaw.map((item) => item.id);
   }
+  useEffect(() => {
+    if (id) {
+      console.log(existingCategory);
+      console.log(existingComposition);
+    }
+  });
   useEffect(() => {
     if (id) {
       const imageData = Buffer.from(selectedPicture.data).toString("base64");
