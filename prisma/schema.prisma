@@ -24,9 +24,7 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  admin   Admin?  @relation(fields: [adminId], references: [id])
-  adminId String?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -37,7 +35,6 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  admin        Admin?   @relation(fields: [adminId], references: [id])
   adminId      String?
 }
 
@@ -120,22 +117,6 @@ model Address {
   postal_code    Int
   street_address String
   country        String
-}
-
-model Admin {
-  id           String    @id @default(cuid())
-  name         String?
-  email        String?   @unique
-  username     String?   @unique
-  phone_number String?
-  password     String?
-  image        Bytes?
-  createdAt    DateTime  @default(now())
-  accounts     Account[]
-  sessions     Session[]
-
-  @@unique([email, username]) // Add this line to make email and username combination unique
-  @@map("Admin")
 }
 
 enum Role {

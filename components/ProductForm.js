@@ -245,7 +245,7 @@ export default function ProductForm({
       }
       // Handle error cases
     }
-    // setGoToCategories(true);
+    setGoToCategories(true);
   };
 
   // const addNewCompositionHandler = (e) => {
@@ -254,7 +254,7 @@ export default function ProductForm({
   // };
 
   if (goToCategories) {
-    router.push("/categories");
+    router.push("/products");
   }
   const cancelBtnHandler = () => {
     router.push("/products");
