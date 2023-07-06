@@ -175,9 +175,9 @@ export default async function handler(req, res) {
         composition: compositionId,
         isChangingImage,
       } = req.body;
-      let updateCategory;
+      let updateProduct;
       if (isChangingImage) {
-        updateCategory = await prisma.ingredients.update({
+        updateProduct = await prisma.ingredients.update({
           where: {
             id: parseInt(id),
           },
@@ -196,18 +196,26 @@ export default async function handler(req, res) {
           },
         });
       } else {
-        updateCategory = await prisma.ingredients.update({
+        updateProduct = await prisma.ingredients.update({
           where: {
             id: parseInt(id),
           },
           data: {
             name,
             description,
+
+            price,
+            milliliter,
+            quantity,
+            category: {
+              connect: JSON.parse(categories),
+            },
+            compositionId,
           },
         });
       }
 
-      res.status(200).json(updateCategory);
+      res.status(200).json(updateProduct);
     } catch (error) {
       console.error(error);
       res.status(500).json({
