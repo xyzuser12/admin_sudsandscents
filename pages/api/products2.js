@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     }
     // await prisma.composition.deleteMany({
     //   where: {
-    //     categoryId: null,
+    //     productId: null,
     //   },
     // });
     // const category = await prisma.category.findMany({
@@ -225,6 +225,27 @@ export default async function handler(req, res) {
       console.error(error);
       res.status(500).json({
         error: `An error occurred while updating the admin: ${error}`,
+      });
+    }
+  }
+  if (method === "DELETE") {
+    try {
+      const prodId = req.query?.id;
+      const productId = parseInt(prodId);
+      console.log("2222222222222222222");
+      console.log(productId);
+
+      await prisma.ingredients.delete({
+        where: {
+          id: productId,
+        },
+      });
+
+      res.status(200).json({ message: "Product deleted successfully." });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error: `An error occurred while deleting the product: ${error}`,
       });
     }
   }
