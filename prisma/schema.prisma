@@ -81,27 +81,32 @@ model Category {
   image       Bytes?
   description String?
   compostions Composition[]
+  ingredients Ingredients[]
 }
 
 model Composition {
-  id          Int       @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String?
   description String?
-  category    Category? @relation(fields: [categoryId], references: [id])
+  category    Category?     @relation(fields: [categoryId], references: [id])
   categoryId  Int?
+  ingredients Ingredients[]
 }
 
 model Ingredients {
   id          Int      @id @default(autoincrement())
-  name        String
-  description String
-  price       Float
-  image       String
-  category    String
-  quantity    Int
-  composition String
+  name        String?
+  description String?
+  price       Float?
+  image       Bytes?
+  milliliter  Int?
+  quantity    Int?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  category      Category[]
+  composition   Composition? @relation(fields: [compositionId], references: [id])
+  compositionId Int?
 }
 
 model Address {

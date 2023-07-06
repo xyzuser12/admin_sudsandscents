@@ -12,12 +12,35 @@ export default async function handler(req, res) {
     //     categoryId: 7,
     //   },
     // });
+    const mode = req.query?.mode;
     const compoId = req.query?.id;
     const categoryId = parseInt(req.query?.categoryId);
     const compositionId = parseInt(compoId);
-    console.log(compositionId);
-    console.log(categoryId);
-    if (compositionId && categoryId) {
+    // console.log(compositionId);
+    // console.log(categoryId);
+    if (mode === "NEW_INGREDIENT") {
+      const ids = JSON.parse(req.query?.categIds);
+      // console.log(ids);
+      const composition = await prisma.composition.findMany({
+        where: {
+          categoryId: {
+            in: ids,
+          },
+        },
+        include: {
+          category: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      });
+      // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+      // console.log(composition);
+
+      return res.json(composition);
+    } else if (compositionId && categoryId) {
       try {
         console.log("eme");
         console.log(compositionId);

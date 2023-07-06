@@ -1,474 +1,736 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Paper from "@mui/material/Paper";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import axios from "axios";
+
+import Layout from "@/components/Layout";
+import Link from "next/link";
+import { styled, Box, Button } from "@mui/material";
+import Image from "next/image";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import Spinner from "@/components/Spinner";
-// const subCa = [
-//   {
-//     _id: "6443984dc1145f3704a15b97",
-//     name: "Flip Top",
-//     parent: "644397ccc1145f3704a15b93",
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
-//     properties: [
-//       {
-//         name: "Ingredients",
+import classes from "../styles/dashboard/Admin.module.css";
 
-//         values: ["1st Scent", "1st Scent", "3rd Scent"],
-//       },
-//     ],
-//   },
-//   {
-//     _id: "6443984dc1145f3704a15b97",
-//     name: "Pump",
-//     parent: "644397ccc1145f3704a15b93",
+const categRaw = [
+  {
+    id: 7,
+    name: "test",
+    description: "lorem lorem test",
+  },
+  {
+    id: 8,
+    name: "test",
+    description: "lorem lorem test",
+  },
+  {
+    id: 9,
+    name: "test",
+    description: "lorem lorem test",
+  },
+];
 
-//     properties: [
-//       {
-//         name: "Ingredients",
-
-//         values: ["1st Scent", "1st Scent", "3rd Scent"],
-//       },
-//     ],
-//   },
-//   {
-//     _id: "6443984dc1145f3704a15b97",
-//     name: "Flip Top",
-//     parent: "644397ccc1145f3704a15b93",
-
-//     properties: [
-//       {
-//         name: "Ingredients",
-
-//         values: ["1st Scent", "1st Scent", "3rd Scent"],
-//       },
-//     ],
-//   },
-//   {
-//     _id: "6443984dc1145f3704a15b97",
-//     name: "Oil-based",
-//     parent: "644397ccc1145f3704a15b93",
-
-//     properties: [
-//       {
-//         name: "Ingredients",
-
-//         values: ["1st Scent", "1st Scent", "3rd Scent"],
-//       },
-//     ],
-//   },
-// ];
-
-// const parentCa = [
-//   { _id: "644397ccc1145f3704a15b93", name: "Custom Body Lotion" },
-//   { _id: "644397ccc1145f3704a15b93", name: "Custom Body Scrub" },
-//   { _id: "644397ccc1145f3704a15b93", name: "Custom Facial Cleanser" },
-// ];
-
-// const compo = [
-//   {
-//     composition: [
-//       {
-//         name: "Composition",
-//         values: ["Carrier Oils", "Essential Oils", "Fixatives"],
-//       },
-//     ],
-//     id: "64457ad520d684248fba76e6",
-//     name: "Oil-based",
-//     parent: "Custom Perfume",
-//     parentId: "64457aa220d684248fba76e2",
-//   },
-//   {
-//     composition: [
-//       {
-//         name: "Composition",
-//         values: [
-//           "Carrier Oils",
-//           "Essential Oils",
-//           "Fixatives",
-//           "Essential Oils",
-//         ],
-//       },
-//     ],
-//     id: "64457ad520d684248fba76e2",
-//     name: "Oil-based",
-//     parent: "Custom Perfume",
-//     parentId: "64457aa220d684248fba76e2",
-//   },
-//   {
-//     composition: [
-//       {
-//         name: "Composition",
-//         values: ["Carrier Oils", "Fixatives"],
-//       },
-//     ],
-//     id: "64457ad520d684248fba76e1",
-//     name: "Oil-based",
-//     parent: "Custom Perfume",
-//     parentId: "64457aa220d684248fba76e2",
-//   },
-// ];
-
-// const id = "64457ad520d684248fba76e6";
-export default function ProductForm({ _id, title: existingTitle, description: existingDescription, price: existingPrice, image: existingImage, category: assignedCategory, quantity: existingQuantity, composition: assignedComposition }) {
-  const [title, setTitle] = useState(existingTitle || "");
+export default function ProductForm({
+  id,
+  name: existingName,
+  description: existingDescription,
+  price: existingPrice,
+  image: existingImage,
+  milliliter: existingMilliliter,
+  quantity: existingQuantity,
+}) {
+  const [name, setName] = useState(existingName || "");
   const [description, setDescription] = useState(existingDescription || "");
-  const [category, setCategory] = useState(assignedCategory || "");
-  const [composition, setComposition] = useState(assignedComposition || "");
-  const [price, setPrice] = useState(existingPrice || "");
-  const [quantity, setQuantity] = useState(existingQuantity || "");
-  const [image, setImage] = useState(existingImage || "");
-  const [goToProducts, setGoToProducts] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  // const [categories, setCategories] = useState([]);
-  const [imageSrc, setImageSrc] = useState();
+  const [price, setPrice] = useState(existingPrice || 0);
+  const [selectedPicture, setSelectedPicture] = useState(existingImage || null);
+  const [milliliter, setMilliliter] = useState(existingMilliliter || 0);
+  const [quantity, setQuantity] = useState(existingQuantity || 0);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedComposition, setSelectedComposition] = useState(null);
+
+  const [goToCategories, setGoToCategories] = useState(false);
+  const [rawPic, setRawPic] = useState(null);
+  const [base64Image, setBase64Image] = useState(null);
+  const [isChangingImage, setIsChangingImage] = useState(false);
+  const [categoriesData, setCategoriesData] = useState([]);
+  const [compositionData, setCompositionData] = useState([]);
+  console.log(selectedCategories);
+  console.log(selectedComposition);
+
   const router = useRouter();
-
-  const [categ, setCateg] = useState([]);
-  const [parentCateg, setParentCateg] = useState([]);
-  const [subCateg, setSubCateg] = useState([]);
-  const [subcategory, setSubcategory] = useState("");
-
-  const [optionsSubCateg, setOptionsSubCateg] = useState([]);
-  const [optionsCompo, setOptionsCompo] = useState([]);
-  // console.log(composition);
-  // console.log(subcategory);
-  // console.log(optionsCompo);
-
-  // useEffect(() => {
-  //   axios.get("/api/categories").then((result) => {
-  //     setCategories(result.data);
-  //   });
-  // }, []);
+  function transformToIds(categRaw) {
+    return categRaw.map((item) => item.id);
+  }
   useEffect(() => {
-    fetchCategories();
-  }, []);
-  function fetchCategories() {
-    axios.get("/api/categories").then((result) => {
-      const categories = result.data;
-      setCateg(categories);
-      const topLevelCategories = getTopLevelCategories(categories);
-      const subCategories = getSubCategories(categories);
-      setParentCateg(topLevelCategories);
-      setSubCateg(subCategories);
-    });
-  }
-  function getTopLevelCategories(categ) {
-    const topLevelCategories = [];
-
-    categ.forEach((category) => {
-      if (!category.parent) {
-        topLevelCategories.push({
-          id: category._id,
-          name: category.name,
-        });
-      }
-    });
-
-    return topLevelCategories;
-  }
-
-  function getSubCategories(categ) {
-    // console.log(categ);
-    const subCategories = [];
-    categ.forEach((category) => {
-      if (category.parent) {
-        // console.log(category);
-
-        const parentCategory = category.parent.name;
-        const parentCategoryId = category.parent._id;
-        const parentCategoryProperties = category.properties;
-        // console.log(parentCategoryProperties);
-        subCategories.push({
-          id: category._id,
-          name: category.name,
-          parent: parentCategory,
-          parentId: parentCategoryId,
-          composition: parentCategoryProperties,
-        });
-      }
-    });
-
-    return subCategories;
-  }
-
-  // console.log(parentCateg);
-  // console.log(subCateg);
-  async function saveProduct(e) {
-    e.preventDefault();
-    console.log(e.currentTarget);
-
-    const form = e.currentTarget;
-    const fileInput = Array.from(form.elements).find(({ name }) => name === "file");
-
-    const formData = new FormData();
-
-    for (const file of fileInput.files) {
-      formData.append("file", file);
+    if (id) {
+      const imageData = Buffer.from(selectedPicture.data).toString("base64");
+      setBase64Image(`data:image/jpeg;base64,${imageData}`);
     }
+  }, [id]);
 
-    formData.append("upload_preset", "ml_default");
-
-    let imageData = {};
-    if (fileInput.files.length > 0) {
-      imageData = await fetch("https://api.cloudinary.com/v1_1/dkppw65bv/image/upload", {
-        method: "POST",
-        body: formData,
-      }).then((r) => r.json());
+  useEffect(() => {
+    async function getComposition() {
+      if (selectedCategories.length) {
+        await axios
+          .get("/api/composition", {
+            params: {
+              mode: "NEW_INGREDIENT",
+              categIds: JSON.stringify(transformToIds(selectedCategories)),
+            },
+          })
+          .then((res) => {
+            setCompositionData(res.data);
+          });
+      }
     }
+    getComposition();
+  }, [selectedCategories.length]);
 
-    setImageSrc(imageData.secure_url);
-    setImage(imageData.secure_url);
-    // setIsUploading(false);
-    const data = {
-      title,
-      description,
-      price,
-      image: imageData.secure_url || image,
-      category: subcategory,
-      quantity,
-      composition,
+  console.log(transformToIds(selectedCategories));
+  console.log(id);
+  // console.log(name);
+  // console.log(description);
+  // console.log(selectedPicture);
+  // console.log(base64Image);
+  // console.log(rawPic);
+  // console.log(compoData);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setRawPic(e.target.files[0]);
+    const reader = new FileReader();
+    console.log(file);
+
+    reader.onloadend = () => {
+      setSelectedPicture(reader.result);
     };
-    if (_id) {
-      //update
-      // console.log(data);
-      await axios.put("/api/products", { ...data, _id });
-    } else {
-      //create
-      await axios.post("/api/products", data);
+
+    if (file) {
+      reader.readAsDataURL(file);
     }
-    setGoToProducts(true);
-  }
-  if (goToProducts) {
-    router.push("/products");
-  }
-  async function uploadImage(e) {
+    // console.log(selectedPicture);
+    setIsChangingImage(true);
+  };
+  useEffect(() => {
+    async function getCategories() {
+      await axios.get("/api/categories2").then((res) => {
+        setCategoriesData(res.data);
+      });
+    }
+    getCategories();
+  }, []);
+  console.log(categoriesData);
+  useEffect(() => {
+    async function postIngredients() {
+      await axios.get("/api/products2");
+    }
+    postIngredients();
+  }, []);
+  // if (id) {
+  //   async function getCompositionData() {
+  //     const response = await axios.get("/api/product2", {
+  //       params: {
+  //         categoryId: id,
+  //       },
+  //     });
+  //     const data = response.data;
+  //     console.log(data);
+  //     setCompoData(data);
+  //   }
+  //   getCompositionData();
+  // }
+  // useEffect(() => {
+  //   async function getAdminData() {
+  //     try {
+  //       const response = await axios.get("/api/admin2");
+  //       const data = response.data;
+  //       console.log(data);
+  //       const base64Image = `data:image/jpeg;base64,${data[0].image.data}`;
+  //       console.log(base64Image);
+  //     } catch (error) {
+  //       console.log(`💥💥💥${error}`);
+  //     }
+  //   }
+  //   getAdminData();
+  // }, []);
+  const transformCategories = (categRaw) => {
+    return categRaw.map((item) => {
+      return { id: item.id };
+    });
+  };
+  const saveProductHandler = async (e) => {
     e.preventDefault();
     // console.log(e.currentTarget);
+    // const formData = new FormData();
+    // formData.append("image", selectedProfilePicture);
 
-    const form = e.currentTarget;
-    const fileInput = Array.from(form.elements).find(({ name }) => name === "file");
+    if (id) {
+      //   //update
+      console.log(id);
+      try {
+        // Use Axios PUT request to update the admin record
+        let response;
+        if (isChangingImage) {
+          response = await axios.put("/api/products2", {
+            name,
+            description,
+            price: parseFloat(price),
+            image: selectedPicture ? selectedPicture.split(",")[1] : null,
+            milliliter: parseInt(milliliter),
+            quantity: parseInt(quantity),
+            categories: JSON.stringify(transformCategories(selectedCategories)),
+            composition: parseInt(selectedComposition.id),
+            id,
+            isChangingImage,
+          });
+        } else {
+          response = await axios.put("/api/products2", {
+            name,
+            description,
+            price: parseFloat(price),
+            image: selectedPicture ? selectedPicture.split(",")[1] : null,
+            milliliter: parseInt(milliliter),
+            quantity: parseInt(quantity),
+            categories: JSON.stringify(transformCategories(selectedCategories)),
+            composition: parseInt(selectedComposition.id),
+            id,
+            isChangingImage,
+          });
+        }
 
-    const formData = new FormData();
-
-    for (const file of fileInput.files) {
-      formData.append("file", file);
-    }
-
-    formData.append("upload_preset", "ml_default");
-
-    const data = await fetch("https://api.cloudinary.com/v1_1/dkppw65bv/image/upload", {
-      method: "POST",
-      body: formData,
-    }).then((r) => r.json());
-
-    // console.log(data);
-
-    setImageSrc(data.secure_url);
-    setImage(data);
-    setIsUploading(false);
-  }
-  // function updateImagesOrder(images) {
-  //   setImages(images);
-  // }
-  // function setProductProp(propName, value) {
-  //   console.log(propName);
-  //   console.log(value);
-  //   setProductProperties({ Composition: value });
-  // }
-
-  // console.log(productProperties);
-
-  function getUniqueSubcategories(categoryId, subcategories) {
-    // console.log(categoryId);
-    // console.log(subcategories);
-    const subcategoriesWithParentId = subcategories.map((subcat) => {
-      return {
-        id: subcat.id,
-        name: subcat.name,
-        parent: subcat.parent,
-        parentId: subcat.parentId,
-        composition: subcat.composition,
-      };
-    });
-
-    // console.log(subcategoriesWithParentId);
-    const subcategoriesForCategory = subcategoriesWithParentId.filter((subcat) => {
-      // console.log(subcat.parent);
-
-      return subcat.parentId == categoryId;
-    });
-    // console.log(subcategoriesForCategory);
-    // const uniqueSubcategories = Array.from(
-    //   new Set(subcategoriesWithParentId.map((subcat) => subcat.name))
-    // ).map((name) => {
-    //   return {
-    //     id: subcategoriesWithParentId.find((subcat) => subcat.name === name).id,
-    //     name: name,
-    //   };
-    // });
-
-    // console.log(uniqueSubcategories);
-    return subcategoriesForCategory;
-  }
-
-  function findCompositionById(compo, id) {
-    const matchedCompo = compo.find((c) => c.id === id);
-    if (matchedCompo) {
-      return matchedCompo.composition[0].values;
+        if (response.status === 200) {
+          const categ = response.data;
+          console.log("Category updated: ", categ);
+          // Redirect to the admins page after successful update
+          router.push("/categories");
+        } else {
+          console.error("Failed to update category", response.status);
+        }
+      } catch (error) {
+        console.error("💥An error occurred", error);
+      }
     } else {
-      return [];
+      console.log("❤❤");
+      try {
+        const data = {
+          name,
+          description,
+          price: parseFloat(price),
+          image: selectedPicture ? selectedPicture.split(",")[1] : null,
+          milliliter: parseInt(milliliter),
+          quantity: parseInt(quantity),
+          categories: JSON.stringify(transformCategories(selectedCategories)),
+          composition: parseInt(selectedComposition.id),
+        };
+        console.log(data);
+        const response = await axios.post("/api/products2", {
+          ...data,
+        });
+        if (response.status === 200) {
+          const categ = response.data;
+          console.log("Cateogry uploaded:", categ);
+        } else {
+          console.error("Failed to upload category:", response.status);
+        }
+      } catch (error) {
+        console.error("An error occurred while uploading the category:", error);
+      }
+      // Handle error cases
     }
+    // setGoToCategories(true);
+  };
+
+  // const addNewCompositionHandler = (e) => {
+  //   e.preventDefault();
+  //   router.push("/composition/new?categoryId=" + id);
+  // };
+
+  if (goToCategories) {
+    router.push("/categories");
   }
+  const cancelBtnHandler = () => {
+    router.push("/products");
+  };
+  const top100Films = [
+    { name: "The Shawshank Redemption", year: 1994 },
+    { name: "The Godfather", year: 1972 },
+  ];
 
-  function imageOnChangeHandler(changeEvent) {
-    const reader = new FileReader();
-
-    reader.onload = function (onLoadEvent) {
-      setImageSrc(onLoadEvent.target.result);
-      setImage(undefined);
-    };
-
-    reader.readAsDataURL(changeEvent.target.files[0]);
-  }
-
-  // const propertiesToFill = [];
-  // if (subCateg.length > 0 && subcategory) {
-  //   console.log(subCateg);
-  //   console.log(subcategory);
-  //   let catInfo = subCateg.find(({ id }) => id == subcategory);
-  //   console.log(catInfo);
-  //   propertiesToFill.push(...catInfo?.properties);
-  // while (catInfo.parentId) {
-  //   const parentCat = subCateg.find(({ id }) => id === catInfo.parentId);
-  //   console.log(parentCat);
-  //   propertiesToFill?.push(...parentCat?.properties);
-  //   catInfo = parentCat;
-  // }
-  // }
-  console.log(optionsSubCateg);
+  const top4Films = [
+    { label: "The Shawshank Redemption", year: 1994 },
+    { label: "The Godfather", year: 1972 },
+    { label: "The Godfather: Part II", year: 1974 },
+    { label: "The Dark Knight", year: 2008 },
+  ];
   return (
-    <form onSubmit={saveProduct}>
-      <label>Product name</label>
-      <input type="text" placeholder="product name" value={title} onChange={(ev) => setTitle(ev.target.value)} />
-      <label>Description</label>
-      <textarea placeholder="description" value={description} onChange={(ev) => setDescription(ev.target.value)} />
-      <label>Price (php)</label>
-      <input type="number" placeholder="price" value={price} onChange={(ev) => setPrice(ev.target.value)} />
-      <label>Category</label>
-      <select
-        value={category}
-        onChange={(ev) => {
-          setCategory(ev.target.value);
-          const subcategories = getUniqueSubcategories(ev.target.value, subCateg);
-          setOptionsSubCateg(subcategories);
-          // console.log(subcategories);
-        }}
+    <div>
+      <Paper
+        sx={{ padding: "1.4rem", display: "flex", flexDirection: "column" }}
       >
-        <option value="">Uncategorized</option>
-        {parentCateg.length > 0 &&
-          parentCateg.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-      </select>
-      {
-        optionsSubCateg.length > 0 && (
-          // optionsSubCateg.map((p) => (
-          // <div key={p.name} className="">
-          <div>
-            <label>Subcategory</label>
-            <select
-              value={subcategory}
-              onChange={(ev) => {
-                setSubcategory(ev.target.value);
-                setOptionsCompo(findCompositionById(optionsSubCateg, ev.target.value));
+        <div className={classes["input-wrapper"]}>
+          <FormControl
+            size="small"
+            sx={{
+              m: 1,
+              width: "100%",
+              margin: "0",
+              "& div": {
+                fontSize: "14px",
+              },
+            }}
+          >
+            <div className={classes.input}>
+              <label
+                htmlFor="name"
+                style={{
+                  marginBottom: "4px",
+                  color: "#adadad",
+                  fontSize: "15px",
+                }}
+              >
+                Name:
+              </label>
 
-                // console.log(optionsCompo);
+              <OutlinedInput
+                id="name"
+                name="name"
+                type="text"
+                onChange={(ev) => setName(ev.target.value)}
+                required
+                value={name}
+              />
+            </div>
+          </FormControl>
+          <FormControl
+            size="small"
+            sx={{
+              m: 1,
+              width: "100%",
+              margin: "0",
+              "& div": {
+                fontSize: "14px",
+              },
+            }}
+          >
+            <div className={classes.input}>
+              <label
+                htmlFor="description"
+                style={{
+                  marginBottom: "4px",
+                  color: "#adadad",
+                  fontSize: "15px",
+                }}
+              >
+                Description:
+              </label>
+
+              <OutlinedInput
+                id="description"
+                name="description"
+                type="text"
+                onChange={(ev) => setDescription(ev.target.value)}
+                required
+                value={description}
+              />
+            </div>
+          </FormControl>
+          <FormControl
+            size="small"
+            sx={{
+              m: 1,
+              width: "100%",
+              margin: "0",
+              "& div": {
+                fontSize: "14px",
+              },
+            }}
+          >
+            <div className={classes.input}>
+              <label
+                htmlFor="price"
+                style={{
+                  marginBottom: "4px",
+                  color: "#adadad",
+                  fontSize: "15px",
+                }}
+              >
+                Price:
+              </label>
+
+              <OutlinedInput
+                id="price"
+                name="price"
+                type="number"
+                step="any"
+                onChange={(ev) => setPrice(ev.target.value)}
+                required
+                value={price}
+              />
+            </div>
+          </FormControl>
+          <FormControl
+            size="small"
+            sx={{
+              m: 1,
+              width: "100%",
+              margin: "0",
+              "& div": {
+                fontSize: "14px",
+              },
+            }}
+          >
+            <div className={classes.input}>
+              <label
+                htmlFor="milliliter"
+                style={{
+                  marginBottom: "4px",
+                  color: "#adadad",
+                  fontSize: "15px",
+                }}
+              >
+                Milliliter:
+              </label>
+
+              <OutlinedInput
+                id="milliliter"
+                name="milliliter"
+                type="number"
+                onChange={(ev) => setMilliliter(ev.target.value)}
+                required
+                value={milliliter}
+              />
+            </div>
+          </FormControl>
+          <FormControl
+            size="small"
+            sx={{
+              m: 1,
+              width: "100%",
+              margin: "0",
+              "& div": {
+                fontSize: "14px",
+              },
+            }}
+          >
+            <div className={classes.input}>
+              <label
+                htmlFor="quantity"
+                style={{
+                  marginBottom: "4px",
+                  color: "#adadad",
+                  fontSize: "15px",
+                }}
+              >
+                Quantity:
+              </label>
+
+              <OutlinedInput
+                id="quantity"
+                name="quantity"
+                type="number"
+                onChange={(ev) => setQuantity(ev.target.value)}
+                required
+                value={quantity}
+              />
+            </div>
+          </FormControl>
+          <div>
+            <label
+              htmlFor="category"
+              style={{
+                marginBottom: "4px",
+                color: "#adadad",
+                fontSize: "15px",
               }}
             >
-              {/* {p?.values?.map((v) => ( */}
-              <option value="">Uncategorized</option>
-              {optionsSubCateg.length > 0 &&
-                optionsSubCateg.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              {/* ))} */}
-            </select>
+              Category:
+            </label>
+            <Autocomplete
+              size="small"
+              multiple
+              id="category"
+              options={categoriesData}
+              getOptionLabel={(option) => option.name}
+              value={selectedCategories} // Set the value prop to control the selected values
+              onChange={(event, newValue) => {
+                setSelectedCategories(newValue); // Update the state with the selected values
+              }}
+              filterSelectedOptions
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  // label="Ca"
+                  // placeholder="Category"
+                />
+              )}
+            />
           </div>
-        )
-        // ))
-      }
-      {
-        optionsSubCateg.length > 0 && optionsCompo.length > 0 && (
-          // optionsSubCateg.map((p) => (
-          // <div key={p.name} className="">
           <div>
-            <label>Composition</label>
-            <select value={composition} onChange={(ev) => setComposition(ev.target.value)}>
-              {/* {p?.values?.map((v) => ( */}
-              <option value="">Uncategorized</option>
-              {optionsCompo.length > 0 &&
-                optionsCompo.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              {/* ))} */}
-            </select>
+            <label
+              htmlFor="composition"
+              style={{
+                marginBottom: "4px",
+                color: "#adadad",
+                fontSize: "15px",
+              }}
+            >
+              Composition:
+            </label>
+            <Autocomplete
+              size="small"
+              id="composition"
+              options={compositionData}
+              groupBy={(option) => option.category.name}
+              getOptionLabel={(option) => option.name}
+              value={selectedComposition} // Set the value prop to control the selected values
+              onChange={(event, newValue) => {
+                setSelectedComposition(newValue); // Update the state with the selected values
+              }}
+              renderInput={(params) => <TextField {...params} />}
+              renderGroup={(params) => (
+                <li key={params.key}>
+                  <div
+                    style={{
+                      backgroundColor: "#B4979D",
+                      padding: "2px",
+                      color: "#fff",
+                    }}
+                  >
+                    <p style={{ marginLeft: "6px" }}>{params.group}</p>
+                  </div>
+                  <div>{params.children}</div>
+                </li>
+              )}
+            />
           </div>
-        )
-        // ))
-      }
-      {/* {optionsSubCateg.length > 0 &&
-        optionsSubCateg.map((p) => {
-          console.log(p);
-          console.log(p?.name);
-          return (
-            <div key={p.name} className="">
-              <label>Composition</label>
+
+          <div>
+            <label
+              htmlFor="categImage"
+              style={{
+                marginBottom: "4px",
+                color: "#adadad",
+                fontSize: "15px",
+              }}
+            >
+              Price:
+            </label>
+            <input
+              id="categImage"
+              name="categImage"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+            {isChangingImage && selectedPicture && (
               <div>
-                <select
-                  value={composition}
-                  onChange={(ev) => setComposition(ev.target.value)}
+                <h2>Selected Image:</h2>
+                <img
+                  src={URL.createObjectURL(rawPic)}
+                  alt="Selected"
+                  width={200}
+                  height={200}
+                />
+              </div>
+            )}
+            {id && base64Image && !isChangingImage && (
+              <img src={base64Image} alt="Image" width={200} height={200} />
+            )}
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            gap: "1rem",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#fff",
+              borderRadius: "4px",
+              alignSelf: "center",
+              marginTop: "20px",
+            }}
+          >
+            <button
+              style={{
+                color: "#DE89A1",
+                fontSize: "14px",
+                textTransform: "none",
+                zIndex: "999",
+              }}
+              onClick={cancelBtnHandler}
+            >
+              Cancel
+            </button>
+          </div>
+          <div
+            style={{
+              marginTop: "1.4rem",
+              backgroundColor: "#DE89A1",
+              borderRadius: "4px",
+              alignSelf: "center",
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                color: "#fff",
+                fontSize: "13px",
+                textTransform: "none",
+                zIndex: "999",
+              }}
+              onClick={saveProductHandler}
+            >
+              Save
+            </Button>
+          </div>
+        </div>
+      </Paper>
+      {/* {id && (
+        <div style={{ marginTop: "2rem" }}>
+          <h3 style={{ color: "#545454" }}>Composition:</h3>
+          <Paper
+            sx={{
+              padding: "1.4rem",
+              display: "flex",
+              flexDirection: "column",
+              marginTop: ".8rem",
+            }}
+          >
+            <div className={classes["input-wrapper"]}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    backgroundColor: "#DE89A1",
+                    borderRadius: "4px",
+                    marginBottom: "1rem",
+                    alignSelf: "end",
+                  }}
                 >
-                  {p.values.map((v) => (
-                    <option key={v} value={v}>
-                      {v}
-                    </option>
-                  ))}
-                </select>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    sx={{
+                      color: "#fff",
+                      fontSize: "13px",
+                      textTransform: "none",
+                      zIndex: "999",
+                    }}
+                    onClick={addNewCompositionHandler}
+                  >
+                    Add new composition
+                  </Button>
+                </div>
+
+                <TableContainer component={Paper}>
+                  <Table sx={{}} aria-label="spanning table">
+                    <TableHead>
+                      <TableRow sx={{ backgroundColor: "#F8F8F8" }}>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Description</TableCell>
+                        <TableCell>Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {compoData &&
+                        compoData.map((composition) => {
+                          return (
+                            <TableRow
+                              key={composition.id}
+                              sx={{
+                                borderBottom:
+                                  "1px solid rgba(224, 224, 224, 1)",
+                              }}
+                            >
+                              <TableCell sx={{ borderBottom: "none" }}>
+                                {composition.name}
+                              </TableCell>
+                              <TableCell sx={{ borderBottom: "none" }}>
+                                {composition?.description}
+                              </TableCell>
+                              <TableCell sx={{ borderBottom: "none" }}>
+                                <div style={{ display: "flex", gap: "8px" }}>
+                                  <Link
+                                    className="btn-default"
+                                    href={
+                                      "/composition/edit/" +
+                                      composition.id +
+                                      "?categId=" +
+                                      id
+                                    }
+                                    style={{
+                                      display: "flex",
+                                      backgroundColor: "#FFF4E5",
+                                      color: "#9C7D51",
+                                    }}
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      strokeWidth={1.5}
+                                      stroke="currentColor"
+                                      className="w-4 h-4"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                                      />
+                                    </svg>
+                                    <p>Edit</p>
+                                  </Link>
+                                  <Link
+                                    className="btn-red"
+                                    href={
+                                      "/composition/delete/" +
+                                      composition.id +
+                                      "?categId=" +
+                                      id
+                                    }
+                                    style={{ display: "flex" }}
+                                  >
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      strokeWidth={1.5}
+                                      stroke="currentColor"
+                                      className="w-4 h-4"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                      />
+                                    </svg>
+                                    <p>Delete</p>
+                                  </Link>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
+                    </TableBody>
+                    
+                  </Table>
+                </TableContainer>
               </div>
             </div>
-          );
-        })} */}
-      <label>Milliliter</label>
-      <input type="number" placeholder="milliliter" value={quantity} onChange={(ev) => setQuantity(ev.target.value)} />
-      <label>Photos</label>
-      <div className="mb-2 flex flex-wrap gap-1">
-        {isUploading && (
-          <div className="h-24 flex items-center">
-            <Spinner />
-          </div>
-        )}
-        {!isUploading && (
-          <div className="h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
-            <img src={!imageSrc ? image : imageSrc} alt="" className="rounded-lg" />
-          </div>
-        )}
-        <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border border-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-          </svg>
-          <div>Add image</div>
-          <input type="file" name="file" className="hidden" onChange={imageOnChangeHandler} />
-        </label>
-      </div>
-
-      <button type="submit" className="btn-primary">
-        Save
-      </button>
-    </form>
+          </Paper>
+        </div>
+      )} */}
+    </div>
   );
 }
