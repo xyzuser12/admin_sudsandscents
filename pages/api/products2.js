@@ -175,6 +175,7 @@ export default async function handler(req, res) {
         composition: compositionId,
         isChangingImage,
       } = req.body;
+
       let updateProduct;
       if (isChangingImage) {
         updateProduct = await prisma.ingredients.update({

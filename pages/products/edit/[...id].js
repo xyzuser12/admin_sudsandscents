@@ -56,34 +56,35 @@ export default function EditProductPage() {
   const [subCateg, setSubCateg] = useState([]);
   const [parentCaId, setParentCaId] = useState("");
 
-  console.log(productInfo);
-  console.log(parentCaId);
-  console.log(subCateg);
+  // console.log(productInfo);
+  // console.log(parentCaId);
+  // console.log(subCateg);
   useEffect(() => {
     if (!id) {
       return;
     }
-    axios.get("/api/products?id=" + id).then((response) => {
+    axios.get("/api/products2?id=" + id).then((response) => {
       setProductInfo(response.data);
     });
   }, [id]);
+  console.log(productInfo);
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-  function fetchCategories() {
-    axios.get("/api/categories").then((result) => {
-      const categories = result.data;
-      setCateg(categories);
-      // const topLevelCategories = getTopLevelCategories(categories);
-      const subCategories = getSubCategories(categories);
-      // setParentCateg(topLevelCategories);
-      const parentId = getParentId(subCategories, productInfo?.category);
-      console.log(parentId);
-      setSubCateg(subCategories);
-      setParentCaId(parentId);
-    });
-  }
+  // useEffect(() => {
+  //   fetchCategories();
+  // }, []);
+  // function fetchCategories() {
+  //   axios.get("/api/categories").then((result) => {
+  //     const categories = result.data;
+  //     setCateg(categories);
+  //     // const topLevelCategories = getTopLevelCategories(categories);
+  //     const subCategories = getSubCategories(categories);
+  //     // setParentCateg(topLevelCategories);
+  //     const parentId = getParentId(subCategories, productInfo?.category);
+  //     console.log(parentId);
+  //     setSubCateg(subCategories);
+  //     setParentCaId(parentId);
+  //   });
+  // }
   // function getTopLevelCategories(categ) {
   //   const topLevelCategories = [];
 
@@ -99,40 +100,40 @@ export default function EditProductPage() {
   //   return topLevelCategories;
   // }
 
-  function getSubCategories(categ) {
-    // console.log(categ);
-    const subCategories = [];
-    categ.forEach((category) => {
-      if (category.parent) {
-        // console.log(category);
+  // function getSubCategories(categ) {
+  //   // console.log(categ);
+  //   const subCategories = [];
+  //   categ.forEach((category) => {
+  //     if (category.parent) {
+  //       // console.log(category);
 
-        const parentCategory = category.parent.name;
-        const parentCategoryId = category.parent._id;
-        const parentCategoryProperties = category.properties;
-        // console.log(parentCategoryProperties);
-        subCategories.push({
-          id: category._id,
-          name: category.name,
-          parent: parentCategory,
-          parentId: parentCategoryId,
-          composition: parentCategoryProperties,
-        });
-      }
-    });
+  //       const parentCategory = category.parent.name;
+  //       const parentCategoryId = category.parent._id;
+  //       const parentCategoryProperties = category.properties;
+  //       // console.log(parentCategoryProperties);
+  //       subCategories.push({
+  //         id: category._id,
+  //         name: category.name,
+  //         parent: parentCategory,
+  //         parentId: parentCategoryId,
+  //         composition: parentCategoryProperties,
+  //       });
+  //     }
+  //   });
 
-    return subCategories;
-  }
+  //   return subCategories;
+  // }
 
-  function getParentId(subCa, existingSubCaId) {
-    console.log(subCa);
-    console.log(existingSubCaId);
-    const foundSubCa = subCa.find((sc) => sc.id === existingSubCaId);
-    if (foundSubCa) {
-      return foundSubCa.parentId;
-    } else {
-      return "Subcategory not found";
-    }
-  }
+  // function getParentId(subCa, existingSubCaId) {
+  //   console.log(subCa);
+  //   console.log(existingSubCaId);
+  //   const foundSubCa = subCa.find((sc) => sc.id === existingSubCaId);
+  //   if (foundSubCa) {
+  //     return foundSubCa.parentId;
+  //   } else {
+  //     return "Subcategory not found";
+  //   }
+  // }
   return (
     <Layout>
       <Box
