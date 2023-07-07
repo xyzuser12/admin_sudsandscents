@@ -190,10 +190,19 @@ export default function Products() {
   const [ingredientsData, setIngredientsData] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
+
     async function getIngredients() {
-      await axios.get("/api/products2").then((res) => {
-        setIngredientsData(res.data);
-      });
+      try {
+        await axios.get("/api/products2").then((res) => {
+          console.log("############################");
+          console.log(res);
+          setIngredientsData(res.data);
+          setIsLoading(false);
+        });
+      } catch (error) {
+        console.log(`💥💥💥${error}`);
+      }
     }
     getIngredients();
   }, []);
@@ -304,36 +313,36 @@ export default function Products() {
             </Button>
           </Link>
         </div>
-        {/* {isLoading && <Spinner />} */}
-        {/* {!isLoading && ( */}
-        <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
-          <DataGrid
-            rows={transformIngredients(ingredientsData)}
-            columns={columns}
-            pageSize={25}
-            rowsPerPageOptions={[25, 50, 100]}
-            checkboxSelection
-            components={{
-              header: {
-                cell: (props) => (
-                  <th
-                    className="MuiDataGrid-colCell"
-                    role="columnheader"
-                    tabIndex={1}
-                    style={{ border: "1px solid red" }}
-                    {...props}
-                  >
-                    <div className="MuiDataGrid-colCellTitle">
-                      {props.colDef.headerName}
-                    </div>
-                  </th>
-                ),
-              },
-              Toolbar: GridToolbar,
-            }}
-          />
-        </div>
-        {/* )} */}
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <div style={{ height: "74vh", width: "100%", marginTop: "1.8rem" }}>
+            <DataGrid
+              rows={transformIngredients(ingredientsData)}
+              columns={columns}
+              pageSize={25}
+              rowsPerPageOptions={[25, 50, 100]}
+              checkboxSelection
+              components={{
+                header: {
+                  cell: (props) => (
+                    <th
+                      className="MuiDataGrid-colCell"
+                      role="columnheader"
+                      tabIndex={1}
+                      style={{ border: "1px solid red" }}
+                      {...props}
+                    >
+                      <div className="MuiDataGrid-colCellTitle">
+                        {props.colDef.headerName}
+                      </div>
+                    </th>
+                  ),
+                },
+                Toolbar: GridToolbar,
+              }}
+            />
+          </div>
+        )}
       </Box>
     </Layout>
   );
