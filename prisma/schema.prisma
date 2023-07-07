@@ -51,6 +51,7 @@ model User {
   createdAt     DateTime  @default(now())
   accounts      Account[]
   sessions      Session[]
+  address       Address?
 
   @@unique([email, username]) // Add this line to make email and username combination unique
   @@map("User") // Add this line to specify the database table name
@@ -108,7 +109,7 @@ model Ingredients {
 
 model Address {
   id             Int    @id @default(autoincrement())
-  user_email     String
+  user_email     String @unique
   user_id        String
   name           String
   phone_number   String
@@ -117,6 +118,7 @@ model Address {
   postal_code    Int
   street_address String
   country        String
+  user           User   @relation(fields: [user_email], references: [email])
 }
 
 enum Role {
