@@ -24,11 +24,12 @@ export default async function handler(req, res) {
         return res.json(product);
       } catch (error) {
         return res.status(500).json({
-          error: `Something went wrong fetching categories!: ${error}`,
+          error: `Something went wrong fetching products!: ${error}`,
         });
       }
     } else {
       try {
+        const getIngredients = await prisma.ingredients.findMany();
         const getIngredient = await prisma.ingredients.findMany({
           include: {
             category: {
@@ -47,6 +48,7 @@ export default async function handler(req, res) {
           },
         });
         console.log(getIngredient);
+        console.log(getIngredients);
         return res.json(getIngredient);
       } catch (error) {
         return res.status(500).json({
@@ -145,7 +147,7 @@ export default async function handler(req, res) {
           description,
           image: Buffer.from(image, "base64"),
 
-          price,
+          price: price ? price : 0,
           milliliter,
           quantity,
           category: {
@@ -208,7 +210,6 @@ export default async function handler(req, res) {
           data: {
             name,
             description,
-
             price,
             milliliter,
             quantity,

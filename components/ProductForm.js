@@ -129,7 +129,9 @@ export default function ProductForm({
       reader.readAsDataURL(file);
     }
     // console.log(selectedPicture);
-    setIsChangingImage(true);
+    if (id) {
+      setIsChangingImage(true);
+    }
   };
   useEffect(() => {
     async function getCategories() {
@@ -208,7 +210,7 @@ export default function ProductForm({
             name,
             description,
             price: parseFloat(price),
-            image: selectedPicture ? selectedPicture.split(",")[1] : null,
+            image: null,
             milliliter: parseInt(milliliter),
             quantity: parseInt(quantity),
             categories: JSON.stringify(transformCategories(selectedCategories)),

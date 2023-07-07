@@ -55,7 +55,7 @@ const columns = [
     headerName: "Price",
     width: 80,
     renderCell: (params) => {
-      return <p>{`₱${params.row.price.toFixed(2)}`}</p>;
+      return <p>{`₱${params.row.price ? params.row.price.toFixed(2) : 0}`}</p>;
     },
   },
   { field: "milliliter", headerName: "Milliliter(ml)", width: 100 },
@@ -191,7 +191,6 @@ export default function Products() {
 
   useEffect(() => {
     setIsLoading(true);
-
     async function getIngredients() {
       try {
         await axios.get("/api/products2").then((res) => {
@@ -201,7 +200,7 @@ export default function Products() {
           setIsLoading(false);
         });
       } catch (error) {
-        console.log(`💥💥💥${error}`);
+        console.error(`💥💥💥${error}`);
       }
     }
     getIngredients();
