@@ -19,9 +19,11 @@ export default function EditAdminPage() {
   const [compositionData, setCompositionData] = useState(null);
   const [goToAdmins, setGoToAdmins] = useState(false);
   const router = useRouter();
-  const id = router.query.id[1];
-  const categoryId = router.query.categId;
-  // console.log(adminInfo);
+  const id = router.query?.id[0];
+  const categoryId = router.query?.categId;
+  console.log(router);
+  console.log(id);
+  console.log(categoryId);
   useEffect(() => {
     async function getCompositionData() {
       try {

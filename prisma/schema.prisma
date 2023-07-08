@@ -83,12 +83,13 @@ model Category {
 }
 
 model Composition {
-  id          Int           @id @default(autoincrement())
-  name        String?
-  description String?
-  category    Category?     @relation(fields: [categoryId], references: [id])
-  categoryId  Int?
-  ingredients Ingredients[]
+  id               Int           @id @default(autoincrement())
+  name             String?
+  description      String?
+  ingredient_limit String?
+  category         Category?     @relation(fields: [categoryId], references: [id])
+  categoryId       Int?
+  ingredients      Ingredients[]
 }
 
 model Ingredients {

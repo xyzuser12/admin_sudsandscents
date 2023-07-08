@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     //   },
     // });
     const mode = req.query?.mode;
-    const compoId = req.query?.id;
+    const compoId = parseInt(req.query?.id);
     const categoryId = parseInt(req.query?.categoryId);
     const compositionId = parseInt(compoId);
     // console.log(compositionId);

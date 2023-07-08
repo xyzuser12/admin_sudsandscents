@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Paper from "@mui/material/Paper";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import { Button } from "@mui/material";
+import { Button, FormHelperText } from "@mui/material";
 import axios from "axios";
 import classes from "../styles/dashboard/Admin.module.css";
 
@@ -12,10 +12,11 @@ export default function CompositionForm({
   categoryId,
   name: existingName,
   description: existingDescription,
+  ingredientsLimit: existingIngredientsLimit,
 }) {
   const [name, setName] = useState(existingName || "");
   const [description, setDescription] = useState(existingDescription || "");
-
+  const [ingredientsLimit, setIngredientsLimit] = useState("");
   const [goToAdmins, setGoToAdmins] = useState(false);
   // console.log(props);
   const router = useRouter();
@@ -179,6 +180,43 @@ export default function CompositionForm({
               required
               value={description}
             />
+          </div>
+        </FormControl>
+        <FormControl
+          size="small"
+          sx={{
+            m: 1,
+            width: "100%",
+            margin: "0",
+            "& div": {
+              fontSize: "14px",
+            },
+          }}
+        >
+          <div className={classes.input}>
+            <label
+              htmlFor="description"
+              style={{
+                marginBottom: "4px",
+                color: "#adadad",
+                fontSize: "15px",
+              }}
+            >
+              Ingredients Limit:
+            </label>
+
+            <OutlinedInput
+              id="description"
+              name="description"
+              type="text"
+              onChange={(ev) => setIngredientsLimit(ev.target.value)}
+              required
+              value={ingredientsLimit}
+            />
+            <FormHelperText>
+              Specify the limit of ingredients the user can pick for each
+              composition.
+            </FormHelperText>
           </div>
         </FormControl>
       </div>
