@@ -369,6 +369,7 @@ export default function CategoryForm({
                       <TableRow sx={{ backgroundColor: "#F8F8F8" }}>
                         <TableCell>Name</TableCell>
                         <TableCell>Description</TableCell>
+                        <TableCell>Ingredients Limit</TableCell>
                         <TableCell>Actions</TableCell>
                       </TableRow>
                     </TableHead>
@@ -389,6 +390,9 @@ export default function CategoryForm({
                               </TableCell>
                               <TableCell sx={{ borderBottom: "none" }}>
                                 {composition?.description}
+                              </TableCell>
+                              <TableCell sx={{ borderBottom: "none" }}>
+                                {composition?.ingredient_limit}
                               </TableCell>
                               <TableCell sx={{ borderBottom: "none" }}>
                                 <div style={{ display: "flex", gap: "8px" }}>

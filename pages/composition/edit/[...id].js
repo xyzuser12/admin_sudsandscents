@@ -19,7 +19,7 @@ export default function EditAdminPage() {
   const [compositionData, setCompositionData] = useState(null);
   const [goToAdmins, setGoToAdmins] = useState(false);
   const router = useRouter();
-  const id = router.query?.id[0];
+  const [id] = router.query?.id;
   const categoryId = router.query?.categId;
   console.log(router);
   console.log(id);

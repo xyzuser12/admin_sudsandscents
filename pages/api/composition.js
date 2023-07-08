@@ -79,7 +79,12 @@ export default async function handler(req, res) {
 
   if (method === "POST") {
     try {
-      const { name, description, newCompoCategId: categoryId } = req.body;
+      const {
+        name,
+        description,
+        newCompoCategId: categoryId,
+        ingredientsLimit: ingredient_limit,
+      } = req.body;
       console.log(req.body);
 
       const category = await prisma.composition.create({
@@ -87,6 +92,7 @@ export default async function handler(req, res) {
           name,
           description,
           categoryId: parseInt(categoryId),
+          ingredient_limit,
         },
       });
 
@@ -102,7 +108,12 @@ export default async function handler(req, res) {
   if (method === "PUT") {
     console.log(method);
     try {
-      const { id, name, description } = req.body;
+      const {
+        id,
+        name,
+        description,
+        ingredientsLimit: ingredient_limit,
+      } = req.body;
       const updateComposition = await prisma.composition.update({
         where: {
           id: parseInt(id),
@@ -110,6 +121,7 @@ export default async function handler(req, res) {
         data: {
           name,
           description,
+          ingredient_limit,
         },
       });
 

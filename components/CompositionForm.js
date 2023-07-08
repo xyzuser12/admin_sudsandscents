@@ -4,27 +4,59 @@ import Paper from "@mui/material/Paper";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { Button, FormHelperText } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import axios from "axios";
 import classes from "../styles/dashboard/Admin.module.css";
+
+const ingreLimitOptions = [
+  { name: "One Ingredient Only", value: "1" },
+  {
+    name: "Set a limit number (more than 1)",
+    value: "MORE_THAN_ONE",
+  },
+  { name: "Multiple Ingredients (no limit)", value: "NO_LIMIT" },
+];
 
 export default function CompositionForm({
   id,
   categoryId,
   name: existingName,
   description: existingDescription,
-  ingredientsLimit: existingIngredientsLimit,
+  ingredient_limit: existingIngredientsLimit,
 }) {
   const [name, setName] = useState(existingName || "");
   const [description, setDescription] = useState(existingDescription || "");
-  const [ingredientsLimit, setIngredientsLimit] = useState("");
+  const [ingredientsLimit, setIngredientsLimit] = useState(
+    existingIngredientsLimit || {}
+  );
+  const [limitNumber, setLimitNumber] = useState(null);
   const [goToAdmins, setGoToAdmins] = useState(false);
   // console.log(props);
   const router = useRouter();
 
   const newCompoCategId = router.query?.categoryId;
 
-  console.log(router);
-
+  console.log(existingIngredientsLimit);
+  useEffect(() => {
+    if (existingIngredientsLimit) {
+      if (
+        existingIngredientsLimit === "1" ||
+        existingIngredientsLimit === "NO_LIMIT"
+      ) {
+        setIngredientsLimit(
+          ingreLimitOptions.find(
+            (option) => option.value === existingIngredientsLimit
+          )
+        );
+      } else if (parseInt(existingIngredientsLimit) > 1) {
+        setIngredientsLimit(
+          ingreLimitOptions.find((option) => option.value === "MORE_THAN_ONE")
+        );
+        setLimitNumber(parseInt(existingIngredientsLimit));
+      }
+    }
+  }, [existingIngredientsLimit]);
   // useEffect(() => {
   //   async function getAdminData() {
   //     try {
@@ -39,6 +71,7 @@ export default function CompositionForm({
   //   }
   //   getAdminData();
   // }, []);
+  console.log(ingredientsLimit);
 
   const saveCompositionHandler = async (e) => {
     e.preventDefault();
@@ -56,11 +89,23 @@ export default function CompositionForm({
       console.log(data);
       console.log(id);
       try {
+        let response;
         // Use Axios PUT request to update the admin record
-        const response = await axios.put("/api/composition", {
-          ...data,
-          id,
-        });
+        if (ingredientsLimit.value === "MORE_THAN_ONE") {
+          response = await axios.put("/api/composition", {
+            name,
+            description,
+            ingredientsLimit: "" + limitNumber,
+            id,
+          });
+        } else {
+          response = await axios.put("/api/composition", {
+            name,
+            description,
+            ingredientsLimit: ingredientsLimit.value,
+            id,
+          });
+        }
         if (response.status === 200) {
           const admin = response.data;
           console.log("Composition updated: ", admin);
@@ -76,10 +121,22 @@ export default function CompositionForm({
     if (newCompoCategId && !id) {
       console.log("❤❤");
       try {
-        const response = await axios.post("/api/composition", {
-          ...data,
-          newCompoCategId,
-        });
+        let response;
+        if (ingredientsLimit.value === "MORE_THAN_ONE") {
+          response = await axios.post("/api/composition", {
+            name,
+            description,
+            ingredientsLimit: "" + limitNumber,
+            newCompoCategId,
+          });
+        } else {
+          response = await axios.post("/api/composition", {
+            name,
+            description,
+            ingredientsLimit: ingredientsLimit.value,
+            newCompoCategId,
+          });
+        }
         if (response.status === 200) {
           const admin = response.data;
           console.log("Composition uploaded:", admin);
@@ -182,43 +239,70 @@ export default function CompositionForm({
             />
           </div>
         </FormControl>
-        <FormControl
-          size="small"
-          sx={{
-            m: 1,
-            width: "100%",
-            margin: "0",
-            "& div": {
-              fontSize: "14px",
-            },
-          }}
-        >
-          <div className={classes.input}>
-            <label
-              htmlFor="description"
-              style={{
-                marginBottom: "4px",
-                color: "#adadad",
-                fontSize: "15px",
-              }}
-            >
-              Ingredients Limit:
-            </label>
+        <div>
+          <label
+            htmlFor="composition"
+            style={{
+              marginBottom: "4px",
+              color: "#adadad",
+              fontSize: "15px",
+            }}
+          >
+            Ingredients Limit:
+          </label>
+          <Autocomplete
+            size="small"
+            id="composition"
+            options={ingreLimitOptions}
+            getOptionLabel={(option) => {
+              console.log(option);
+              console.log(ingredientsLimit);
+              return option.name;
+            }}
+            value={ingredientsLimit} // Set the value prop to control the selected values
+            onChange={(event, newValue) => {
+              console.log(newValue);
+              console.log(event);
+              setIngredientsLimit(newValue); // Update the state with the selected values
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </div>
+        {ingredientsLimit && ingredientsLimit.value === "MORE_THAN_ONE" && (
+          <FormControl
+            size="small"
+            sx={{
+              m: 1,
+              width: "100%",
+              margin: "0",
+              "& div": {
+                fontSize: "14px",
+              },
+            }}
+          >
+            <div className={classes.input}>
+              <label
+                htmlFor="limitNumber"
+                style={{
+                  marginBottom: "4px",
+                  color: "#adadad",
+                  fontSize: "15px",
+                }}
+              >
+                Set a limit number (more than 1):
+              </label>
 
-            <OutlinedInput
-              id="description"
-              name="description"
-              type="text"
-              onChange={(ev) => setIngredientsLimit(ev.target.value)}
-              required
-              value={ingredientsLimit}
-            />
-            <FormHelperText>
-              Specify the limit of ingredients the user can pick for each
-              composition.
-            </FormHelperText>
-          </div>
-        </FormControl>
+              <OutlinedInput
+                id="limitNumber"
+                name="limitNumber"
+                type="number"
+                onChange={(ev) => setLimitNumber(ev.target.value)}
+                required
+                value={limitNumber}
+              />
+            </div>
+          </FormControl>
+        )}
       </div>
       <div
         style={{
