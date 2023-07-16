@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { styled, Box } from "@mui/material";
@@ -9,7 +8,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Button from "@mui/material/Button";
 import Spinner from "@/components/Spinner";
 import classes from "../../styles/setting/Setting.module.css";
-import { responsive } from "@cloudinary/react";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,12 +17,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-// Delivery options
-// book my own = 0
-// same day delivery = 230 no increment within manila
-// next day Delivery = 180 no increment within manila
-// standard Delivery = 100 no increment within manila
-// provincial Delivery = 180 ++
 
 const SettingPage = () => {
   const [isLoading, setIsLoading] = useState(false);

@@ -1,0 +1,62 @@
+[
+  {
+    "shopName": "Riva Soap Manufacturing",
+    "shopAddress": "1360 L. Guinto Street, Ermita, Metro Manila",
+    "lat": "14.583",
+    "lng": "120.983002"
+  },
+  {
+    "shopName": "Aroma Plus Supplies",
+    "shopAddress": "174 Salcedo Street Legaspi Village, Makati",
+    "lat": "14.557417",
+    "lng": "121.015464"
+  },
+  {
+    "shopName": "Infusi Clean Factory",
+    "shopAddress": "931 Benavidez Street Binondo, Manila",
+    "lat": "14.602998",
+    "lng": "120.976491"
+  },
+  {
+    "shopName": "Route 66 Aroma",
+    "shopAddress": "454 Rizal Ave",
+    "lat": "14.649626",
+    "lng": "120.98414"
+  },
+  {
+    "shopName": "Cleanquility Co.",
+    "shopAddress": "2nd Ave",
+    "lat": "14.618385",
+    "lng": "121.071618"
+  },
+  {
+    "shopName": "Siprenew Inc.",
+    "shopAddress": "Pasong Tamo Corner Urban Avenue, Makati",
+    "lat": "14.559091",
+    "lng": "121.012063"
+  },
+  {
+    "shopName": "Luxe Soap Factory",
+    "shopAddress": "Julia Vargas Avenue Ortigas Center, Mandaluyong",
+    "lat": "14.584743",
+    "lng": "121.056914"
+  },
+  {
+    "shopName": "BioBubbles Co.",
+    "shopAddress": "1330 Roxas Boulevard",
+    "lat": "14.575973",
+    "lng": "120.980294"
+  },
+  {
+    "shopName": "Dolphin Bay Supplies",
+    "shopAddress": "1501 Roxas Boulevard",
+    "lat": "14.539735",
+    "lng": "120.993005"
+  },
+  {
+    "shopName": "HygieneHeaven Inc.",
+    "shopAddress": "122 Maginhawa",
+    "lat": "14.644284",
+    "lng": "121.06089"
+  }
+]

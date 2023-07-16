@@ -9,7 +9,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import GroupsIcon from "@mui/icons-material/Groups";
@@ -153,7 +154,7 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
               justifyContent: open ? "initial" : "center",
               px: 2.5,
               ...(router.pathname === "/products" ||
-              router.pathname === "/products/new"
+                router.pathname === "/products/new"
                 ? { backgroundColor: "#E9D0CB" }
                 : { backgroundColor: "none" }),
               "&:hover, &:focus": { backgroundColor: "#E9D0CB" },
@@ -270,6 +271,31 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
               <SupervisorAccountIcon />
             </ListItemIcon>
             <ListItemText primary="Admins" sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="admins" disablePadding sx={{ display: "block" }}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? "initial" : "center",
+              px: 2.5,
+              ...(router.pathname === "/admins" && {
+                backgroundColor: "#E9D0CB",
+              }),
+              "&:hover, &:focus": { backgroundColor: "#E9D0CB" },
+            }}
+            onClick={() => router.push("/geolocation")}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              <LocationOnIcon />
+            </ListItemIcon>
+            <ListItemText primary="Geolocation" sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
         </ListItem>
         <ListItem
