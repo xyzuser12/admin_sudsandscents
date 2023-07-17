@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { signOut } from "next-auth/react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -121,32 +120,6 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
           margin: "1rem 0",
         }}
       >
-        <ListItem key="dashboard" disablePadding sx={{ display: "block" }}>
-          <ListItemButton
-            sx={{
-              minHeight: 48,
-              justifyContent: open ? "initial" : "center",
-              px: 2.5,
-              ...(router.pathname === "/" && {
-                backgroundColor: "#E9D0CB",
-              }),
-              "&:hover, &:focus": { backgroundColor: "#E9D0CB" },
-            }}
-            onClick={() => router.push("/")}
-          >
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : "auto",
-                justifyContent: "center",
-              }}
-            >
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
-          </ListItemButton>
-        </ListItem>
-
         <ListItem key="products" disablePadding sx={{ display: "block" }}>
           <ListItemButton
             sx={{
