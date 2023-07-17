@@ -1,9 +1,7 @@
-import GoogleProvider from "next-auth/providers/google";
 import NextAuth, { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../../../lib/prismaClient";
-import bcrypt from "bcryptjs";
 
 const adapter = PrismaAdapter(prisma);
 
@@ -37,21 +35,9 @@ const authOptions = {
         if (!user) return null;
         const isAdmin = user.role === "ADMIN";
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = password == user.password
         console.log(`=================${isPasswordValid}==================`);
         console.log(`333333333333333${isAdmin}333333333333333`);
-        // const user = await prisma.user.
-        // const user = {
-        //   name: "Raymart Formalejo",
-        //   email: "formalejoraymartbedia@gmail.com",
-        //   image:
-        //     "https://lh3.googleusercontent.com/a/AGNmyxZHbBRbsHoVAKrZ0yj3rDiY-Ku81T…",
-        // };
-
-        // const isValidationFailed = true
-        // if(isValidationFailed) {
-        //   throw new Error('Email password invalid')
-        // }
         if (isPasswordValid && isAdmin) {
           return user;
         } else {
