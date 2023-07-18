@@ -47,6 +47,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   padding: "2rem 0",
+
   ...theme.mixins.toolbar,
 }));
 const Drawer = styled(MuiDrawer, {
@@ -246,13 +247,13 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
             <ListItemText primary="Admins" sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
         </ListItem>
-        <ListItem key="admins" disablePadding sx={{ display: "block" }}>
+        <ListItem key="geolocation" disablePadding sx={{ display: "block" }}>
           <ListItemButton
             sx={{
               minHeight: 48,
               justifyContent: open ? "initial" : "center",
               px: 2.5,
-              ...(router.pathname === "/admins" && {
+              ...(router.pathname === "/geolocation" && {
                 backgroundColor: "#E9D0CB",
               }),
               "&:hover, &:focus": { backgroundColor: "#E9D0CB" },
@@ -269,6 +270,31 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
               <LocationOnIcon />
             </ListItemIcon>
             <ListItemText primary="Geolocation" sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key="forecasting" disablePadding sx={{ display: "block" }}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? "initial" : "center",
+              px: 2.5,
+              ...(router.pathname === "/forecasting" && {
+                backgroundColor: "#E9D0CB",
+              }),
+              "&:hover, &:focus": { backgroundColor: "#E9D0CB" },
+            }}
+            onClick={() => router.push("/forecasting")}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : "auto",
+                justifyContent: "center",
+              }}
+            >
+              <LocationOnIcon />
+            </ListItemIcon>
+            <ListItemText primary="Forecasting" sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
         </ListItem>
         <ListItem
