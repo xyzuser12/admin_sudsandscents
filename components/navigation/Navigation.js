@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { signOut } from "next-auth/react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import OnlinePredictionIcon from '@mui/icons-material/OnlinePrediction';
 import InventoryIcon from "@mui/icons-material/Inventory";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -292,7 +293,7 @@ const Navigation = ({ open, setOpen, theme, drawerWidth }) => {
                 justifyContent: "center",
               }}
             >
-              <LocationOnIcon />
+              <OnlinePredictionIcon />
             </ListItemIcon>
             <ListItemText primary="Forecasting" sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
