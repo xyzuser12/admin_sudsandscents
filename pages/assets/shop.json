@@ -3,60 +3,130 @@
     "shopName": "Riva Soap Manufacturing",
     "shopAddress": "1360 L. Guinto Street, Ermita, Metro Manila",
     "lat": "14.583",
-    "lng": "120.983002"
+    "lng": "120.983002",
+    "keyword": [
+      "soap",
+      "body wash",
+      "shampoo",
+      "cleanser",
+      "suds"
+    ]
   },
   {
     "shopName": "Aroma Plus Supplies",
     "shopAddress": "174 Salcedo Street Legaspi Village, Makati",
     "lat": "14.557417",
-    "lng": "121.015464"
+    "lng": "121.015464",
+    "keyword": [
+      "perfume",
+      "essential oil",
+      "fragrance",
+      "scent",
+      "cologne"
+    ]
   },
   {
     "shopName": "Infusi Clean Factory",
     "shopAddress": "931 Benavidez Street Binondo, Manila",
     "lat": "14.602998",
-    "lng": "120.976491"
+    "lng": "120.976491",
+    "keyword": [
+      "dishwashing liquid",
+      "liquid detergent",
+      "dish detergent",
+      "dish cleanser",
+      "dishwashing gel"
+    ]
   },
   {
     "shopName": "Route 66 Aroma",
     "shopAddress": "454 Rizal Ave",
     "lat": "14.649626",
-    "lng": "120.98414"
+    "lng": "120.98414",
+    "keyword": [
+      "perfume",
+      "essential oil",
+      "fragrance",
+      "scent",
+      "cologne"
+    ]
   },
   {
     "shopName": "Cleanquility Co.",
     "shopAddress": "2nd Ave",
     "lat": "14.618385",
-    "lng": "121.071618"
+    "lng": "121.071618",
+    "keyword": [
+      "dishwashing liquid",
+      "liquid detergent",
+      "dish detergent",
+      "dish cleanser",
+      "dishwashing gel"
+    ]
   },
   {
     "shopName": "Siprenew Inc.",
     "shopAddress": "Pasong Tamo Corner Urban Avenue, Makati",
     "lat": "14.559091",
-    "lng": "121.012063"
+    "lng": "121.012063",
+    "keyword": [
+      "soap",
+      "body wash",
+      "shampoo",
+      "cleanser",
+      "suds"
+    ]
   },
   {
     "shopName": "Luxe Soap Factory",
     "shopAddress": "Julia Vargas Avenue Ortigas Center, Mandaluyong",
     "lat": "14.584743",
-    "lng": "121.056914"
+    "lng": "121.056914",
+    "keyword": [
+      "soap",
+      "body wash",
+      "shampoo",
+      "cleanser",
+      "suds"
+    ]
   },
   {
     "shopName": "BioBubbles Co.",
     "shopAddress": "1330 Roxas Boulevard",
     "lat": "14.575973",
-    "lng": "120.980294"
+    "lng": "120.980294",
+    "keyword": [
+      "soap",
+      "body wash",
+      "shampoo",
+      "dishwashing liquid",
+      "liquid detergent"
+    ]
   },
   {
     "shopName": "Dolphin Bay Supplies",
     "shopAddress": "1501 Roxas Boulevard",
     "lat": "14.539735",
-    "lng": "120.993005"
+    "lng": "120.993005",
+    "keyword": [
+      "soap",
+      "body wash",
+      "shampoo",
+      "dishwashing liquid",
+      "liquid detergent"
+    ]
   },
   {
     "shopName": "HygieneHeaven Inc.",
     "shopAddress": "122 Maginhawa",
     "lat": "14.644284",
-    "lng": "121.06089"
+    "lng": "121.06089",
+    "keyword": [
+      "soap",
+      "body wash",
+      "shampoo",
+      "cleanser",
+      "suds"
+    ]
   }
 ]
