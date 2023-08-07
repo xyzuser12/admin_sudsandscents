@@ -1,132 +1,535 @@
 [
   {
-    "shopName": "Riva Soap Manufacturing",
-    "shopAddress": "1360 L. Guinto Street, Ermita, Metro Manila",
-    "lat": "14.583",
-    "lng": "120.983002",
-    "keyword": [
-      "soap",
-      "body wash",
-      "shampoo",
-      "cleanser",
-      "suds"
-    ]
+    "shopName": "I-Shine Dishwashing Liquid",
+    "shopAddress": "Crisolita St, Cor Zobel Roxas St, Manila, 1017 Metro Manila",
+    "lat": "14.57017395633135",
+    "lng": "121.00627333772451",
+    "city": "Manila",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
   },
   {
-    "shopName": "Aroma Plus Supplies",
-    "shopAddress": "174 Salcedo Street Legaspi Village, Makati",
-    "lat": "14.557417",
-    "lng": "121.015464",
-    "keyword": [
-      "perfume",
-      "essential oil",
-      "fragrance",
-      "scent",
-      "cologne"
-    ]
+    "shopName": "Magic Brite Mb Homemade Dishwashing Liquid",
+    "shopAddress": "Fabie Estate, 1873 Rd 9, Santa Ana, Manila, 1009 Metro Manila",
+    "lat": "14.580276252481761",
+    "lng": "121.00054877820487",
+    "city": "Manila",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
   },
   {
-    "shopName": "Infusi Clean Factory",
-    "shopAddress": "931 Benavidez Street Binondo, Manila",
-    "lat": "14.602998",
-    "lng": "120.976491",
-    "keyword": [
-      "dishwashing liquid",
-      "liquid detergent",
-      "dish detergent",
-      "dish cleanser",
-      "dishwashing gel"
-    ]
+    "shopName": "Everlight Chemiecolor",
+    "shopAddress": "461 Clavel St, Binondo, Manila, 1006 Metro Manila",
+    "lat": "14.602879410225098",
+    "lng": "120.96956497829004",
+    "city": "Manila",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
   },
   {
-    "shopName": "Route 66 Aroma",
-    "shopAddress": "454 Rizal Ave",
-    "lat": "14.649626",
-    "lng": "120.98414",
-    "keyword": [
-      "perfume",
-      "essential oil",
-      "fragrance",
-      "scent",
-      "cologne"
-    ]
+    "shopName": "Binondo Beauty Supply",
+    "shopAddress": "2nd Floor, 455 Juan Luna St, Binondo, 1006 Kalakhang Maynila",
+    "lat": "14.601515690035491",
+    "lng": "120.97298554168688",
+    "city": "Manila",
+    "keyword": ["shampoo"]
   },
   {
-    "shopName": "Cleanquility Co.",
-    "shopAddress": "2nd Ave",
-    "lat": "14.618385",
-    "lng": "121.071618",
-    "keyword": [
-      "dishwashing liquid",
-      "liquid detergent",
-      "dish detergent",
-      "dish cleanser",
-      "dishwashing gel"
-    ]
+    "shopName": "Kafen Beauty Shop",
+    "shopAddress": "2nd Floor, 455 Juan Luna St, Binondo, 1006 Kalakhang Maynila",
+    "lat": "14.599182342641848",
+    "lng": "120.98331497736372",
+    "city": "Manila",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Biomart Asia Inc.",
+    "shopAddress": "Earnshaw Suites, 856 Earnshaw St, Sampaloc, Manila, 1008 Metro Manila",
+    "lat": "14.60976947968333",
+    "lng": "120.99343248310271",
+    "city": "Manila",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "CAREPRO - ALCOHOL, SOAP & CLEANING SUPPLY",
+    "shopAddress": "770 Interior, Delpan St, Binondo, Manila, Metro Manila",
+    "lat": "14.599934104293556",
+    "lng": "120.96532251073832",
+    "city": "Manila",
+    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Sabon Factory Sampaloc",
+    "shopAddress": "793 S.H.Loyola St, Sampaloc, Manila, 1008 Metro Manila",
+    "lat": "14.611444286758127",
+    "lng": "120.99700445306739",
+    "city": "Manila",
+    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Lu Huat Soap Factory",
+    "shopAddress": "155 San Nicolas St, Binondo, Manila, 1006 Metro Manila",
+    "lat": "14.599757615298254",
+    "lng": "120.96959462372817",
+    "city": "Manila",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "R.M.G. Direct Supplier",
+    "shopAddress": "2611 K, Jesus St, Pandacan, Manila, Metro Manila",
+    "lat": "14.592686347198923",
+    "lng": "121.00810169914189",
+    "city": "Manila",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "Donaire Fragrances Co.",
+    "shopAddress": "2106 Cabana Bldg Taft Avenue, Bgy 725, Zone 079 Malate, Manila",
+    "lat": "14.57237728977051",
+    "lng": "120.99209060575849",
+    "city": "Manila",
+    "keyword": ["perfume"]
   },
   {
-    "shopName": "Siprenew Inc.",
-    "shopAddress": "Pasong Tamo Corner Urban Avenue, Makati",
-    "lat": "14.559091",
-    "lng": "121.012063",
-    "keyword": [
-      "soap",
-      "body wash",
-      "shampoo",
-      "cleanser",
-      "suds"
-    ]
+    "shopName": "Perfume Manila",
+    "shopAddress": "1113 A.Roxas, San Andres Bukid, Manila, 1004 Metro Manila",
+    "lat": "14.56432167862369",
+    "lng": "120.99994501398668",
+    "city": "Manila",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "Prime Liquid Soap",
+    "shopAddress": "103 Kapanalig, Maypajo, Caloocan, 1400 Metro Manila",
+    "lat": "14.642084094029425",
+    "lng": "120.97059718005472",
+    "city": "Caloocan",
+    "keyword": ["dishwashing liquid", "liquid detergent", "body wash"]
+  },
+
+  {
+    "shopName": "Highchem Trading",
+    "shopAddress": "105 Mt.Natib, Barrio San Jose, Caloocan, 1400 Metro Manila",
+    "lat": "14.641981820603517",
+    "lng": "120.9913449562666",
+    "city": "Caloocan",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "ZJaP HOUSEHOLD PRODUCTS",
+    "shopAddress": "3680 Petchayan St, Camarin Caloocan C, Caloocan, 1400 Metro Manila",
+    "lat": "14.75519671140568",
+    "lng": "121.06436602238534",
+    "city": "Caloocan",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "ELV Beauty and Wellness Shop",
+    "shopAddress": "428, Block 30 Talilong St, Maypajo, Caloocan, Metro Manila",
+    "lat": "14.640456551663204",
+    "lng": "120.97028257820593",
+    "city": "Caloocan",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Keautie Beauty",
+    "shopAddress": "Nicdao Compound, Camarin Rd, Barangay 178, Caloocan, 1400 Metro Manila",
+    "lat": "14.75329861586486",
+    "lng": "121.05850979630819",
+    "city": "Caloocan",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Cadence Beauty Product",
+    "shopAddress": "BLK 41 Lot 4 Recomville1 PH3, Brgy. 170, Caloocan, 1420 Metro Manila",
+    "lat": "14.739634691954684",
+    "lng": "121.0342910427857",
+    "city": "Caloocan",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Soaps and Scents",
+    "shopAddress": "181 A. Del Mundo St., Grace Park West, Caloocan, 1400 Metro Manila",
+    "lat": "14.648956707427876",
+    "lng": "120.98226418375211",
+    "city": "Caloocan",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "PREMIER WASH",
+    "shopAddress": "23 Camarin Rd, 173, Caloocan, 1422 Metro Manila",
+    "lat": "14.752188237967204",
+    "lng": "121.03911840018337",
+    "city": "Caloocan",
+    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
   },
   {
-    "shopName": "Luxe Soap Factory",
-    "shopAddress": "Julia Vargas Avenue Ortigas Center, Mandaluyong",
-    "lat": "14.584743",
-    "lng": "121.056914",
-    "keyword": [
-      "soap",
-      "body wash",
-      "shampoo",
-      "cleanser",
-      "suds"
-    ]
+    "shopName": "Sabon Station Caloocan North",
+    "shopAddress": "7195 Azalea St, Maligaya, Caloocan, 1421 Metro Manila",
+    "lat": "14.74419801137441",
+    "lng": "121.05404874463508",
+    "city": "Caloocan",
+    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
   },
+
   {
-    "shopName": "BioBubbles Co.",
-    "shopAddress": "1330 Roxas Boulevard",
-    "lat": "14.575973",
-    "lng": "120.980294",
-    "keyword": [
-      "soap",
-      "body wash",
-      "shampoo",
-      "dishwashing liquid",
-      "liquid detergent"
-    ]
+    "shopName": "Bottles of Joy Perfume Collection - Caloocan Branch",
+    "shopAddress": "4263 Caleche St, Camarin Rd, Barangay 175, Caloocan, 1400",
+    "lat": "14.756116601734211",
+    "lng": "121.04188410407126",
+    "city": "Caloocan",
+    "keyword": ["perfume"]
   },
+
   {
-    "shopName": "Dolphin Bay Supplies",
-    "shopAddress": "1501 Roxas Boulevard",
-    "lat": "14.539735",
-    "lng": "120.993005",
-    "keyword": [
-      "soap",
-      "body wash",
-      "shampoo",
-      "dishwashing liquid",
-      "liquid detergent"
-    ]
+    "shopName": "Perfume Dessert London Franchisee",
+    "shopAddress": "Block 14 Lot 5 Celina Homes 2 Subdivision, Deparo Rd, Caloocan, 1420",
+    "lat": "14.736108873025623",
+    "lng": "121.01366592238519",
+    "city": "Caloocan",
+    "keyword": ["perfume"]
   },
+
   {
-    "shopName": "HygieneHeaven Inc.",
-    "shopAddress": "122 Maginhawa",
-    "lat": "14.644284",
-    "lng": "121.06089",
-    "keyword": [
-      "soap",
-      "body wash",
-      "shampoo",
-      "cleanser",
-      "suds"
-    ]
+    "shopName": "CHEMWORLD FRAGRANCE FACTORY - SANGANDAAN",
+    "shopAddress": "G/F SM CENTER SANGANDAAN A.MABINI ST, COR Samson Rd, Caloocan, Metro Manila",
+    "lat": "14.65807348123733",
+    "lng": "120.97133210154814",
+    "city": "Caloocan",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "Soapking Incorporated",
+    "shopAddress": "Baesa Industrial Compound, Lot 4, First Metro, 125 Quirino Hwy, Quezon City, 1106 Metro Manila",
+    "lat": "14.666551330585765",
+    "lng": "121.0055483139409",
+    "city": "Quezon City",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Chemscents Industrial",
+    "shopAddress": "1166 Quirino Hwy, Novaliches, Quezon City, 1124 Metro Manila",
+    "lat": "14.732685251257058",
+    "lng": "121.05036391074034",
+    "city": "Quezon City",
+    "keyword": ["dishwashing liquid", "liquid detergent", "perfume"]
+  },
+
+  {
+    "shopName": "Best Priced Soap",
+    "shopAddress": "M2JJ+5W7, Mindanao Avenue, Tandang Sora, Quezon City, 1116 Metro Manila",
+    "lat": "14.680476678750777",
+    "lng": "121.03237252608163",
+    "city": "Quezon City",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "MLA Beauty Supplies",
+    "shopAddress": "84 Montreal, Quezon City, 1102 Metro Manila",
+    "lat": "14.627276826062145",
+    "lng": "121.0484112981513",
+    "city": "Quezon City",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Bagong Silangan, Q.C - Brilliant Skin Essentials Authorized Distributor",
+    "shopAddress": "Gen Geronimo, Quezon City, 1119 Metro Manila",
+    "lat": "14.69739057388365",
+    "lng": "121.10975872653631",
+    "city": "Quezon City",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Summatrade International Corporation",
+    "shopAddress": "78 Speaker Perez Street, Santa Mesa Heights, Quezon City, 1100 Metro Manila",
+    "lat": "14.627764040579876",
+    "lng": "120.99990240001945",
+    "city": "Quezon City",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Ow's Liquid Soap Supply",
+    "shopAddress": "473-C Ibp Road, Barangay Commonwealth, Quezon City, 1121 Metro Manila",
+    "lat": "14.696959141937189",
+    "lng": "121.09509585491736",
+    "city": "Quezon City",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "WOW BUBBLES SOAP REFILLING STATION - FREEDOM",
+    "shopAddress": "58 Jonah St, Quezon City, Metro Manila",
+    "lat": "14.694349110615503",
+    "lng": "121.09218060279231",
+    "city": "Quezon City",
+    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Sabon Factory Main",
+    "shopAddress": "Munoz Market Bldg. R5 Edsa corner Roosevelt St. 1448, Quezon City, Metro Manila",
+    "lat": "14.658898405852922",
+    "lng": "121.01919333746135",
+    "city": "Quezon City",
+    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Alpha Industries",
+    "shopAddress": "WAREHOUSE, 26 Rd 5, Bagong Pag-asa, Quezon City, 1105 Metro Manila",
+    "lat": "14.66051955609067",
+    "lng": "121.03320581073922",
+    "city": "Quezon City",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "PROESSENCES, INC",
+    "shopAddress": "M2CR+PCQ, San Beda Rd, Project 8, Quezon City, Metro Manila",
+    "lat": "14.672031814883434",
+    "lng": "121.04114042276902",
+    "city": "Quezon City",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "The Scents Co.",
+    "shopAddress": "13 Gregorio Araneta Ave, Quezon City, 1113 Metro Manila",
+    "lat": "14.605232660923534",
+    "lng": "121.01891826656059",
+    "city": "Quezon City",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "A&K SOAPS & DETERGENTS",
+    "shopAddress": "3rd Flr. A.L. Fino Bldg., 4771 Barasoain St., Olympia, Makati, 1207 Metro Manila",
+    "lat": "14.570175840133992",
+    "lng": "121.01681048190214",
+    "city": "Makati",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "MAXGLOW PEMBO DISTRIBUTOR",
+    "shopAddress": "76 Sampaguita St, Makati, 1218 Metro Manila",
+    "lat": "14.542493236958496",
+    "lng": "121.05952892372086",
+    "city": "Makati",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Essential Hygiene & Cleaning Products",
+    "shopAddress": "102 Chico, Makati, 1217 Metro Manila",
+    "lat": "14.552202840324902",
+    "lng": "121.06363562607942",
+    "city": "Makati",
+    "keyword": ["dishwashing liquid", "liquid detergent", "body wash"]
+  },
+
+  {
+    "shopName": "AloDerma",
+    "shopAddress": "1849 Unit 1A Lady of Fatima Bldg. Asuncion St. Cor Pililia St, Santiago, Makati",
+    "lat": "14.568910539830789",
+    "lng": "121.02367898324394",
+    "city": "Makati",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Fw Spavenue Inc.",
+    "shopAddress": "1342-A Filmore St, Makati, 1235 Metro Manila",
+    "lat": "14.55926460958347",
+    "lng": "121.00502173772435",
+    "city": "Makati",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "AngelicaBuy",
+    "shopAddress": "139 Corporate Center, 139 Valero, Makati, 1200 Metro Manila",
+    "lat": "14.55831262629044",
+    "lng": "121.02188779539544",
+    "city": "Makati",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Soapee Philippines",
+    "shopAddress": "3414 Gen. Lim, Makati, 1233 Metro Manila",
+    "lat": "14.544197301448026",
+    "lng": "121.01232385306622",
+    "city": "Makati",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "Leyende Natural And Organic Products Inc.",
+    "shopAddress": "11/F 88 Corporate Center, corner Valero Street,, Sedeño, Makati, Metro Manila",
+    "lat": "14.558793558188995",
+    "lng": "121.02268257344679",
+    "city": "Makati",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "Paanyag Manufacturing",
+    "shopAddress": "147-G 17th Ave, Makati, 1216 Metro Manila",
+    "lat": "14.55458437669807",
+    "lng": "121.06269982607952",
+    "city": "Makati",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "The Grasse Fragrance Co",
+    "shopAddress": "G/F, Saville Building, 8728 Paseo de Roxas, Makati, 1226 Metro Manila",
+    "lat": "14.559710913172067",
+    "lng": "121.0312095358756",
+    "city": "Makati",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "De Sillage Perfumes & All-Naturals Skincare & Spa & Household Cleaning Products",
+    "shopAddress": "5081 Filmore St, Makati, 1235 Metro Manila",
+    "lat": "14.562631260820323",
+    "lng": "121.0035346018094",
+    "city": "Makati",
+    "keyword": ["perfume", "shampoo", "body wash", "liquid detergent", "dishwashing liquid"]
+  },
+
+  {
+    "shopName": "Scentsmith Perfumery",
+    "shopAddress": "2/F Greenbelt 5 Ayala Center, Makati, 1228 Metro Manila",
+    "lat": "14.553677192967175",
+    "lng": "121.02258148005326",
+    "city": "Makati",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "Sabon Station Malibay",
+    "shopAddress": "148 P. Santos St, Pasay, Metro Manila",
+    "lat": "14.53628205014201",
+    "lng": "121.01031489539496",
+    "city": "Pasay",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Bethran Store",
+    "shopAddress": "Lot 5A, Seaside, Diosdado Macapagal Avenue, Barangay 76, Pasay City, 1300 Metro Manila",
+    "lat": "14.545484215326674",
+    "lng": "120.98611669354642",
+    "city": "Pasay",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "LORNz Soap & Detergent",
+    "shopAddress": "143 F. Cruz, Malibay, Pasay, 1300 Kalakhang Maynila",
+    "lat": "14.536428737602268",
+    "lng": "121.01072355121727",
+    "city": "Pasay",
+    "keyword": ["dishwashing liquid", "liquid detergent"]
+  },
+
+  {
+    "shopName": "Crystal Beauty Enterprises",
+    "shopAddress": "317-B Libertad Street, Pasay City, Metro Manila",
+    "lat": "14.547964773814591",
+    "lng": "120.99889179354658",
+    "city": "Pasay",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Cosmetique Beauty Supplies Philippines",
+    "shopAddress": "Unit 411A, Harrison Mansion, F.B. Harrison St, Pasay",
+    "lat": "14.548920527606239",
+    "lng": "120.99311992423087",
+    "city": "Pasay",
+    "keyword": ["shampoo"]
+  },
+
+  {
+    "shopName": "Beauty&U - Pasay City PD",
+    "shopAddress": "Epifanio de los Santos Ave, 670, Pasay, 1303 Metro Manila",
+    "lat": "14.538042724402947",
+    "lng": "121.00661015121749",
+    "city": "Pasay",
+    "keyword": ["shampoo", "body wash"]
+  },
+
+  {
+    "shopName": "Speaks G - EDSA Malibay Pasay City",
+    "shopAddress": "670, Jolliland Townhomes, 1300 Epifanio de los Santos Ave, Malibay, Pasay, Metro Manila",
+    "lat": "14.538295206725559",
+    "lng": "121.0074332493687",
+    "city": "Pasay",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "SOAPURE BODY SOAP",
+    "shopAddress": "G2X2+GMG, Pasay, Metro Manila",
+    "lat": "14.54907804512271",
+    "lng": "121.00169916840842",
+    "city": "Pasay",
+    "keyword": ["body wash"]
+  },
+
+  {
+    "shopName": "Beauty&U- Pildera2 Pasay",
+    "shopAddress": "G262+GVX, Rd 7, Pasay, Metro Manila",
+    "lat": "14.511485638145482",
+    "lng": "121.00223589539459",
+    "city": "Pasay",
+    "keyword": ["body wash", "shampoo"]
+  },
+
+  {
+    "shopName": "RC Perfume Collection",
+    "shopAddress": "632 Unit C Tropicana Villa, Quirino Ave, Tambo, Parañaque, 1710 Metro Manila",
+    "lat": "14.516716780717505",
+    "lng": "120.9960879377237",
+    "city": "Pasay",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "Art Of Scent",
+    "shopAddress": "9-B, 9-B Newport Blvd, Pasay, 1309 Metro Manila",
+    "lat": "14.51981105088697",
+    "lng": "121.01910362607897",
+    "city": "Pasay",
+    "keyword": ["perfume"]
+  },
+
+  {
+    "shopName": "R.M.G. Direct Supplier Pasay",
+    "shopAddress": "501 F. Cruz, Malibay, Pasay, 1300 Kalakhang Maynila",
+    "lat": "14.53525152332796",
+    "lng": "121.0127072109806",
+    "city": "Pasay",
+    "keyword": ["perfume"]
   }
 ]
