@@ -5,7 +5,7 @@
     "lat": "14.57017395633135",
     "lng": "121.00627333772451",
     "city": "Manila",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
   {
     "shopName": "Magic Brite Mb Homemade Dishwashing Liquid",
@@ -13,7 +13,7 @@
     "lat": "14.580276252481761",
     "lng": "121.00054877820487",
     "city": "Manila",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
   {
     "shopName": "Everlight Chemiecolor",
@@ -21,7 +21,7 @@
     "lat": "14.602879410225098",
     "lng": "120.96956497829004",
     "city": "Manila",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
   {
     "shopName": "Binondo Beauty Supply",
@@ -29,7 +29,7 @@
     "lat": "14.601515690035491",
     "lng": "120.97298554168688",
     "city": "Manila",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
   {
     "shopName": "Kafen Beauty Shop",
@@ -37,7 +37,7 @@
     "lat": "14.599182342641848",
     "lng": "120.98331497736372",
     "city": "Manila",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -46,7 +46,7 @@
     "lat": "14.60976947968333",
     "lng": "120.99343248310271",
     "city": "Manila",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -55,7 +55,7 @@
     "lat": "14.599934104293556",
     "lng": "120.96532251073832",
     "city": "Manila",
-    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+    "keyword": ["Body Wash", "Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -64,7 +64,7 @@
     "lat": "14.611444286758127",
     "lng": "120.99700445306739",
     "city": "Manila",
-    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+    "keyword": ["Body Wash", "Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -73,7 +73,7 @@
     "lat": "14.599757615298254",
     "lng": "120.96959462372817",
     "city": "Manila",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -82,7 +82,7 @@
     "lat": "14.592686347198923",
     "lng": "121.00810169914189",
     "city": "Manila",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -91,7 +91,7 @@
     "lat": "14.57237728977051",
     "lng": "120.99209060575849",
     "city": "Manila",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
   {
     "shopName": "Perfume Manila",
@@ -99,7 +99,7 @@
     "lat": "14.56432167862369",
     "lng": "120.99994501398668",
     "city": "Manila",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -108,7 +108,7 @@
     "lat": "14.642084094029425",
     "lng": "120.97059718005472",
     "city": "Caloocan",
-    "keyword": ["dishwashing liquid", "liquid detergent", "body wash"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent", "Body Wash"]
   },
 
   {
@@ -117,7 +117,7 @@
     "lat": "14.641981820603517",
     "lng": "120.9913449562666",
     "city": "Caloocan",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -126,7 +126,7 @@
     "lat": "14.75519671140568",
     "lng": "121.06436602238534",
     "city": "Caloocan",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -135,7 +135,7 @@
     "lat": "14.640456551663204",
     "lng": "120.97028257820593",
     "city": "Caloocan",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -144,7 +144,7 @@
     "lat": "14.75329861586486",
     "lng": "121.05850979630819",
     "city": "Caloocan",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -153,7 +153,7 @@
     "lat": "14.739634691954684",
     "lng": "121.0342910427857",
     "city": "Caloocan",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -162,7 +162,7 @@
     "lat": "14.648956707427876",
     "lng": "120.98226418375211",
     "city": "Caloocan",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -171,7 +171,7 @@
     "lat": "14.752188237967204",
     "lng": "121.03911840018337",
     "city": "Caloocan",
-    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+    "keyword": ["Body Wash", "Dishwashing Liquid", "Liquid Detergent"]
   },
   {
     "shopName": "Sabon Station Caloocan North",
@@ -179,7 +179,7 @@
     "lat": "14.74419801137441",
     "lng": "121.05404874463508",
     "city": "Caloocan",
-    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+    "keyword": ["Body Wash", "Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -188,7 +188,7 @@
     "lat": "14.756116601734211",
     "lng": "121.04188410407126",
     "city": "Caloocan",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -197,7 +197,7 @@
     "lat": "14.736108873025623",
     "lng": "121.01366592238519",
     "city": "Caloocan",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -206,7 +206,7 @@
     "lat": "14.65807348123733",
     "lng": "120.97133210154814",
     "city": "Caloocan",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -215,7 +215,7 @@
     "lat": "14.666551330585765",
     "lng": "121.0055483139409",
     "city": "Quezon City",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -224,7 +224,7 @@
     "lat": "14.732685251257058",
     "lng": "121.05036391074034",
     "city": "Quezon City",
-    "keyword": ["dishwashing liquid", "liquid detergent", "perfume"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent", "Perfume"]
   },
 
   {
@@ -233,7 +233,7 @@
     "lat": "14.680476678750777",
     "lng": "121.03237252608163",
     "city": "Quezon City",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -242,7 +242,7 @@
     "lat": "14.627276826062145",
     "lng": "121.0484112981513",
     "city": "Quezon City",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -251,7 +251,7 @@
     "lat": "14.69739057388365",
     "lng": "121.10975872653631",
     "city": "Quezon City",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -260,7 +260,7 @@
     "lat": "14.627764040579876",
     "lng": "120.99990240001945",
     "city": "Quezon City",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -269,7 +269,7 @@
     "lat": "14.696959141937189",
     "lng": "121.09509585491736",
     "city": "Quezon City",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -278,7 +278,7 @@
     "lat": "14.694349110615503",
     "lng": "121.09218060279231",
     "city": "Quezon City",
-    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+    "keyword": ["Body Wash", "Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -287,7 +287,7 @@
     "lat": "14.658898405852922",
     "lng": "121.01919333746135",
     "city": "Quezon City",
-    "keyword": ["body wash", "dishwashing liquid", "liquid detergent"]
+    "keyword": ["Body Wash", "Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -296,7 +296,7 @@
     "lat": "14.66051955609067",
     "lng": "121.03320581073922",
     "city": "Quezon City",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -305,7 +305,7 @@
     "lat": "14.672031814883434",
     "lng": "121.04114042276902",
     "city": "Quezon City",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -314,7 +314,7 @@
     "lat": "14.605232660923534",
     "lng": "121.01891826656059",
     "city": "Quezon City",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -323,7 +323,7 @@
     "lat": "14.570175840133992",
     "lng": "121.01681048190214",
     "city": "Makati",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -332,7 +332,7 @@
     "lat": "14.542493236958496",
     "lng": "121.05952892372086",
     "city": "Makati",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -341,7 +341,7 @@
     "lat": "14.552202840324902",
     "lng": "121.06363562607942",
     "city": "Makati",
-    "keyword": ["dishwashing liquid", "liquid detergent", "body wash"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent", "Body Wash"]
   },
 
   {
@@ -350,7 +350,7 @@
     "lat": "14.568910539830789",
     "lng": "121.02367898324394",
     "city": "Makati",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -359,7 +359,7 @@
     "lat": "14.55926460958347",
     "lng": "121.00502173772435",
     "city": "Makati",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -368,7 +368,7 @@
     "lat": "14.55831262629044",
     "lng": "121.02188779539544",
     "city": "Makati",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -377,7 +377,7 @@
     "lat": "14.544197301448026",
     "lng": "121.01232385306622",
     "city": "Makati",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -386,7 +386,7 @@
     "lat": "14.558793558188995",
     "lng": "121.02268257344679",
     "city": "Makati",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -395,7 +395,7 @@
     "lat": "14.55458437669807",
     "lng": "121.06269982607952",
     "city": "Makati",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -404,7 +404,7 @@
     "lat": "14.559710913172067",
     "lng": "121.0312095358756",
     "city": "Makati",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -413,7 +413,7 @@
     "lat": "14.562631260820323",
     "lng": "121.0035346018094",
     "city": "Makati",
-    "keyword": ["perfume", "shampoo", "body wash", "liquid detergent", "dishwashing liquid"]
+    "keyword": ["Perfume", "Shampoo", "Body Wash", "Liquid Detergent", "Dishwashing Liquid"]
   },
 
   {
@@ -422,7 +422,7 @@
     "lat": "14.553677192967175",
     "lng": "121.02258148005326",
     "city": "Makati",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -431,7 +431,7 @@
     "lat": "14.53628205014201",
     "lng": "121.01031489539496",
     "city": "Pasay",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -440,7 +440,7 @@
     "lat": "14.545484215326674",
     "lng": "120.98611669354642",
     "city": "Pasay",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -449,7 +449,7 @@
     "lat": "14.536428737602268",
     "lng": "121.01072355121727",
     "city": "Pasay",
-    "keyword": ["dishwashing liquid", "liquid detergent"]
+    "keyword": ["Dishwashing Liquid", "Liquid Detergent"]
   },
 
   {
@@ -458,7 +458,7 @@
     "lat": "14.547964773814591",
     "lng": "120.99889179354658",
     "city": "Pasay",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -467,7 +467,7 @@
     "lat": "14.548920527606239",
     "lng": "120.99311992423087",
     "city": "Pasay",
-    "keyword": ["shampoo"]
+    "keyword": ["Shampoo"]
   },
 
   {
@@ -476,7 +476,7 @@
     "lat": "14.538042724402947",
     "lng": "121.00661015121749",
     "city": "Pasay",
-    "keyword": ["shampoo", "body wash"]
+    "keyword": ["Shampoo", "Body Wash"]
   },
 
   {
@@ -485,7 +485,7 @@
     "lat": "14.538295206725559",
     "lng": "121.0074332493687",
     "city": "Pasay",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -494,7 +494,7 @@
     "lat": "14.54907804512271",
     "lng": "121.00169916840842",
     "city": "Pasay",
-    "keyword": ["body wash"]
+    "keyword": ["Body Wash"]
   },
 
   {
@@ -503,7 +503,7 @@
     "lat": "14.511485638145482",
     "lng": "121.00223589539459",
     "city": "Pasay",
-    "keyword": ["body wash", "shampoo"]
+    "keyword": ["Body Wash", "Shampoo"]
   },
 
   {
@@ -512,7 +512,7 @@
     "lat": "14.516716780717505",
     "lng": "120.9960879377237",
     "city": "Pasay",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -521,7 +521,7 @@
     "lat": "14.51981105088697",
     "lng": "121.01910362607897",
     "city": "Pasay",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   },
 
   {
@@ -530,6 +530,6 @@
     "lat": "14.53525152332796",
     "lng": "121.0127072109806",
     "city": "Pasay",
-    "keyword": ["perfume"]
+    "keyword": ["Perfume"]
   }
 ]

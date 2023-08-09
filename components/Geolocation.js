@@ -212,7 +212,10 @@ export default function Map() {
                   <Stack>
                     <Typography fontSize={"15px"}>{value.shopName}</Typography>
                     <Typography fontSize={"12px"} color={"GrayText"}>
-                      {value.shopAddress}
+                      Products: {value.keyword?.join(", ")}
+                    </Typography>
+                    <Typography fontSize={"12px"} color={"GrayText"}>
+                      Address: {value.shopAddress}
                     </Typography>
                     {distance && (
                       <Typography fontSize={"12px"} color={"GrayText"}>
@@ -243,9 +246,19 @@ export default function Map() {
           return (
             <Marker position={[shop.lat, shop.lng]} icon={ShopIcon} key={id}>
               <Popup>
-                <b>{shop.shopName}</b>
+                <b>Shop Name:</b>
                 <br></br>
-                <b>{shop.shopAddress}</b>
+                {shop.shopName}
+                <br></br>
+                <br></br>
+                <b>Shop Address:</b>
+                <br></br>
+                {shop.shopAddress}
+                <br></br>
+                <br></br>
+                <b>Products:</b>
+                <br></br>
+                {shop.keyword?.join(", ")}
               </Popup>
             </Marker>
           );
